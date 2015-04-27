@@ -2,6 +2,7 @@ package de.database;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Marcel on 20.04.2015.
@@ -11,22 +12,19 @@ public class DataKnot implements Serializable {
     private ArrayList<DataKnot> listChildren = new ArrayList<>();
     private DataKnot theParent = null;
 
-    private String theName;
-    private String theValue;
+    private HashMap<String, String> mapData = new HashMap<>();
 
-    public DataKnot(String pName, String pValue) {
-        theName = pName;
-        theValue = pValue;
+    public DataKnot(String pValue) {
+        mapData.put("Tag", pValue);
     }
 
-    public DataKnot(DataKnot pParent, String pName, String pValue) {
+    public DataKnot(DataKnot pParent, String pValue) {
         theParent = pParent;
-        theName = pName;
-        theValue = pValue;
+        mapData.put("Tag", pValue);
     }
 
-    public DataKnot addChild(String pName, String pValue) {
-        DataKnot tempKnot = new DataKnot(this, pName, pValue);
+    public DataKnot addChild(String pValue) {
+        DataKnot tempKnot = new DataKnot(this, pValue);
         listChildren.add(tempKnot);
         return tempKnot;
     }
@@ -39,21 +37,21 @@ public class DataKnot implements Serializable {
         return listChildren;
     }
 
-    public ArrayList<DataKnot> getChildrenByName(String pName) {
+    public ArrayList<DataKnot> getChildrenByTag(String pTag) {
         ArrayList<DataKnot> tempList = new ArrayList<>();
         for (DataKnot eachKnot : listChildren) {
-            if (eachKnot.getName().equals(pName)) {
+            if (eachKnot.getValueByKey("Tag").equals(pTag)) {
                 tempList.add(eachKnot);
             }
         }
         return tempList;
     }
 
-    public String getName() {
-        return theName;
+    public void addData(String pKey, String pValue) {
+        mapData.put(pKey, pValue);
     }
 
-    public String getValue() {
-        return theValue;
+    public String getValueByKey(String pKey) {
+        return mapData.get(pKey);
     }
 }

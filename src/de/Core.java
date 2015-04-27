@@ -10,19 +10,18 @@ import de.database.manager.serializer.SerialExporter;
 public class Core {
 
     public static void memoryTest() {
-        DataKnot tempKnot = new DataKnot("Main", "Ich bin ein Knoten");
-        tempKnot.addChild("Kind", "Kind1");
-        tempKnot.addChild("Kind", "Kind2");
-        tempKnot.addChild("KeinKind", "Ich bin kein kind");
+        DataKnot tempKnot = new DataKnot("Main");                                               // Lege Daten an
+        tempKnot.addChild("KeinKind");
         for (int i = 0; i < 10; i++) {
-            tempKnot.getChildrenByName("Kind").add(new DataKnot("Alter", "" + i));
+            tempKnot.addChild("Kind").addData("Alter", "" + (int) (Math.random() * 25));
         }
 
-        SerialExporter theSE = new SerialExporter();
+        SerialExporter theSE = new SerialExporter();                                            // Daten sichern
         theSE.write("TestFile", tempKnot);
 
-        for (DataKnot eachKnot : theSE.read("TestFile").getChildrenByName("Kind")) {
-            System.out.println("Alter" + eachKnot.getValue());
+        System.out.println(theSE.read("TestFile").getChildrenByTag("Kind").size());             // Daten laden und ausgeben
+        for (DataKnot eachKnot : theSE.read("TestFile").getChildrenByTag("Kind")) {
+            System.out.println("Alter: " + eachKnot.getValueByKey("Alter"));
         }
     }
 
@@ -32,6 +31,5 @@ public class Core {
     //    myFrame.
 
         memoryTest();
-
     }
 }
