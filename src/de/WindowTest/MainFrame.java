@@ -1,4 +1,4 @@
-package de.Window;
+package de.WindowTest;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,9 +14,7 @@ public class MainFrame {
     public MainFrame() {
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 System.out.println("Button gedrueckt!");
-
             }
         });
     }
