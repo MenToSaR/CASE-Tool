@@ -51,7 +51,15 @@ public class DataKnot implements Serializable {
         mapData.put(pKey, pValue);
     }
 
+    public HashMap<String, String> getData() {
+        return mapData;
+    }
+
     public String getValueByKey(String pKey) {
         return mapData.get(pKey);
+    }
+
+    public String getTag() {
+        return mapData.get("Tag");
     }
 }

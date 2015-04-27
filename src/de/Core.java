@@ -17,10 +17,10 @@ public class Core {
         }
 
         SerialExporter theSE = new SerialExporter();                                            // Daten sichern
-        theSE.write("TestFile", tempKnot);
+        theSE.write("TestFileXML", tempKnot);
 
-        System.out.println(theSE.read("TestFile").getChildrenByTag("Kind").size());             // Daten laden und ausgeben
-        for (DataKnot eachKnot : theSE.read("TestFile").getChildrenByTag("Kind")) {
+        System.out.println(theSE.read("TestFileXML").getChildrenByTag("Kind").size());             // Daten laden und ausgeben
+        for (DataKnot eachKnot : theSE.read("TestFileXML").getChildrenByTag("Kind")) {
             System.out.println("Alter: " + eachKnot.getValueByKey("Alter"));
         }
     }
