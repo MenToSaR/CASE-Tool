@@ -13,14 +13,21 @@ public class DataKnot implements Serializable {
     private DataKnot theParent = null;
 
     private HashMap<String, String> mapData = new HashMap<>();
+    private String theTag = "Tag";
+    private String theValue;
 
-    public DataKnot(String pValue) {
-        mapData.put("Tag", pValue);
+    public DataKnot(String pTag) {
+        theTag = pTag;
     }
 
-    public DataKnot(DataKnot pParent, String pValue) {
+    public DataKnot(String pTag, String pValue) {
+        theTag = pTag;
+        theValue = pValue;
+    }
+
+    public DataKnot(DataKnot pParent, String pTag) {
         theParent = pParent;
-        mapData.put("Tag", pValue);
+        theTag = pTag;
     }
 
     public DataKnot addChild(String pValue) {
@@ -40,7 +47,7 @@ public class DataKnot implements Serializable {
     public ArrayList<DataKnot> getChildrenByTag(String pTag) {
         ArrayList<DataKnot> tempList = new ArrayList<>();
         for (DataKnot eachKnot : listChildren) {
-            if (eachKnot.getValueByKey("Tag").equals(pTag)) {
+            if (eachKnot.getTag().equals(pTag)) {
                 tempList.add(eachKnot);
             }
         }
@@ -51,8 +58,16 @@ public class DataKnot implements Serializable {
         mapData.put(pKey, pValue);
     }
 
+    public void setValue(String pValue) {
+        theValue = pValue;
+    }
+
     public HashMap<String, String> getData() {
         return mapData;
+    }
+
+    public String getValue() {
+        return theValue;
     }
 
     public String getValueByKey(String pKey) {
@@ -60,6 +75,6 @@ public class DataKnot implements Serializable {
     }
 
     public String getTag() {
-        return mapData.get("Tag");
+        return theTag;
     }
 }
