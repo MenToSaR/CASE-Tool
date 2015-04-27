@@ -1,14 +1,14 @@
 <?xml version="1.0" ?>
 <Main>Hallo
 	<KeinKind></KeinKind>
-	<Kind Alter="19"></Kind>
-	<Kind Alter="12"></Kind>
 	<Kind Alter="15"></Kind>
 	<Kind Alter="12"></Kind>
-	<Kind Alter="17"></Kind>
-	<Kind Alter="18"></Kind>
-	<Kind Alter="17"></Kind>
-	<Kind Alter="12"></Kind>
+	<Kind Alter="19"></Kind>
+	<Kind Alter="0"></Kind>
+	<Kind Alter="11"></Kind>
+	<Kind Alter="13"></Kind>
+	<Kind Alter="5"></Kind>
+	<Kind Alter="3"></Kind>
 	<Kind Alter="16"></Kind>
-	<Kind Alter="6"></Kind>
+	<Kind Alter="4"></Kind>
 </Main>
