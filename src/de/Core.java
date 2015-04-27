@@ -1,6 +1,6 @@
 package de;
 
-import de.database.manager.xml.XMLPorter;
+import de.database.manager.xml.XMLExporter;
 import de.window.MainFrame;
 import de.database.DataKnot;
 
@@ -17,7 +17,7 @@ public class Core {
             tempKnot.setValue("Hallo");
         }
 
-        XMLPorter theSE = new XMLPorter();                                                      // Daten sichern
+        XMLExporter theSE = new XMLExporter();                                                      // Daten sichern
         theSE.write("TestFileXML", tempKnot);
 
         for (DataKnot eachKnot : theSE.read("TestFileXML").getChildrenByTag("Kind")) {          // Daten laden und ausgeben
