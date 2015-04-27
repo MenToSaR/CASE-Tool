@@ -5,7 +5,7 @@ package de.database;
  */
 public abstract class InOuter {
 
-    public abstract void write(String pFileName, DataKnot pData);
+    public abstract void write(String pFile, DataKnot pData);
 
-    public abstract DataKnot read(String pFileName);
+    public abstract DataKnot read(String pFile);
 }

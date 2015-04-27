@@ -9,12 +9,12 @@ import de.database.InOuter;
 public class XMLExporter extends InOuter {
 
     @Override
-    public void write(String pFileName, DataKnot pData) {
+    public void write(String pFile, DataKnot pData) {
 
     }
 
     @Override
-    public DataKnot read(String pFileName) {
+    public DataKnot read(String pFile) {
         return null;
     }
 }
