@@ -1,6 +1,6 @@
 package de;
 
-import de.window.MainFrame;
+import de.Window.MainFrame;
 
 /**
  * Created by Marcel on 20.04.2015.
