@@ -10,4 +10,8 @@ public class TestClassGit {
     public static void arsch() {
 
     }
+
+    public void sarjdio() {
+
+    }
 }
