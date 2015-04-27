@@ -1,6 +1,6 @@
 package de;
 
-import de.WindowTest.MainFrame;
+import de.window.MainFrame;
 import de.database.DataKnot;
 import de.database.manager.serializer.SerialExporter;
 

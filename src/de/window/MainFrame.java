@@ -1,4 +1,4 @@
-package de.WindowTest;
+package de.window;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
