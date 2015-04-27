@@ -2,7 +2,7 @@ package de;
 
 import de.window.MainFrame;
 import de.database.DataKnot;
-import de.database.manager.serializer.SerialExporter;
+import de.database.manager.serializer.SerialPorter;
 
 /**
  * Created by Marcel on 20.04.2015.
@@ -16,7 +16,7 @@ public class Core {
             tempKnot.addChild("Kind").addData("Alter", "" + (int) (Math.random() * 25));
         }
 
-        SerialExporter theSE = new SerialExporter();                                            // Daten sichern
+        SerialPorter theSE = new SerialPorter();                                            // Daten sichern
         theSE.write("TestFileXML", tempKnot);
 
         System.out.println(theSE.read("TestFileXML").getChildrenByTag("Kind").size());             // Daten laden und ausgeben
