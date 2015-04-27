@@ -6,4 +6,8 @@ package de.Database;
 public class TestClassGit {
 
     //Das ist ein Test
+
+    public static void arsch() {
+
+    }
 }
