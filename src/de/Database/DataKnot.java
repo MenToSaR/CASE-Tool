@@ -1,11 +1,12 @@
 package de.database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Marcel on 20.04.2015.
  */
-public class DataKnot {
+public class DataKnot implements Serializable {
 
     private ArrayList<DataKnot> listChildren = new ArrayList<>();
     private DataKnot theParent = null;
