@@ -1,8 +1,8 @@
 package de;
 
+import de.database.manager.xml.XMLExorter;
 import de.window.MainFrame;
 import de.database.DataKnot;
-import de.database.manager.serializer.SerialPorter;
 
 /**
  * Created by Marcel on 20.04.2015.
@@ -14,14 +14,21 @@ public class Core {
         tempKnot.addChild("KeinKind");
         for (int i = 0; i < 10; i++) {
             tempKnot.addChild("Kind").addData("Alter", "" + (int) (Math.random() * 25));
+            tempKnot.setValue("Hallo");
         }
 
-        SerialPorter theSE = new SerialPorter();                                            // Daten sichern
+        XMLExorter theSE = new XMLExorter();                                                      // Daten sichern
         theSE.write("TestFileXML", tempKnot);
 
-        System.out.println(theSE.read("TestFileXML").getChildrenByTag("Kind").size());             // Daten laden und ausgeben
-        for (DataKnot eachKnot : theSE.read("TestFileXML").getChildrenByTag("Kind")) {
+        for (DataKnot eachKnot : theSE.read("TestFileXML").getChildrenByTag("Kind")) {          // Daten laden und ausgeben
+            System.out.println("Tag: " + eachKnot.getTag() + " Value: " + eachKnot.getValue());
             System.out.println("Alter: " + eachKnot.getValueByKey("Alter"));
+        }
+
+        DataKnot tKnot = theSE.read("TestFileXML");
+        for (DataKnot eachKnot : tKnot) {
+            System.out.println(eachKnot.getTag());
+            System.out.println(eachKnot.getValue());
         }
     }
 

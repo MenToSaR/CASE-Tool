@@ -3,11 +3,14 @@ package de.database;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.function.Consumer;
 
 /**
  * Created by Marcel on 20.04.2015.
  */
-public class DataKnot implements Serializable {
+public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<DataKnot> {
+    private DataKnot itKnot = null;
 
     private ArrayList<DataKnot> listChildren = new ArrayList<>();
     private DataKnot theParent = null;
@@ -28,6 +31,11 @@ public class DataKnot implements Serializable {
     public DataKnot(DataKnot pParent, String pTag) {
         theParent = pParent;
         theTag = pTag;
+    }
+
+    public void addChild(DataKnot pKnot) {
+        theParent = this;
+        listChildren.add(pKnot);
     }
 
     public DataKnot addChild(String pValue) {
@@ -76,5 +84,65 @@ public class DataKnot implements Serializable {
 
     public String getTag() {
         return theTag;
+    }
+
+    @Override
+    public boolean hasNext() {
+        if (itKnot.getChildren().size() > 0) {
+            return true;
+        } else {
+            DataKnot tempParent = itKnot;
+            DataKnot tempChild;
+            while (tempParent.getParent() != null) {
+                tempChild = tempParent;
+                tempParent = tempParent.getParent();
+                ArrayList<DataKnot> listKnot = tempParent.getChildren();
+                for (int i = 0; i < listKnot.size(); i++) {
+                    if (listKnot.get(i).equals(tempChild)) {
+                        if (i + 1 < listKnot.size()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public DataKnot next() {
+        if (itKnot.getChildren().size() > 0) {
+            itKnot = itKnot.getChildren().get(0);
+            return itKnot;
+        } else {
+            DataKnot tempParent = itKnot;
+            DataKnot tempChild;
+            while (tempParent.getParent() != null) {
+                tempChild = tempParent;
+                tempParent = tempParent.getParent();
+                ArrayList<DataKnot> listKnot = tempParent.getChildren();
+                for (int i = 0; i < listKnot.size(); i++) {
+                    if (listKnot.get(i).equals(tempChild)) {
+                        if (i + 1 < listKnot.size()) {
+                            itKnot = listKnot.get(i + 1);
+                            return itKnot;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+    }
+
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Iterator<DataKnot> iterator() {
+        itKnot = new DataKnot("NULL");
+        itKnot.addChild(this);
+        return this;
     }
 }
