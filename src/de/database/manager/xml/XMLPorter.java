@@ -1,5 +1,3 @@
-package de.database.manager.xml;
-
 import de.database.DataKnot;
 import de.database.InOuter;
 
@@ -7,7 +5,6 @@ import javax.xml.stream.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.nio.file.FileSystemException;
 import java.util.HashMap;
 
 /**

@@ -1,6 +1,6 @@
 package de;
 
-import de.database.manager.xml.XMLPorter;
+import de.database.manager.Database;
 import de.window.MainFrame;
 import de.database.DataKnot;
 
@@ -18,7 +18,7 @@ public class Core {
         }
 
 
-        XMLPorter theSE = new XMLPorter();                                                      // Daten sichern
+   /*     XMLPorter theSE = new XMLPorter();                                                      // Daten sichern
         theSE.write("TestFileXML", tempKnot);
 
         for (DataKnot eachKnot : theSE.read("TestFileXML").getChildrenByTag("Kind")) {          // Daten laden und ausgeben
@@ -30,7 +30,7 @@ public class Core {
         for (DataKnot eachKnot : tKnot) {
             System.out.println(eachKnot.getTag());
             System.out.println(eachKnot.getValue());
-        }
+        }        */
     }
 
     public static void main(String[] args) {
@@ -38,6 +38,8 @@ public class Core {
 
     //    myFrame.
 
-        memoryTest();
+    //    memoryTest();
+
+        Database.getDatabase().load("XMLPorter.jar");
     }
 }
