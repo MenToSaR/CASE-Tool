@@ -17,6 +17,7 @@ public class Core {
             tempKnot.setValue("Hallo");
         }
 
+
         XMLPorter theSE = new XMLPorter();                                                      // Daten sichern
         theSE.write("TestFileXML", tempKnot);
 
