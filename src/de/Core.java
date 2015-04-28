@@ -17,20 +17,17 @@ public class Core {
             tempKnot.setValue("Hallo");
         }
 
-
-   /*     XMLPorter theSE = new XMLPorter();                                                      // Daten sichern
-        theSE.write("TestFileXML", tempKnot);
-
-        for (DataKnot eachKnot : theSE.read("TestFileXML").getChildrenByTag("Kind")) {          // Daten laden und ausgeben
-            System.out.println("Tag: " + eachKnot.getTag() + " Value: " + eachKnot.getValue());
-            System.out.println("Alter: " + eachKnot.getValueByKey("Alter"));
+        for (String eachString : Database.getDatabase().getListOfPorter()) {
+            System.out.println(eachString);
         }
 
-        DataKnot tKnot = theSE.read("TestFileXML");
+        Database.getDatabase().load("SerialPorter").write("TestFile", tempKnot);
+
+        DataKnot tKnot = Database.getDatabase().load("SerialPorter").read("TestFile");
         for (DataKnot eachKnot : tKnot) {
             System.out.println(eachKnot.getTag());
             System.out.println(eachKnot.getValue());
-        }        */
+        }
     }
 
     public static void main(String[] args) {
@@ -38,8 +35,6 @@ public class Core {
 
     //    myFrame.
 
-    //    memoryTest();
-
-        Database.getDatabase().load("XMLPorter.jar");
+        memoryTest();
     }
 }

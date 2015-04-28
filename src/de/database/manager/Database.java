@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
+import java.util.jar.JarException;
 import java.util.jar.JarFile;
 
 /**
@@ -22,48 +24,60 @@ public class Database {
 
     }
 
-    public void load(String pModule) {
+    public InOuter load(String pModule) throws RuntimeException{
         try {
+            File theFolder = new File("Porter");
+            File[] theFiles = theFolder.listFiles();
 
-            URL url = new File(pModule).toURL();
-            JarFile theJarFile = new JarFile(pModule);
-            Enumeration e = theJarFile.entries();
+            for (File eachFile : theFiles) {
+                if (eachFile.isFile() && eachFile.getName().endsWith(".jar")) {
+                    JarFile theJarFile = new JarFile(eachFile.getAbsolutePath());
+                    Enumeration theEnum = theJarFile.entries();
 
-            URL[] urls = { new URL("jar:file:" + theJarFile.getName()+ "!/") };
-
-            URLClassLoader cl = URLClassLoader.newInstance(urls);
-//            Class theIO = cl.loadClass("XMLPorter");
-
-  //          System.out.println(theIO);
-
-            System.out.println(urls[0]);
-
-            while (e.hasMoreElements()) {
-                JarEntry je = (JarEntry) e.nextElement();
-                System.out.println(je.getName());
-                if (je.isDirectory() || !je.getName().endsWith(".class")) {
-                    continue;
+                    while (theEnum.hasMoreElements()) {
+                        JarEntry theEntry = (JarEntry) theEnum.nextElement();
+                        if (!theEntry.isDirectory() && theEntry.getName().endsWith(".class")) {
+                            if (theEntry.getName().equals(pModule + ".class")) {
+                                URL[] urls = {new URL("jar:file:" + theJarFile.getName().split(".class")[0] + "!/")};
+                                URLClassLoader cl = URLClassLoader.newInstance(urls);
+                                return (InOuter) cl.loadClass(theEntry.getName().split(".class")[0]).newInstance();
+                            }
+                        }
+                    }
                 }
-                // -6 because of .class
-                String className = je.getName().substring(0, je.getName().length() - 6);
-                className = className.replace("/", ".");
-                Class c = cl.loadClass(className);
             }
-
-
-
-         //   ClassLoader cl = new URLClassLoader(urls);
-
-        //    System.out.println(cl.);
-
-        //    Class cls = cl.loadClass("prog."+cStart+pS.substring(1).toLowerCase());
-
-        //    mapProg.put(pS.toLowerCase(), (Prog) (cls.newInstance()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        //    Log.getLog().writeToLog(Log.INT_EXCEPTION, e.toString());
-        //    return -1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
+        throw new RuntimeException("Module " + pModule + " was not found!");
+    }
+
+    public ArrayList<String> getListOfPorter() {
+        ArrayList<String> listPorter = new ArrayList<>();
+        try {
+            File theFolder = new File("Porter");
+            File[] theFiles = theFolder.listFiles();
+
+            for (File eachFile : theFiles) {
+                if (eachFile.isFile() && eachFile.getName().endsWith(".jar")) {
+                    JarFile theJarFile = new JarFile(eachFile.getAbsolutePath());
+                    Enumeration theEnum = theJarFile.entries();
+
+                    URL[] urls = {new URL("jar:file:" + theJarFile.getName() + "!/")};
+
+                    while (theEnum.hasMoreElements()) {
+                        JarEntry theEntry = (JarEntry) theEnum.nextElement();
+                        if (!theEntry.isDirectory() && theEntry.getName().endsWith(".class")) {
+                            String className = theEntry.getName().split(".class")[0];
+                            listPorter.add(className);
+                        }
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return listPorter;
     }
 
     public static Database getDatabase() {
