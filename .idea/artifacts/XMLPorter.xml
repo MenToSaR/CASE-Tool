@@ -2,7 +2,7 @@
   <artifact type="jar" name="XMLPorter">
     <output-path>$PROJECT_DIR$/out/artifacts/XMLPorter</output-path>
     <root id="archive" name="XMLPorter.jar">
-      <element id="file-copy" path="$PROJECT_DIR$/out/production/Implementierung CASE Tool/de/database/manager/xml/XMLPorter.class" />
+      <element id="file-copy" path="$PROJECT_DIR$/out/production/Implementierung CASE Tool/de/database/manager/serializer/XMLPorter.class" />
     </root>
   </artifact>
 </component>

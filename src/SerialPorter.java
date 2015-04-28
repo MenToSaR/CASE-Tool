@@ -1,5 +1,3 @@
-package de.database.manager.serializer;
-
 import de.database.DataKnot;
 import de.database.InOuter;
 
