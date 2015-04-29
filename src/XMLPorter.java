@@ -1,22 +1,19 @@
 import de.database.DataKnot;
-import de.database.InOuter;
 
 import javax.xml.stream.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.HashMap;
 
 /**
  * Created by Marcel on 20.04.2015.
  */
-public class XMLPorter extends InOuter {
+public class XMLPorter {
 
-    @Override
-    public void write(String pFile, DataKnot pData) {
+    public void write(File pFile, DataKnot pData) {
         try {
             XMLOutputFactory theFactory = XMLOutputFactory.newInstance();
-            XMLStreamWriter theWriter = theFactory.createXMLStreamWriter(new FileOutputStream(pFile) );
+            FileOutputStream theOS = new FileOutputStream(pFile);
+            XMLStreamWriter theWriter = theFactory.createXMLStreamWriter(theOS);
 
             theWriter.writeStartDocument();
             theWriter.writeCharacters("\n");
@@ -26,10 +23,37 @@ public class XMLPorter extends InOuter {
             theWriter.writeEndDocument();
 
             theWriter.close();
+            theOS.close();
         } catch (XMLStreamException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         } catch (FileNotFoundException e) {
-        e.printStackTrace();
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void write(String pFile, DataKnot pData) {
+        try {
+            XMLOutputFactory theFactory = XMLOutputFactory.newInstance();
+            FileOutputStream theOS = new FileOutputStream(pFile);
+            XMLStreamWriter theWriter = theFactory.createXMLStreamWriter(theOS);
+
+            theWriter.writeStartDocument();
+            theWriter.writeCharacters("\n");
+
+            appendNode(theWriter, pData, 1);
+
+            theWriter.writeEndDocument();
+
+            theWriter.close();
+            theOS.close();
+        } catch (XMLStreamException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -102,18 +126,22 @@ public class XMLPorter extends InOuter {
         }
     }
 
-    @Override
-    public DataKnot read(String pFile) {
+    public DataKnot read(String pFile) throws FileNotFoundException {
         DataKnot tempKnot = new DataKnot("NULL");
         try {
             XMLInputFactory theFactory = XMLInputFactory.newInstance();
-            XMLStreamReader theReader = theFactory.createXMLStreamReader(new FileInputStream(pFile));
+            FileInputStream theIS = new FileInputStream(pFile);
+            XMLStreamReader theReader = theFactory.createXMLStreamReader(theIS);
 
             interpreteKnot(theReader, tempKnot);
 
+            theReader.close();
+            theIS.close();
         } catch (XMLStreamException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -121,6 +149,10 @@ public class XMLPorter extends InOuter {
             System.err.println("XML FILE PARSING ERROR");
         }
 
-        return tempKnot.getChildren().get(0);
+        if (tempKnot.getChildren().size() > 0) {
+            return tempKnot.getChildren().get(0);
+        } else {
+            return null;
+        }
     }
 }

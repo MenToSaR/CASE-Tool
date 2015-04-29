@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.function.Consumer;
 
 /**
  * Created by Marcel on 20.04.2015.
@@ -12,10 +11,10 @@ import java.util.function.Consumer;
 public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<DataKnot> {
     private DataKnot itKnot = null;
 
-    private ArrayList<DataKnot> listChildren = new ArrayList<>();
+    private ArrayList<DataKnot> listChildren = new ArrayList<DataKnot>();
     private DataKnot theParent = null;
 
-    private HashMap<String, String> mapData = new HashMap<>();
+    private HashMap<String, String> mapData = new HashMap<String, String>();
     private String theTag = "Tag";
     private String theValue;
 
@@ -44,6 +43,10 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
         return tempKnot;
     }
 
+    public void removeChild(DataKnot pChild) {
+        listChildren.remove(pChild);
+    }
+
     public DataKnot getParent() {
         return theParent;
     }
@@ -53,7 +56,7 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
     }
 
     public ArrayList<DataKnot> getChildrenByTag(String pTag) {
-        ArrayList<DataKnot> tempList = new ArrayList<>();
+        ArrayList<DataKnot> tempList = new ArrayList<DataKnot>();
         for (DataKnot eachKnot : listChildren) {
             if (eachKnot.getTag().equals(pTag)) {
                 tempList.add(eachKnot);
@@ -63,6 +66,10 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
     }
 
     public void addData(String pKey, String pValue) {
+        mapData.put(pKey, pValue);
+    }
+
+    public void setData(String pKey, String pValue) {
         mapData.put(pKey, pValue);
     }
 
