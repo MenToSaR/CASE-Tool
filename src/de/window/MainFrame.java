@@ -1,5 +1,6 @@
 package de.window;
 
+import de.Core;
 import javafx.stage.Screen;
 
 import javax.swing.*;
@@ -11,12 +12,17 @@ import java.awt.event.ActionListener;
  * Created by Pascal on 27.04.2015.
  */
 public class MainFrame extends JFrame{
+
+    private Core theCore;
+
     private JTree tree1;
     private JButton button1;
     private JPanel thePanel;
     private JButton calculateButton;
 
-    public MainFrame() {
+    public MainFrame(Core pCore) {
+        theCore = pCore;
+
         setContentPane(this.thePanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
@@ -26,6 +32,12 @@ public class MainFrame extends JFrame{
 
 
                 System.out.println("Button gedrueckt!");
+            }
+        });
+        calculateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                theCore.calculate();
             }
         });
     }

@@ -1,5 +1,6 @@
 package de;
 
+import de.calculator.Calcbase;
 import de.database.manager.Database;
 import de.window.MainFrame;
 import de.database.DataKnot;
@@ -9,7 +10,18 @@ import de.database.DataKnot;
  */
 public class Core {
 
-    public static void memoryTest() {
+    private Database theDatabase = new Database();
+    private Calcbase theCalcbase = new Calcbase();
+
+    public Core() {
+        MainFrame myFrame = new MainFrame(this);
+
+        myFrame.open();
+
+        memoryTest();
+    }
+
+    public void memoryTest() {
         DataKnot tempKnot = new DataKnot("Main");                                               // Lege Daten an
         tempKnot.addChild("KeinKind");
         for (int i = 0; i < 10; i++) {
@@ -17,24 +29,24 @@ public class Core {
             tempKnot.setValue("Hallo");
         }
 
-        for (String eachString : Database.getDatabase().getListOfPorter()) {
+        for (String eachString : theDatabase.getListOfPorter()) {
             System.out.println(eachString);
         }
 
-        Database.getDatabase().load("SerialPorter").write("TestFile", tempKnot);
+        theDatabase.load("SerialPorter").write("TestFile", tempKnot);
 
-        DataKnot tKnot = Database.getDatabase().load("SerialPorter").read("TestFile");
+        DataKnot tKnot = theDatabase.load("SerialPorter").read("TestFile");
         for (DataKnot eachKnot : tKnot) {
             System.out.println(eachKnot.getTag());
             System.out.println(eachKnot.getValue());
         }
     }
 
+    public void calculate() {
+        theCalcbase.calculate(new DataKnot("Daten"));
+    }
+
     public static void main(String[] args) {
-        MainFrame myFrame = new MainFrame();
-
-        myFrame.open();
-
-        memoryTest();
+        new Core();
     }
 }
