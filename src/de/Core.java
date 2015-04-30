@@ -33,7 +33,7 @@ public class Core {
     public static void main(String[] args) {
         MainFrame myFrame = new MainFrame();
 
-    //    myFrame.
+        myFrame.open();
 
         memoryTest();
     }
