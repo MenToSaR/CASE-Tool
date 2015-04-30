@@ -1,5 +1,6 @@
 package de.database;
 
+import javax.xml.crypto.Data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -151,5 +152,47 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
         itKnot = new DataKnot("NULL");
         itKnot.addChild(this);
         return this;
+    }
+
+    public void printKnot() {
+        System.out.print("<" + getTag());
+        for (String eachString : this.getData().keySet()) {
+            System.out.print(" " + eachString + "=" + this.getData().get(eachString));
+        }
+        System.out.print(">" + ((getValue() == null) ? "" : getValue()));
+        if (getChildren().size() > 0) {
+            System.out.println();
+        }
+        printChildren(this.getChildren(), 1);
+        if (getChildren().size() > 0) {
+            System.out.println("</" + getTag() + ">");
+        }
+    }
+
+    private void printChildren(ArrayList<DataKnot> pKnot, int pLevel) {
+        for (DataKnot eachKnot : pKnot) {
+            for (int i = 0; i < pLevel; i++) {
+                System.out.print("\t");
+            }
+            System.out.print("<" + eachKnot.getTag());
+            for (String eachString : eachKnot.getData().keySet()) {
+                System.out.print(" " + eachString + "=" + eachKnot.getData().get(eachString));
+            }
+            System.out.print(">" + ((eachKnot.getValue() == null) ? "" : eachKnot.getValue()));
+
+            if (eachKnot.getChildren().size() > 0) {
+                System.out.println();
+            }
+
+            printChildren(eachKnot.getChildren(), pLevel + 1);
+
+            if (eachKnot.getChildren().size() > 0) {
+                for (int i = 0; i < pLevel; i++) {
+                    System.out.print("\t");
+                }
+            }
+            System.out.println("</" + eachKnot.getTag() + ">");
+        }
+
     }
 }

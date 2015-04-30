@@ -29,21 +29,18 @@ public class Core {
             tempKnot.setValue("Hallo");
         }
 
-        for (String eachString : theDatabase.getListOfPorter()) {
-            System.out.println(eachString);
-        }
-
         theDatabase.load("SerialPorter").write("TestFile", tempKnot);
 
         DataKnot tKnot = theDatabase.load("SerialPorter").read("TestFile");
-        for (DataKnot eachKnot : tKnot) {
-            System.out.println(eachKnot.getTag());
-            System.out.println(eachKnot.getValue());
-        }
+        tKnot.printKnot();
     }
 
     public void calculate() {
-        theCalcbase.calculate(new DataKnot("Daten"));
+        DataKnot tempKnot = new DataKnot("Daten");
+        for (String eachString : JarLoader.getJarLoader().getListOfElements("Calcer")) {
+            tempKnot.addChild("Calcer").setValue(eachString);
+        }
+        theCalcbase.calculate(tempKnot);
     }
 
     public static void main(String[] args) {

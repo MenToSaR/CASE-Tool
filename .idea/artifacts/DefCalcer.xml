@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DefCalcer">
+    <output-path>$PROJECT_DIR$/out/artifacts/DefCalcer</output-path>
+    <root id="archive" name="DefCalcer.jar">
+      <element id="file-copy" path="$PROJECT_DIR$/out/production/Implementierung CASE Tool/FunctionPoint.class" />
+    </root>
+  </artifact>
+</component>

@@ -10,6 +10,6 @@ public class Calcbase {
     private CalcFrame theFrame = new CalcFrame();
 
     public void calculate(DataKnot pKnot) {
-        theFrame.open(pKnot);
+        theFrame.open(pKnot.getChildrenByTag("Calcer"));
     }
 }
