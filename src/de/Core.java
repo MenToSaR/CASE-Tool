@@ -5,6 +5,8 @@ import de.database.manager.Database;
 import de.window.MainFrame;
 import de.database.DataKnot;
 
+import javax.swing.*;
+
 /**
  * Created by Marcel on 20.04.2015.
  */
@@ -28,6 +30,11 @@ public class Core {
     }
 
     public static void main(String[] args) {
+        try
+        {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch(Exception e){}
         new Core();
     }
 }
