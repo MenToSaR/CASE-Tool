@@ -18,6 +18,9 @@ public class MainFrame extends JFrame{
     private JPanel thePanel;
     private JButton startCalc;
     private JButton startImprovement;
+    private JButton nButton;
+    private JButton oButton;
+    private JButton rButton;
 
     public MainFrame(Core pCore) {
         theCore = pCore;
@@ -31,6 +34,24 @@ public class MainFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 theCore.calculate();
+            }
+        });
+        nButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                theCore.createProject();
+            }
+        });
+        oButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                theCore.openProject();
+            }
+        });
+        rButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                theCore.reopenProject();
             }
         });
     }

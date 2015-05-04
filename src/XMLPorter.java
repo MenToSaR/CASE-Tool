@@ -1,4 +1,5 @@
 import de.database.DataKnot;
+import de.database.InOuter;
 
 import javax.xml.stream.*;
 import java.io.*;
@@ -7,7 +8,7 @@ import java.util.HashMap;
 /**
  * Created by Marcel on 20.04.2015.
  */
-public class XMLPorter {
+public class XMLPorter extends InOuter {
 
     public void write(File pFile, DataKnot pData) {
         try {
@@ -137,11 +138,7 @@ public class XMLPorter {
 
             theReader.close();
             theIS.close();
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (XMLStreamException | IOException e) {
             e.printStackTrace();
         }
 

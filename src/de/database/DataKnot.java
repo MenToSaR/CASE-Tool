@@ -68,6 +68,15 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
         return tempList;
     }
 
+    public DataKnot getFirstChildByTag(String pTag) {
+        for (DataKnot eachKnot : listChildren) {
+            if (eachKnot.getTag().equals(pTag)) {
+                return eachKnot;
+            }
+        }
+        return null;
+    }
+
     public void addData(String pKey, String pValue) {
         mapData.put(pKey, pValue);
     }

@@ -1,11 +1,14 @@
 package de;
 
 import de.calculator.Calcbase;
-import de.database.manager.Database;
+import de.database.Database;
 import de.window.MainFrame;
 import de.database.DataKnot;
+import de.window.MessageBoxFactory;
 
 import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 /**
  * Created by Marcel on 20.04.2015.
@@ -19,6 +22,41 @@ public class Core {
         MainFrame myFrame = new MainFrame(this);
 
         myFrame.open();
+    }
+
+    public void reopenProject() {
+        ArrayList<String> tempList = new ArrayList<String>();
+        for (DataKnot eachKnot : theDatabase.getConfig().getFirstChildByTag("projects").getChildren()) {
+            tempList.add(eachKnot.getTag());
+        }
+        MessageBoxFactory.createListMessageBox("Choose...", "Projekte:", tempList);
+    }
+
+    public void openProject() {
+        JFileChooser theChooser = new JFileChooser();
+        theChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        theChooser.showOpenDialog(new JFrame());
+        String tempDir = theChooser.getSelectedFile().getAbsolutePath();
+        if (tempDir != null) {
+            try {
+                theDatabase.setWorkingDir(tempDir);
+            } catch (FileNotFoundException e) {
+                // TODO FEHLERMELDUNG
+            }
+        }
+    }
+
+    public void createProject() {
+        JFileChooser theChooser = new JFileChooser();
+        theChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        theChooser.showOpenDialog(new JFrame());
+        String tempDir = theChooser.getSelectedFile().getAbsolutePath();
+        if (tempDir != null) {
+            String tempProjectName = MessageBoxFactory.createTextMessageBox("Achtung", "Namen des Projektes eingeben!");
+            if (!tempProjectName.equals("")) {
+                theDatabase.createWorkingDir(tempDir, tempProjectName);
+            }
+        }
     }
 
     public void calculate() {
