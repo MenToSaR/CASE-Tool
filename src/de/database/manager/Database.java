@@ -10,10 +10,10 @@ import java.util.ArrayList;
 public class Database {
 
     public ArrayList<String> getListOfPorter() {
-        return JarLoader.getJarLoader().getListOfElements("Porter");
+        return JarLoader.getJarLoader().getListOfElements("Porter", "de.database.InOuter");
     }
 
     public InOuter load(String pS) {
-        return JarLoader.getJarLoader().load(pS, "Porter");
+        return (InOuter) JarLoader.getJarLoader().load(pS, "Porter");
     }
 }

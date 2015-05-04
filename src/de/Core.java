@@ -17,27 +17,11 @@ public class Core {
         MainFrame myFrame = new MainFrame(this);
 
         myFrame.open();
-
-        memoryTest();
-    }
-
-    public void memoryTest() {
-        DataKnot tempKnot = new DataKnot("Main");                                               // Lege Daten an
-        tempKnot.addChild("KeinKind");
-        for (int i = 0; i < 10; i++) {
-            tempKnot.addChild("Kind").addData("Alter", "" + (int) (Math.random() * 25));
-            tempKnot.setValue("Hallo");
-        }
-
-        theDatabase.load("SerialPorter").write("TestFile", tempKnot);
-
-        DataKnot tKnot = theDatabase.load("SerialPorter").read("TestFile");
-        tKnot.printKnot();
     }
 
     public void calculate() {
         DataKnot tempKnot = new DataKnot("Daten");
-        for (String eachString : JarLoader.getJarLoader().getListOfElements("Calcer")) {
+        for (String eachString : JarLoader.getJarLoader().getListOfElements("Calcer", "de.calculator.Calcer")) {
             tempKnot.addChild("Calcer").setValue(eachString);
         }
         theCalcbase.calculate(tempKnot);
