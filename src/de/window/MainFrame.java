@@ -18,7 +18,6 @@ public class MainFrame extends JFrame{
     private JPanel thePanel;
     private JButton startCalc;
     private JButton startImprovement;
-    private JPanel mainWindow;
 
     public MainFrame(Core pCore) {
         theCore = pCore;
