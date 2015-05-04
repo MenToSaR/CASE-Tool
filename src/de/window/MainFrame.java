@@ -14,10 +14,11 @@ public class MainFrame extends JFrame{
 
     private Core theCore;
 
-    private JTree tree1;
-    private JButton button1;
+    private JTree tree;
     private JPanel thePanel;
     private JButton startCalc;
+    private JButton startImprovement;
+    private JPanel mainWindow;
 
     public MainFrame(Core pCore) {
         theCore = pCore;
@@ -26,13 +27,7 @@ public class MainFrame extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
         setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - getSize().getWidth() / 2), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - getSize().getHeight() / 2));
-        button1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
 
-
-                System.out.println("Button gedrueckt!");
-            }
-        });
         startCalc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,5 +38,9 @@ public class MainFrame extends JFrame{
 
     public void open() {
         this.setVisible(true);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
