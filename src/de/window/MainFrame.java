@@ -1,7 +1,6 @@
 package de.window;
 
 import de.Core;
-import javafx.stage.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +17,7 @@ public class MainFrame extends JFrame{
     private JTree tree1;
     private JButton button1;
     private JPanel thePanel;
-    private JButton calculateButton;
+    private JButton startCalc;
 
     public MainFrame(Core pCore) {
         theCore = pCore;
@@ -34,7 +33,7 @@ public class MainFrame extends JFrame{
                 System.out.println("Button gedrueckt!");
             }
         });
-        calculateButton.addActionListener(new ActionListener() {
+        startCalc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theCore.calculate();
