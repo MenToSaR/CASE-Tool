@@ -22,7 +22,7 @@ public class JarLoader {
 
     }
 
-    public Object load(String pModule, String pFolder) throws RuntimeException{
+    public Object load(String pModule, String pFolder) throws RuntimeException{ //Factory Method
         try {
             File theFolder = new File(pFolder);
             File[] theFiles = theFolder.listFiles();
