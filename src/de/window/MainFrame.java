@@ -71,23 +71,16 @@ public class MainFrame extends JFrame{
                 theCore.deleteProject();
             }
         });
-        thePanels.setLayout(new BoxLayout(thePanels, BoxLayout.Y_AXIS));
     }
 
     public void open() {
         this.setVisible(true);
     }
 
-    public void fillPanels(ArrayList<DataKnot> pList) {
-     //   thePanels.removeAll();
-
-        for (DataKnot eachKnot : pList) {
-            FunctionPanel tempPanel = new FunctionPanel(eachKnot.getDataByKey("ID"), eachKnot.getDataByKey("TITLE"), eachKnot.getDataByKey("TEXT"));
-            thePanels.add(tempPanel.getPanel());
-            thePanels.setPreferredSize(new Dimension((int) tempPanel.getPanel().getPreferredSize().getWidth(), (int) thePanels.getPreferredSize().getHeight() + (int) tempPanel.getPanel().getPreferredSize().getHeight()));
-        //    thePanels.setMaximumSize(new Dimension((int) thePanels.getSize().getWidth(), (int) thePanels.getMaximumSize().getHeight() +  (int)tempPanel.getPanel().getMaximumSize().getHeight()));
-        }
-
+    public void showPanel(JPanel pPanel) {
+        thePanels.removeAll();
+        thePanels.setLayout(new BorderLayout());
+        thePanels.add(pPanel, BorderLayout.CENTER);
         pack();
     }
 

@@ -28,8 +28,10 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
     }
 
     public void addChild(DataKnot pKnot) {
-        pKnot.setParent(this);
-        listChildren.add(pKnot);
+        if (pKnot != null) {
+            pKnot.setParent(this);
+            listChildren.add(pKnot);
+        }
     }
 
     public DataKnot addChild(String pTag) {
