@@ -1,8 +1,13 @@
 package de.window;
 
 import de.Core;
+import de.database.DataKnot;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,9 +26,12 @@ public class MainFrame extends JFrame{
     private JButton nButton;
     private JButton oButton;
     private JButton rButton;
+    private JButton dButton;
 
     public MainFrame(Core pCore) {
         theCore = pCore;
+
+        tree.setModel(null);
 
         setContentPane(this.thePanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -54,10 +62,42 @@ public class MainFrame extends JFrame{
                 theCore.reopenProject();
             }
         });
+        dButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                theCore.deleteProject();
+            }
+        });
     }
 
     public void open() {
         this.setVisible(true);
+    }
+
+    public void showTree(DataKnot pKnot) {
+        tree.setModel(null);
+        if (pKnot != null) {
+            MutableTreeNode theNode = new DefaultMutableTreeNode(pKnot.getValue());
+            DefaultTreeModel theModel = new DefaultTreeModel(theNode);
+            for (DataKnot eachKnot : pKnot.getChildren()) {
+                DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(eachKnot.getValue());
+                theNode.insert(tempNode, theNode.getChildCount());
+                insertChildren(eachKnot, tempNode);
+            }
+            theModel.reload(theNode);
+            tree.setModel(theModel);
+        }
+    }
+
+    private void insertChildren(DataKnot pKnot, MutableTreeNode pNode) {
+        for (DataKnot eachKnot : pKnot.getChildren()) {
+            pNode.insert(new DefaultMutableTreeNode(eachKnot.getValue()), pNode.getChildCount());
+            for (DataKnot eachChild : eachKnot.getChildren()) {
+                DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(eachChild.getValue());
+                pNode.insert(tempNode, pNode.getChildCount());
+                insertChildren(eachChild, tempNode);
+            }
+        }
     }
 
     private void createUIComponents() {

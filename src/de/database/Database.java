@@ -1,9 +1,11 @@
 package de.database;
 
 import de.JarLoader;
+import de.window.MessageBoxFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -11,10 +13,16 @@ import java.util.ArrayList;
  */
 public class Database {
 
+    public static String DEFAULT_PORTER_TAG = "defporter";
+    public static String PROJECT_LIST_TAG = "projects";
+    public static String DEFAULT_WORKSPACE_TAG = "defworkspace";
+    public static String PROJECT_CONFIG_FILE = "Project.cfg";
+
     private String theDefaultPorter = "XMLPorter";
     private String theConfigFileName = "Config.cfg";
 
     private String theWorkingDir;
+    private String theWorkspaceDir;
 
     private DataKnot theConfigKnot;
 
@@ -25,13 +33,15 @@ public class Database {
             createNewConfig();
             writeConfig();
         }
-        theDefaultPorter = theConfigKnot.getFirstChildByTag("defporter").getValue();
+        theDefaultPorter = theConfigKnot.getFirstChildByTag(DEFAULT_PORTER_TAG).getValue();
+        theWorkspaceDir = theConfigKnot.getFirstChildByTag(DEFAULT_WORKSPACE_TAG).getValue();
     }
 
     public void createNewConfig() {
         theConfigKnot = new DataKnot("config");
-        theConfigKnot.addChild("projects");
-        theConfigKnot.addChild("defporter").setValue(theDefaultPorter);
+        theConfigKnot.addChild(PROJECT_LIST_TAG);
+        theConfigKnot.addChild(DEFAULT_PORTER_TAG).setValue(theDefaultPorter);
+        theConfigKnot.addChild(DEFAULT_WORKSPACE_TAG).setValue(System.getProperty("user.home") + "/Desktop");
     }
 
     public DataKnot getConfig() {
@@ -52,14 +62,14 @@ public class Database {
 
     public DataKnot readData(String pFile) {
         try {
-            return ((InOuter) JarLoader.getJarLoader().load(theDefaultPorter, "Porter")).read(theWorkingDir + pFile);
+            return ((InOuter) JarLoader.getJarLoader().load(theDefaultPorter, "Porter")).read(theWorkingDir + "/" + pFile);
         } catch (FileNotFoundException e) {
             return null;
         }
     }
 
     public void writeData(String pFile, DataKnot pKnot) {
-        ((InOuter) JarLoader.getJarLoader().load(theDefaultPorter, "Porter")).write(theWorkingDir + pFile, pKnot);
+        ((InOuter) JarLoader.getJarLoader().load(theDefaultPorter, "Porter")).write(theWorkingDir + "/" + pFile, pKnot);
     }
 
     public ArrayList<String> getListOfPorter() {
@@ -72,16 +82,59 @@ public class Database {
 
     public void createWorkingDir(String pDir, String pName) {
         new File(pDir + "/" + pName).mkdirs();
-        theWorkingDir = pDir;
-        theConfigKnot.getFirstChildByTag("projects").addChild(pName).setValue(pDir);
+        theWorkingDir = pDir + "/" + pName;
+        theWorkingDir = theWorkingDir.replace("\\", "/");
+        DataKnot tempKnot = new DataKnot("project");
+        tempKnot.addData("name", pName);
+        tempKnot.setValue(pDir.replace("\\", "/"));
+        theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).addChild(tempKnot);
         writeConfig();
     }
 
     public void setWorkingDir(String pDir) throws FileNotFoundException {
         theWorkingDir = pDir;
+        theWorkingDir = theWorkingDir.replace("\\", "/");
         if (!new File(pDir).exists()) {
             throw new FileNotFoundException("Angegebener Pfad nicht vorhanden: " + pDir);
         }
+    }
+
+    public boolean deleteWorkingDir() {
+        if(deleteFile(new File(theWorkingDir))) {
+            new File(theWorkingDir).delete();
+            MessageBoxFactory.createMessageBox("Success", "Projekt wurde gelöscht");
+            for (DataKnot eachKnot : theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).getChildren()) {
+                if (theWorkingDir.equals(eachKnot.getValue() + "/" + eachKnot.getDataByKey("name"))) {
+                    theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).removeChild(eachKnot);
+                    break;
+                }
+            }
+            theWorkingDir = "";
+            writeConfig();
+            return true;
+        } else {
+            MessageBoxFactory.createMessageBox("Achtung", "Projekt konnte nicht gelöscht werden");
+            return false;
+        }
+    }
+
+    private boolean deleteFile(File f) {
+        if (f.isDirectory()) {
+            for (File c : f.listFiles()) {
+                return deleteFile(c);
+            }
+            return f.delete();
+        } else {
+            return f.delete();
+        }
+    }
+
+    public String getWorkspace() {
+        return theWorkspaceDir;
+    }
+
+    public void setWorkspace(String pDir) {
+        theWorkspaceDir = pDir;
     }
 
     public void setDefaultPorter(String pPorter) {

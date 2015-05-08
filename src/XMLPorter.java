@@ -10,37 +10,13 @@ import java.util.HashMap;
  */
 public class XMLPorter extends InOuter {
 
-    public void write(File pFile, DataKnot pData) {
-        try {
-            XMLOutputFactory theFactory = XMLOutputFactory.newInstance();
-            FileOutputStream theOS = new FileOutputStream(pFile);
-            XMLStreamWriter theWriter = theFactory.createXMLStreamWriter(theOS);
-
-            theWriter.writeStartDocument();
-            theWriter.writeCharacters("\n");
-
-            appendNode(theWriter, pData, 1);
-
-            theWriter.writeEndDocument();
-
-            theWriter.close();
-            theOS.close();
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void write(String pFile, DataKnot pData) {
         try {
             XMLOutputFactory theFactory = XMLOutputFactory.newInstance();
             FileOutputStream theOS = new FileOutputStream(pFile);
-            XMLStreamWriter theWriter = theFactory.createXMLStreamWriter(theOS);
+            XMLStreamWriter theWriter = theFactory.createXMLStreamWriter(theOS, "UTF-16");
 
-            theWriter.writeStartDocument();
+            theWriter.writeStartDocument("UTF-16", "1.0");
             theWriter.writeCharacters("\n");
 
             appendNode(theWriter, pData, 1);
@@ -128,11 +104,15 @@ public class XMLPorter extends InOuter {
     }
 
     public DataKnot read(String pFile) throws FileNotFoundException {
+        if (!new File(pFile).exists()) {
+            throw new FileNotFoundException();
+        }
+
         DataKnot tempKnot = new DataKnot("NULL");
         try {
             XMLInputFactory theFactory = XMLInputFactory.newInstance();
             FileInputStream theIS = new FileInputStream(pFile);
-            XMLStreamReader theReader = theFactory.createXMLStreamReader(theIS);
+            XMLStreamReader theReader = theFactory.createXMLStreamReader(theIS, "UTF-16");
 
             interpreteKnot(theReader, tempKnot);
 
