@@ -26,6 +26,18 @@ public class Core {
         theFrame.open();
     }
 
+    public void TESTAUSGABE() {
+        DataKnot tempKnot = new DataKnot("root");
+        for (int i = 0; i < ((int)(Math.random()*50 + 14)); i++) {
+            DataKnot tempChild = new DataKnot("entry");
+            tempChild.addData("ID", "" + i * 10);
+            tempChild.addData("TITLE", "FP " + 5000 * Math.random());
+            tempChild.addData("TEXT", "JIFOEJDIOVHIXCOÖJOPFJIOXvijO");
+            tempKnot.addChild(tempChild);
+        }
+        theFrame.fillPanels(tempKnot.getChildrenByTag("entry"));
+    }
+
     public void deleteProject() {
         if (MessageBoxFactory.createMessageBox("Achtung", "Projekt wirklich löschen?") == MessageBox.RESULT_OK) {
             if (theDatabase.deleteWorkingDir()) {
@@ -51,6 +63,7 @@ public class Core {
                 theFrame.showTree(theDatabase.readData(Database.PROJECT_CONFIG_FILE));
             } catch (FileNotFoundException e) {
                 MessageBoxFactory.createMessageBox("Error", "Projekt existiert nicht mehr");
+                theDatabase.deleteProjectEntry(theResult);
             }
         }
     }
@@ -76,7 +89,7 @@ public class Core {
         theChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         theChooser.showOpenDialog(new JFrame());
         String tempDir = theChooser.getSelectedFile().getAbsolutePath();
-        if (tempDir != null) {
+        if (!tempDir.equals("")) {
             String tempProjectName = MessageBoxFactory.createTextMessageBox("Achtung", "Namen des Projektes eingeben!");
             if (!tempProjectName.equals("")) {
                 theDatabase.createWorkingDir(tempDir, tempProjectName);
@@ -90,6 +103,8 @@ public class Core {
                 theDatabase.writeData(Database.PROJECT_CONFIG_FILE, tempKnot);
 
                 theFrame.showTree(theDatabase.readData(Database.PROJECT_CONFIG_FILE));
+
+                TESTAUSGABE();
             }
         }
     }

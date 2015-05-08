@@ -4,13 +4,14 @@ import de.Core;
 import de.database.DataKnot;
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
+import javax.swing.border.LineBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by Pascal on 27.04.2015.
@@ -27,6 +28,8 @@ public class MainFrame extends JFrame{
     private JButton oButton;
     private JButton rButton;
     private JButton dButton;
+    private JPanel thePanels;
+    private JScrollPane thePanelHolder;
 
     public MainFrame(Core pCore) {
         theCore = pCore;
@@ -36,7 +39,7 @@ public class MainFrame extends JFrame{
         setContentPane(this.thePanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
-        setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - getSize().getWidth() / 2), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - getSize().getHeight() / 2));
+        setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - getSize().getWidth() / 2), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - getSize().getHeight() / 2));
 
         startCalc.addActionListener(new ActionListener() {
             @Override
@@ -68,10 +71,24 @@ public class MainFrame extends JFrame{
                 theCore.deleteProject();
             }
         });
+        thePanels.setLayout(new BoxLayout(thePanels, BoxLayout.Y_AXIS));
     }
 
     public void open() {
         this.setVisible(true);
+    }
+
+    public void fillPanels(ArrayList<DataKnot> pList) {
+     //   thePanels.removeAll();
+
+        for (DataKnot eachKnot : pList) {
+            FunctionPanel tempPanel = new FunctionPanel(eachKnot.getDataByKey("ID"), eachKnot.getDataByKey("TITLE"), eachKnot.getDataByKey("TEXT"));
+            thePanels.add(tempPanel.getPanel());
+            thePanels.setPreferredSize(new Dimension((int) tempPanel.getPanel().getPreferredSize().getWidth(), (int) thePanels.getPreferredSize().getHeight() + (int) tempPanel.getPanel().getPreferredSize().getHeight()));
+        //    thePanels.setMaximumSize(new Dimension((int) thePanels.getSize().getWidth(), (int) thePanels.getMaximumSize().getHeight() +  (int)tempPanel.getPanel().getMaximumSize().getHeight()));
+        }
+
+        pack();
     }
 
     public void showTree(DataKnot pKnot) {

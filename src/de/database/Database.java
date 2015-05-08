@@ -118,6 +118,17 @@ public class Database {
         }
     }
 
+    public boolean deleteProjectEntry(String pName) {
+        for (DataKnot eachKnot : theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).getChildren()) {
+            if (pName.equals(eachKnot.getDataByKey("name"))) {
+                theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).removeChild(eachKnot);
+                writeConfig();
+                return true;
+            }
+        }
+        return false;
+    }
+
     private boolean deleteFile(File f) {
         if (f.isDirectory()) {
             for (File c : f.listFiles()) {
