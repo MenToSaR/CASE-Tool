@@ -117,6 +117,18 @@ public class Core {
         theCalcbase.calculate(tempKnot);
     }
 
+    public void showPage(String name){
+        switch (name){
+            case "Funktionale Anforderungen":
+                System.out.println("Positive!");
+                break;
+            default:
+                System.out.println("Negative");
+        }
+
+
+    }
+
     public static void main(String[] args) {
         try
         {
