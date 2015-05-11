@@ -1,10 +1,10 @@
 package de.window;
 
 import de.Core;
-import de.database.DataKnot;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
@@ -36,6 +36,8 @@ public class MainFrame extends JFrame{
 
         tree.setModel(null);
 
+        setIconImage(new ImageIcon("res/graph.png").getImage());
+        setTitle("CASE_TOOL");
         setContentPane(this.thePanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
@@ -71,6 +73,15 @@ public class MainFrame extends JFrame{
                 theCore.deleteProject();
             }
         });
+
+
+        tree.addTreeSelectionListener(new TreeSelectionListener() {
+
+            @Override
+            public void valueChanged(TreeSelectionEvent e) {
+                theCore.showPage("" + e.getPath().getLastPathComponent());
+            }
+        });
     }
 
     public void open() {
@@ -81,34 +92,26 @@ public class MainFrame extends JFrame{
         thePanels.removeAll();
         thePanels.setLayout(new BorderLayout());
         thePanels.add(pPanel, BorderLayout.CENTER);
-        pack();
+        revalidate();
+        repaint();
+
     }
 
-    public void showTree(DataKnot pKnot) {
+
+
+    public void showTree(String pProjectName, ArrayList<String> pName) {
         tree.setModel(null);
-        if (pKnot != null) {
-            MutableTreeNode theNode = new DefaultMutableTreeNode(pKnot.getValue());
-            DefaultTreeModel theModel = new DefaultTreeModel(theNode);
-            for (DataKnot eachKnot : pKnot.getChildren()) {
-                DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(eachKnot.getValue());
-                theNode.insert(tempNode, theNode.getChildCount());
-                insertChildren(eachKnot, tempNode);
-            }
-            theModel.reload(theNode);
-            tree.setModel(theModel);
+
+        MutableTreeNode theNode = new DefaultMutableTreeNode(pProjectName);
+        DefaultTreeModel theModel = new DefaultTreeModel(theNode);
+        for (String eachKnot : pName) {
+            DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(eachKnot);
+            theNode.insert(tempNode, theNode.getChildCount());
         }
+        theModel.reload(theNode);
+        tree.setModel(theModel);
     }
 
-    private void insertChildren(DataKnot pKnot, MutableTreeNode pNode) {
-        for (DataKnot eachKnot : pKnot.getChildren()) {
-            pNode.insert(new DefaultMutableTreeNode(eachKnot.getValue()), pNode.getChildCount());
-            for (DataKnot eachChild : eachKnot.getChildren()) {
-                DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(eachChild.getValue());
-                pNode.insert(tempNode, pNode.getChildCount());
-                insertChildren(eachChild, tempNode);
-            }
-        }
-    }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

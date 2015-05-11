@@ -6,8 +6,7 @@ import de.database.Database;
 import de.window.*;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
-import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -22,9 +21,29 @@ public class ProjectManager {
     private MainFrame theFrame;
     private Core theCore;
 
+    private InputUnitManager theInputUnitManager = new InputUnitManager();
+
     public ProjectManager(Core pCore, MainFrame pFrame) {
         theCore = pCore;
         theFrame = pFrame;
+
+        initInputUnitManager();
+    }
+
+    public ArrayList<String> getTreeList(){
+        return theInputUnitManager.getNames();
+    }
+
+    private void initInputUnitManager(){
+        theInputUnitManager.addHolder(new InputUnitHolder("Zielbestimmungen", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produkteinsatz", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Umgebung", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produktfunktionen", new EditorPanel(this, new EditorPanelHolder(IDTitleTitleTextPanel.class)).getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produktdaten", new EditorPanel(this, new EditorPanelHolder(IDTitleTextPanel.class)).getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Qualitätsanforderungen", new EditorPanel(this, new EditorPanelHolder(TitleSliderTextPanel.class)).getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Ergänzungen", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Glossar", new EditorPanel(this, new EditorPanelHolder(TitleTextPanel.class)).getPanel()));
+
     }
 
     public void loadProjectData(Database pDatabase) {
@@ -34,11 +53,11 @@ public class ProjectManager {
     }
 
     public void showProjectData(MainFrame pFrame) {
-        EditorPanelHolder tempEditorPanelHolder = new EditorPanelHolder(FunctionPanel.class);
+        EditorPanelHolder tempEditorPanelHolder = new EditorPanelHolder(IDTitleTextPanel.class);
 
         if (theProjectData.getFirstChildByTag("productdata") != null) {
             for (DataKnot eachKnot : theProjectData.getFirstChildByTag("productdata").getChildrenByTag("element")) {
-                FunctionPanel tempFunctionPanel = new FunctionPanel(eachKnot.getDataByKey("ID"), eachKnot.getDataByKey("TITLE"), eachKnot.getDataByKey("TEXT"));
+                IDTitleTextPanel tempFunctionPanel = new IDTitleTextPanel(eachKnot.getDataByKey("ID"), eachKnot.getDataByKey("TITLE"), eachKnot.getDataByKey("TEXT"));
                 tempEditorPanelHolder.addElement(tempFunctionPanel);
             }
         }
@@ -68,3 +87,12 @@ public class ProjectManager {
         return theProjectData;
     }
 }
+
+    public void showPage(String pName, MainFrame pFrame){
+    JPanel tempPanel = theInputUnitManager.getPanelByName(pName);
+        System.out.println(pName);
+    pFrame.showPanel(tempPanel);
+    }
+};
+
+

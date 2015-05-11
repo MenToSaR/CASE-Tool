@@ -7,26 +7,23 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Created by Marcel on 08.05.2015 in CASE.
  */
-public class FunctionPanel extends EditorPanelElement {
+public class TitleSliderTextPanel extends EditorPanelElement {
     private JTextField textField1;
     private JTextField textField2;
     private JTextArea textArea1;
     private JButton saveButton;
     private JPanel thePanel;
+    private JSlider slider1;
 
-    public FunctionPanel() {
+    public TitleSliderTextPanel() {
         init();
     }
 
-    public FunctionPanel(String pID, String pTitle, String pText) {
+    public TitleSliderTextPanel(String pID, String pTitle, String pText) {
         init();
 
         textField1.setText(pID);
@@ -36,22 +33,6 @@ public class FunctionPanel extends EditorPanelElement {
 
     public void init() {
 
-        textField1.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                somethingChanged();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                somethingChanged();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                somethingChanged();
-            }
-        });
 
         textField2.getDocument().addDocumentListener(new DocumentListener() {
             @Override
