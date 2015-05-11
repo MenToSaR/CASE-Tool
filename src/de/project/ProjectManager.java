@@ -5,9 +5,6 @@ import de.database.DataKnot;
 import de.database.Database;
 import de.window.*;
 
-import javax.swing.*;
-import javax.xml.crypto.Data;
-import java.awt.*;
 import java.util.HashMap;
 
 /**
@@ -34,11 +31,11 @@ public class ProjectManager {
     }
 
     public void showProjectData(MainFrame pFrame) {
-        EditorPanelHolder tempEditorPanelHolder = new EditorPanelHolder(FunctionPanel.class);
+        EditorPanelHolder tempEditorPanelHolder = new EditorPanelHolder(IDTitleTitleTextPanel.class);
 
         if (theProjectData.getFirstChildByTag("productdata") != null) {
             for (DataKnot eachKnot : theProjectData.getFirstChildByTag("productdata").getChildrenByTag("element")) {
-                FunctionPanel tempFunctionPanel = new FunctionPanel(eachKnot.getDataByKey("ID"), eachKnot.getDataByKey("TITLE"), eachKnot.getDataByKey("TEXT"));
+                IDTitleTitleTextPanel tempFunctionPanel = new IDTitleTitleTextPanel(eachKnot.getDataByKey("ID"), eachKnot.getDataByKey("TITLE"), eachKnot.getDataByKey("TEXT"));
                 tempEditorPanelHolder.addElement(tempFunctionPanel);
             }
         }
