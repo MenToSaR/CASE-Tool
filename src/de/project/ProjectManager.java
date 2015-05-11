@@ -8,6 +8,7 @@ import de.window.*;
 import javax.swing.*;
 import javax.xml.crypto.Data;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -22,9 +23,29 @@ public class ProjectManager {
     private MainFrame theFrame;
     private Core theCore;
 
+    private InputUnitManager theInputUnitManager = new InputUnitManager();
+
     public ProjectManager(Core pCore, MainFrame pFrame) {
         theCore = pCore;
         theFrame = pFrame;
+
+        initInputUnitManager();
+    }
+
+    public ArrayList<String> getTreeList(){
+        return theInputUnitManager.getNames();
+    }
+
+    private void initInputUnitManager(){
+        theInputUnitManager.addHolder(new InputUnitHolder("Zielbestimmungen", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produkteinsatz", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Umgebung", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produktfunktionen", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produktdaten", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Qualitätsanforderungen", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Ergänzungen", new TextPanel().getPanel()));
+        theInputUnitManager.addHolder(new InputUnitHolder("Glossar", new TextPanel().getPanel()));
+
     }
 
     public void loadProjectData(Database pDatabase) {
@@ -63,4 +84,12 @@ public class ProjectManager {
         }
         theCore.saveData(tempKnot, theFunctionDataFileName);
     }
-}
+
+    public void showPage(String pName, MainFrame pFrame){
+    JPanel tempPanel = theInputUnitManager.getPanelByName(pName);
+        System.out.println(pName);
+    pFrame.showPanel(tempPanel);
+    }
+};
+
+

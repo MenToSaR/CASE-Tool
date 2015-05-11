@@ -28,10 +28,10 @@ public class InputUnitManager {
         return tempPanel;
     }
 
-    public ArrayList<String> getNames(){
+    public ArrayList<String> getNames(){    //wunderschoen
         ArrayList<String> tempList = new ArrayList<String>();
         for (InputUnitHolder eachHolder : listHolder) {
-            tempList.add(eachHolder.getPanel().toString());
+            tempList.add(eachHolder.getName());
         }
         return tempList;
     }

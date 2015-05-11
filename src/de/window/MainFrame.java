@@ -79,7 +79,7 @@ public class MainFrame extends JFrame{
 
             @Override
             public void valueChanged(TreeSelectionEvent e) {
-                theCore.showPage(e.getPath().getLastPathComponent().toString());
+                theCore.showPage("" + e.getPath().getLastPathComponent());
             }
         });
     }
@@ -97,31 +97,19 @@ public class MainFrame extends JFrame{
 
 
 
-    public void showTree(DataKnot pKnot) {
+    public void showTree(String pProjectName, ArrayList<String> pName) {
         tree.setModel(null);
-        if (pKnot != null) {
-            MutableTreeNode theNode = new DefaultMutableTreeNode(pKnot.getValue());
-            DefaultTreeModel theModel = new DefaultTreeModel(theNode);
-            for (DataKnot eachKnot : pKnot.getChildren()) {
-                DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(eachKnot.getValue());
-                theNode.insert(tempNode, theNode.getChildCount());
-                insertChildren(eachKnot, tempNode);
-            }
-            theModel.reload(theNode);
-            tree.setModel(theModel);
+
+        MutableTreeNode theNode = new DefaultMutableTreeNode(pProjectName);
+        DefaultTreeModel theModel = new DefaultTreeModel(theNode);
+        for (String eachKnot : pName) {
+            DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(eachKnot);
+            theNode.insert(tempNode, theNode.getChildCount());
         }
+        theModel.reload(theNode);
+        tree.setModel(theModel);
     }
 
-    private void insertChildren(DataKnot pKnot, MutableTreeNode pNode) {
-        for (DataKnot eachKnot : pKnot.getChildren()) {
-            pNode.insert(new DefaultMutableTreeNode(eachKnot.getValue()), pNode.getChildCount());
-            for (DataKnot eachChild : eachKnot.getChildren()) {
-                DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(eachChild.getValue());
-                pNode.insert(tempNode, pNode.getChildCount());
-                insertChildren(eachChild, tempNode);
-            }
-        }
-    }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
