@@ -84,22 +84,20 @@
               <text value="O"/>
             </properties>
           </component>
-          <component id="832b2" class="javax.swing.JButton" binding="rButton" default-binding="true">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="109" height="32"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="R"/>
-            </properties>
-          </component>
           <component id="d943e" class="javax.swing.JButton" binding="dButton" default-binding="true">
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="D"/>
+            </properties>
+          </component>
+          <component id="35617" class="javax.swing.JButton" binding="rButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="R"/>
             </properties>
           </component>
         </children>
