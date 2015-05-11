@@ -5,6 +5,8 @@ import de.database.DataKnot;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
@@ -71,6 +73,15 @@ public class MainFrame extends JFrame{
                 theCore.deleteProject();
             }
         });
+
+
+        tree.addTreeSelectionListener(new TreeSelectionListener() {
+
+            @Override
+            public void valueChanged(TreeSelectionEvent e) {
+                theCore.showPage(e.getPath().getLastPathComponent().toString());
+            }
+        });
     }
 
     public void open() {
@@ -83,6 +94,8 @@ public class MainFrame extends JFrame{
         thePanels.add(pPanel, BorderLayout.CENTER);
         pack();
     }
+
+
 
     public void showTree(DataKnot pKnot) {
         tree.setModel(null);
