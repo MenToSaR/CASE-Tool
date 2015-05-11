@@ -63,4 +63,8 @@ public class ProjectManager {
         }
         theCore.saveData(tempKnot, theFunctionDataFileName);
     }
+
+    public DataKnot getDataKnot(){
+        return theProjectData;
+    }
 }

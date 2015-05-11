@@ -7,7 +7,6 @@ import de.window.*;
 import de.database.DataKnot;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -114,7 +113,21 @@ public class Core {
         for (String eachString : JarLoader.getJarLoader().getListOfElements("Calcer", "de.calculator.Calcer")) {
             tempKnot.addChild("Calcer").setValue(eachString);
         }
+        tempKnot.addChild(theProjectManager.getDataKnot());
+
+        DataKnot leckMich = tempKnot.getFirstChildByTag("root");
+        DataKnot leckMichagain = leckMich.addChild("productfunction");
+        DataKnot llmaa=leckMichagain.addChild("element");
+        llmaa.addData("ID","LF 10");
+        llmaa.addData("TITLE","Eingabe iwas");
+        DataKnot llmaa1=leckMichagain.addChild("element");
+        llmaa1.addData("ID","LF 20");
+        llmaa1.addData("TITLE","AUsgabe");
+        DataKnot llmaa2=leckMichagain.addChild("element");
+        llmaa2.addData("ID","LF 30");
+        llmaa2.addData("TITLE","Abfrage");
         theCalcbase.calculate(tempKnot);
+
     }
 
     public static void main(String[] args) {

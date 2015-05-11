@@ -1,5 +1,6 @@
 package de.calculator;
 
+import de.JarLoader;
 import de.database.DataKnot;
 import de.window.MessageBoxFactory;
 
@@ -16,5 +17,6 @@ public class Calcbase {
             tempList.add(eachKnot.getValue());
         }
         String tempResult = MessageBoxFactory.createListMessageBox("Choose...", "Verfügbare Porter:", tempList);
+        ((Calcer)JarLoader.getJarLoader().load(tempResult, "Calcer")).calculate(pKnot.getFirstChildByTag("root"));
     }
 }
