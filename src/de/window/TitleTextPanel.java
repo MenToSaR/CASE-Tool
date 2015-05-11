@@ -11,19 +11,18 @@ import java.awt.event.ActionListener;
 /**
  * Created by Marcel on 08.05.2015 in CASE.
  */
-public class TitleSliderTextPanel extends EditorPanelElement {
+public class TitleTextPanel extends EditorPanelElement {
     private JTextField textField1;
     private JTextField textField2;
     private JTextArea textArea1;
     private JButton saveButton;
     private JPanel thePanel;
-    private JSlider slider1;
 
-    public TitleSliderTextPanel() {
+    public TitleTextPanel() {
         init();
     }
 
-    public TitleSliderTextPanel(String pID, String pTitle, String pText) {
+    public TitleTextPanel(String pID, String pTitle, String pText) {
         init();
 
         textField1.setText(pID);
@@ -32,7 +31,6 @@ public class TitleSliderTextPanel extends EditorPanelElement {
     }
 
     public void init() {
-
 
         textField2.getDocument().addDocumentListener(new DocumentListener() {
             @Override

@@ -7,6 +7,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Created by Marcel on 08.05.2015 in CASE.
@@ -17,7 +21,6 @@ public class IDTitleTextPanel extends EditorPanelElement {
     private JTextArea textArea1;
     private JButton saveButton;
     private JPanel thePanel;
-    private JTextField textField3;
 
     public IDTitleTextPanel() {
         init();

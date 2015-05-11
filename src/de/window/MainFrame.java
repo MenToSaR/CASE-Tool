@@ -3,6 +3,7 @@ package de.window;
 import de.Core;
 import de.database.DataKnot;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.TreeSelectionEvent;
@@ -13,6 +14,9 @@ import javax.swing.tree.MutableTreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +42,8 @@ public class MainFrame extends JFrame{
 
         tree.setModel(null);
 
+        System.out.println(new File("res/graph.png").exists());
+        setIconImage(new ImageIcon("res/graph.png").getImage());
         setContentPane(this.thePanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
@@ -92,7 +98,9 @@ public class MainFrame extends JFrame{
         thePanels.removeAll();
         thePanels.setLayout(new BorderLayout());
         thePanels.add(pPanel, BorderLayout.CENTER);
-        pack();
+        revalidate();
+        repaint();
+
     }
 
 

@@ -3,6 +3,8 @@ package de.window;
 import de.database.DataKnot;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -37,6 +39,7 @@ public class EditorPanelHolder {
         pPanel.setLayout(new BoxLayout(pPanel, BoxLayout.Y_AXIS));
         pPanel.setPreferredSize(new Dimension((int) pPanel.getPreferredSize().getWidth(), 0));
         for (EditorPanelElement eachElement : listElements) {
+            eachElement.getElement().setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
             pPanel.add(eachElement.getElement());
             pPanel.setPreferredSize(new Dimension((int) eachElement.getElement().getPreferredSize().getWidth(), (int) pPanel.getPreferredSize().getHeight() + (int) eachElement.getElement().getPreferredSize().getHeight()));
         }
