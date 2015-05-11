@@ -8,6 +8,7 @@ import de.database.DataKnot;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class Core {
     public void deleteProject() {
         if (MessageBoxFactory.createMessageBox("Achtung", "Projekt wirklich löschen?") == MessageBox.RESULT_OK) {
             if (theDatabase.deleteWorkingDir()) {
-                theFrame.showTree(null);
+                theFrame.showTree("", null);
             }
         }
     }
@@ -52,7 +53,7 @@ public class Core {
                     }
                 }
 
-                refreshProject();
+                refreshProject(theResult);
             } catch (FileNotFoundException e) {
                 MessageBoxFactory.createMessageBox("Error", "Projekt existiert nicht mehr");
                 theDatabase.deleteProjectEntry(theResult);
@@ -69,7 +70,7 @@ public class Core {
             try {
                 theDatabase.setWorkingDir(tempDir);
 
-                refreshProject();
+                refreshProject(new File(tempDir).getName());
             } catch (FileNotFoundException e) {
                 // TODO FEHLERMELDUNG
             }
@@ -88,19 +89,15 @@ public class Core {
 
                 DataKnot tempKnot = new DataKnot("Projekt");
                 tempKnot.setValue(tempProjectName);
-                tempKnot.addChild("element").setValue("Funktionale Anforderungen");
-                tempKnot.addChild("element").setValue("Nichtfunktionale Anforderungen");
-                tempKnot.addChild("element").setValue("Glossar");
-
                 theDatabase.writeData(Database.PROJECT_CONFIG_FILE, tempKnot);
 
-                refreshProject();
+                refreshProject(tempProjectName);
             }
         }
     }
 
-    public void refreshProject() {
-        theFrame.showTree(theDatabase.readData(Database.PROJECT_CONFIG_FILE));
+    public void refreshProject(String pProjectName) {
+        theFrame.showTree(pProjectName, theProjectManager.getTreeList());
         theProjectManager.loadProjectData(theDatabase);
         theProjectManager.showProjectData(theFrame);
     }
@@ -118,15 +115,7 @@ public class Core {
     }
 
     public void showPage(String name){
-        switch (name){
-            case "Funktionale Anforderungen":
-                System.out.println("Positive!");
-                break;
-            default:
-                System.out.println("Negative");
-        }
-
-
+        theProjectManager.showPage(name, theFrame);
     }
 
     public static void main(String[] args) {
