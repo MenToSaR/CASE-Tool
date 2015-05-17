@@ -1,6 +1,7 @@
 package de.project;
 
 import javax.swing.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +17,10 @@ public class InputUnitManager {
 
     public void removeHolder(InputUnitHolder pHolder){
         listHolder.remove(pHolder);
+    }
+
+    public ArrayList<InputUnitHolder> getElements() {
+        return listHolder;
     }
 
     public JPanel getPanelByName(String pName){

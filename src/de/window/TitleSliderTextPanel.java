@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
  * Created by Marcel on 08.05.2015 in CASE.
  */
 public class TitleSliderTextPanel extends EditorPanelElement {
-    private JTextField textField1;
     private JTextField textField2;
     private JTextArea textArea1;
     private JButton saveButton;
@@ -21,14 +20,6 @@ public class TitleSliderTextPanel extends EditorPanelElement {
 
     public TitleSliderTextPanel() {
         init();
-    }
-
-    public TitleSliderTextPanel(String pID, String pTitle, String pText) {
-        init();
-
-        textField1.setText(pID);
-        textField2.setText(pTitle);
-        textArea1.setText(pText);
     }
 
     public void init() {
@@ -91,9 +82,16 @@ public class TitleSliderTextPanel extends EditorPanelElement {
     @Override
     public DataKnot getData() {
         DataKnot tempKnot = new DataKnot("elementdata");
-        tempKnot.addData("ID", textField1.getText());
         tempKnot.addData("TITLE", textField2.getText());
+        tempKnot.addData("VALUE", "" + slider1.getValue());
         tempKnot.addData("TEXT", textArea1.getText());
         return tempKnot;
+    }
+
+    @Override
+    public void setData(DataKnot pKnot) {
+        textField2.setText(pKnot.getDataByKey("TITLE"));
+        slider1.setValue(Integer.valueOf(pKnot.getDataByKey("VALUE")));
+        textArea1.setText(pKnot.getDataByKey("TEXT"));
     }
 }

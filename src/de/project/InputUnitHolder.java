@@ -8,17 +8,19 @@ import javax.swing.*;
 public class InputUnitHolder {
 
     private String theName;
-    private JPanel pnlPanel;
+    private InputUnitElement theElement;
 
-    public InputUnitHolder(String pName ,JPanel pPanel){
-
+    public InputUnitHolder(String pName, InputUnitElement pElement){
         theName = pName;
+        theElement = pElement;
+    }
 
-        pnlPanel = pPanel;
+    public InputUnitElement getElement() {
+        return theElement;
     }
 
     public JPanel getPanel(){
-        return pnlPanel;
+        return theElement.getPanel();
     }
 
     public String getName(){

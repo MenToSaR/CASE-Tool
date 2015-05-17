@@ -23,14 +23,6 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
         init();
     }
 
-    public IDTitleTitleTextPanel(String pID, String pTitle, String pText) {
-        init();
-
-        textField1.setText(pID);
-        textField2.setText(pTitle);
-        textArea1.setText(pText);
-    }
-
     public void init() {
 
         textField1.getDocument().addDocumentListener(new DocumentListener() {
@@ -109,7 +101,16 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
         DataKnot tempKnot = new DataKnot("elementdata");
         tempKnot.addData("ID", textField1.getText());
         tempKnot.addData("TITLE", textField2.getText());
+        tempKnot.addData("TITLE2", textField3.getText());
         tempKnot.addData("TEXT", textArea1.getText());
         return tempKnot;
+    }
+
+    @Override
+    public void setData(DataKnot pKnot) {
+        textField1.setText(pKnot.getDataByKey("ID"));
+        textField2.setText(pKnot.getDataByKey("TITLE"));
+        textField3.setText(pKnot.getDataByKey("TITLE2"));
+        textArea1.setText(pKnot.getDataByKey("TEXT"));
     }
 }

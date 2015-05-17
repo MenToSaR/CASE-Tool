@@ -79,6 +79,12 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
         return null;
     }
 
+    public void clear() {
+        listChildren.clear();
+        mapData.clear();
+        theValue = "";
+    }
+
     public void addData(String pKey, String pValue) {
         mapData.put(pKey, pValue);
     }

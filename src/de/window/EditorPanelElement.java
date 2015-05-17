@@ -12,4 +12,6 @@ public abstract class EditorPanelElement {
     public abstract JPanel getElement();
 
     public abstract DataKnot getData();
+
+    public abstract void setData(DataKnot pKnot);
 }

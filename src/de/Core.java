@@ -99,10 +99,10 @@ public class Core {
     public void refreshProject(String pProjectName) {
         theFrame.showTree(pProjectName, theProjectManager.getTreeList());
         theProjectManager.loadProjectData(theDatabase);
-        theProjectManager.showProjectData(theFrame);
     }
 
     public void saveData(DataKnot pKnot, String pFileName) {
+        pKnot.printKnot();
         theDatabase.writeData(pFileName, pKnot);
     }
 

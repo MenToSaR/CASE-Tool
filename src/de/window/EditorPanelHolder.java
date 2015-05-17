@@ -20,13 +20,21 @@ public class EditorPanelHolder {
         classElement = pElement;
     }
 
-    public void addElement(EditorPanelElement pElement) {
-        listElements.add(pElement);
-    }
-
     public void addElement() {
         try {
             listElements.add((EditorPanelElement) classElement.newInstance());
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addElement(DataKnot pKnot) {
+        try {
+            EditorPanelElement tempElement = (EditorPanelElement) classElement.newInstance();
+            tempElement.setData(pKnot);
+            listElements.add(tempElement);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
