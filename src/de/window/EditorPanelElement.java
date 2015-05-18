@@ -9,6 +9,20 @@ import javax.swing.*;
  */
 public abstract class EditorPanelElement {
 
+    private EditorPanelHolder theHolder;
+
+    public EditorPanelElement(EditorPanelHolder pHolder) {
+        theHolder = pHolder;
+    }
+
+    protected void delete() {
+        theHolder.deleteElement(this);
+    }
+
+    protected void update() {
+        theHolder.update();
+    }
+
     public abstract JPanel getElement();
 
     public abstract DataKnot getData();

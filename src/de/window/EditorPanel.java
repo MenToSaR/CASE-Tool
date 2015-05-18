@@ -27,12 +27,14 @@ public class EditorPanel implements InputUnitElement {
         theHolder = pHolder;
         theIdentifier = pID;
 
+        theHolder.setEditor(this);
+
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theHolder.addElement();
-                theHolder.printToPanel(theElementHolderPanel);
-                theManager.updateInterface();
+                theHolder.print();
+                update();
             }
         });
 
@@ -40,14 +42,26 @@ public class EditorPanel implements InputUnitElement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theManager.saveData(theHolder, theIdentifier);
+                sButton.setEnabled(false);
             }
         });
 
-        theHolder.printToPanel(theElementHolderPanel);
+        thePane.getVerticalScrollBar().setUnitIncrement(25);
+
+        theHolder.print();
+    }
+
+    public void update() {
+        theManager.updateInterface();
+        sButton.setEnabled(true);
     }
 
     public JPanel getPanel() {
         return thePanel;
+    }
+
+    public JPanel getContentPanel() {
+        return theElementHolderPanel;
     }
 
     public EditorPanelHolder getHolder() {
@@ -63,11 +77,13 @@ public class EditorPanel implements InputUnitElement {
     @Override
     public void loadData(DataKnot pKnot) {
         if (pKnot != null) {
+            theHolder.reset();
             for (DataKnot eachKnot : pKnot.getChildren()){
                 theHolder.addElement(eachKnot);
             }
         }
 
-        theHolder.printToPanel(theElementHolderPanel);
+        theHolder.print();
+        sButton.setEnabled(false);
     }
 }

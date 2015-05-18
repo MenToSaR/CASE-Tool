@@ -3,6 +3,8 @@ package de.window;
 import de.database.DataKnot;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
@@ -17,13 +19,20 @@ public class TitleSliderTextPanel extends EditorPanelElement {
     private JButton saveButton;
     private JPanel thePanel;
     private JSlider slider1;
+    private JButton xButton;
 
-    public TitleSliderTextPanel() {
+    public TitleSliderTextPanel(EditorPanelHolder pHolder) {
+        super(pHolder);
         init();
     }
 
     public void init() {
-
+        slider1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                somethingChanged();
+            }
+        });
 
         textField2.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -65,9 +74,15 @@ public class TitleSliderTextPanel extends EditorPanelElement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 saveButton.setEnabled(false);
+                update();
             }
         });
-
+        xButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                delete();
+            }
+        });
     }
 
     private void somethingChanged() {
@@ -93,5 +108,6 @@ public class TitleSliderTextPanel extends EditorPanelElement {
         textField2.setText(pKnot.getDataByKey("TITLE"));
         slider1.setValue(Integer.valueOf(pKnot.getDataByKey("VALUE")));
         textArea1.setText(pKnot.getDataByKey("TEXT"));
+        saveButton.setEnabled(false);
     }
 }

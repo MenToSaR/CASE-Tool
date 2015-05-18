@@ -65,14 +65,17 @@ public class Core {
         JFileChooser theChooser = new JFileChooser(theDatabase.getWorkspace());
         theChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         theChooser.showOpenDialog(new JFrame());
-        String tempDir = theChooser.getSelectedFile().getAbsolutePath();
-        if (tempDir != null) {
-            try {
-                theDatabase.setWorkingDir(tempDir);
+        File tempFile = theChooser.getSelectedFile();
+        if (tempFile != null) {
+            String tempDir = tempFile.getAbsolutePath();
+            if (tempDir != null) {
+                try {
+                    theDatabase.setWorkingDir(tempDir);
 
-                refreshProject(new File(tempDir).getName());
-            } catch (FileNotFoundException e) {
-                // TODO FEHLERMELDUNG
+                    refreshProject(new File(tempDir).getName());
+                } catch (FileNotFoundException e) {
+                    // TODO FEHLERMELDUNG
+                }
             }
         }
     }
@@ -81,17 +84,20 @@ public class Core {
         JFileChooser theChooser = new JFileChooser(theDatabase.getWorkspace());
         theChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         theChooser.showOpenDialog(new JFrame());
-        String tempDir = theChooser.getSelectedFile().getAbsolutePath();
-        if (!tempDir.equals("")) {
-            String tempProjectName = MessageBoxFactory.createTextMessageBox("Achtung", "Namen des Projektes eingeben!");
-            if (!tempProjectName.equals("")) {
-                theDatabase.createWorkingDir(tempDir, tempProjectName);
+        File tempFile = theChooser.getSelectedFile();
+        if (tempFile != null) {
+            String tempDir = tempFile.getAbsolutePath();
+            if (!tempDir.equals("")) {
+                String tempProjectName = MessageBoxFactory.createTextMessageBox("Achtung", "Namen des Projektes eingeben!");
+                if (!tempProjectName.equals("")) {
+                    theDatabase.createWorkingDir(tempDir, tempProjectName);
 
-                DataKnot tempKnot = new DataKnot("Projekt");
-                tempKnot.setValue(tempProjectName);
-                theDatabase.writeData(Database.PROJECT_CONFIG_FILE, tempKnot);
+                    DataKnot tempKnot = new DataKnot("Projekt");
+                    tempKnot.setValue(tempProjectName);
+                    theDatabase.writeData(Database.PROJECT_CONFIG_FILE, tempKnot);
 
-                refreshProject(tempProjectName);
+                    refreshProject(tempProjectName);
+                }
             }
         }
     }

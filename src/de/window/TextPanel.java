@@ -5,6 +5,8 @@ import de.project.InputUnitElement;
 import de.project.ProjectManager;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,8 +29,32 @@ public class TextPanel implements InputUnitElement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theProjectManager.saveData(textArea1.getText(), theIdentifier);
+                speichernButton.setEnabled(false);
             }
         });
+
+        textArea1.setLineWrap(true);
+        textArea1.setWrapStyleWord(true);
+        textArea1.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                somethingChanged();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                somethingChanged();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                somethingChanged();
+            }
+        });
+    }
+
+    private void somethingChanged() {
+        speichernButton.setEnabled(true);
     }
 
     public JPanel getPanel(){
@@ -44,6 +70,7 @@ public class TextPanel implements InputUnitElement {
     public void loadData(DataKnot pKnot) {
         if (pKnot != null) {
             textArea1.setText(pKnot.getDataByKey("TEXT"));
+            speichernButton.setEnabled(false);
         }
     }
 }

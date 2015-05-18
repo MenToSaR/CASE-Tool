@@ -83,7 +83,11 @@ public class ListMessageBox extends JDialog {
 
     public String getSelection() {
         if (nResult == RESULT_OK) {
-            return "" + lstList.getSelectedValue();
+            if (lstList.getSelectedValue() != null) {
+                return "" + lstList.getSelectedValue();
+            } else {
+                return "";
+            }
         } else {
             return "";
         }

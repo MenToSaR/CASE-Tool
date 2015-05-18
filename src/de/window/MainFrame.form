@@ -1,124 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="de.window.MainFrame">
-  <grid id="27dc6" binding="thePanel" layout-manager="FormLayout">
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
-    <rowspec value="top:177dlu:noGrow"/>
-    <rowspec value="center:d:grow"/>
-    <colspec value="fill:203px:noGrow"/>
-    <colspec value="fill:d:grow"/>
+  <grid id="27dc6" binding="thePanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
+    <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="558" height="408"/>
+      <xy x="20" y="20" width="906" height="408"/>
     </constraints>
-    <properties/>
+    <properties>
+      <enabled value="true"/>
+      <minimumSize width="850" height="408"/>
+      <preferredSize width="850" height="408"/>
+    </properties>
     <border type="none"/>
     <children>
-      <scrollpane id="77270">
+      <grid id="73737" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="2" column="0" row-span="2" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="221" height="360"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="259" height="-1"/>
           </grid>
-          <forms defaultalign-vert="false"/>
         </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="bcb79" class="javax.swing.JTree" binding="tree">
-            <constraints/>
-            <properties/>
-          </component>
-        </children>
-      </scrollpane>
-      <grid id="7e6f0" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="221" height="73"/>
-          </grid>
-          <forms/>
-        </constraints>
-        <properties/>
+        <properties>
+          <minimumSize width="250" height="-1"/>
+          <opaque value="true"/>
+          <preferredSize width="250" height="-1"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="991b1" class="javax.swing.JButton" binding="startImprovement">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
               <text value="Starte Optimierung"/>
             </properties>
           </component>
+          <component id="bcb79" class="javax.swing.JTree" binding="tree">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="1.0"/>
+            </constraints>
+            <properties/>
+          </component>
           <component id="bed28" class="javax.swing.JButton" binding="startCalc" default-binding="true">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
               <text value="Starte Berechnung"/>
             </properties>
           </component>
-        </children>
-      </grid>
-      <grid id="73737" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="75bed" class="javax.swing.JButton" binding="nButton" default-binding="true">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="15" height="20"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="N"/>
-            </properties>
-          </component>
           <component id="5e2ca" class="javax.swing.JButton" binding="oButton" default-binding="true">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="15" height="32"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="48" height="48"/>
+                <maximum-size width="48" height="48"/>
               </grid>
+              <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <text value="O"/>
+              <icon value="res/folder_32.png"/>
+              <margin top="2" left="14" bottom="2" right="14"/>
+              <text value=""/>
+              <toolTipText value="Öffnen"/>
+            </properties>
+          </component>
+          <component id="75bed" class="javax.swing.JButton" binding="nButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="48" height="48"/>
+                <maximum-size width="48" height="48"/>
+              </grid>
+              <gridbag weightx="1.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <icon value="res/document_32.png"/>
+              <inheritsPopupMenu value="false"/>
+              <margin top="2" left="14" bottom="2" right="14"/>
+              <text value=""/>
+              <toolTipText value="Neu"/>
             </properties>
           </component>
           <component id="832b2" class="javax.swing.JButton" binding="rButton" default-binding="true">
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="15" height="32"/>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="48" height="48"/>
+                <maximum-size width="48" height="48"/>
               </grid>
+              <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <text value="R"/>
+              <icon value="res/briefcase_32.png"/>
+              <margin top="2" left="14" bottom="2" right="14"/>
+              <text value=""/>
+              <toolTipText value="Projekt Öffnen"/>
             </properties>
           </component>
           <component id="d943e" class="javax.swing.JButton" binding="dButton" default-binding="true">
             <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false">
-                <preferred-size width="15" height="20"/>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="48" height="48"/>
+                <maximum-size width="48" height="48"/>
               </grid>
+              <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <text value="D"/>
+              <icon value="res/delete_32.png"/>
+              <text value=""/>
+              <toolTipText value="Projekt Löschen"/>
             </properties>
           </component>
         </children>
       </grid>
       <scrollpane id="2990">
         <constraints>
-          <grid row="0" column="1" row-span="5" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <maximumSize width="32767" height="-1"/>
-          <minimumSize width="355" height="-1"/>
-          <preferredSize width="355" height="-1"/>
+          <minimumSize width="640" height="-1"/>
+          <preferredSize width="640" height="-1"/>
         </properties>
         <border type="none"/>
         <children>
@@ -127,9 +128,9 @@
             <constraints/>
             <properties>
               <maximumSize width="2147483647" height="-1"/>
-              <minimumSize width="350" height="-1"/>
+              <minimumSize width="640" height="-1"/>
               <opaque value="true"/>
-              <preferredSize width="350" height="-1"/>
+              <preferredSize width="640" height="-1"/>
               <requestFocusEnabled value="true"/>
             </properties>
             <border type="none"/>

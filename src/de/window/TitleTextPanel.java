@@ -16,8 +16,10 @@ public class TitleTextPanel extends EditorPanelElement {
     private JTextArea textArea1;
     private JButton saveButton;
     private JPanel thePanel;
+    private JButton xButton;
 
-    public TitleTextPanel() {
+    public TitleTextPanel(EditorPanelHolder pHolder) {
+        super(pHolder);
         init();
     }
 
@@ -63,9 +65,15 @@ public class TitleTextPanel extends EditorPanelElement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 saveButton.setEnabled(false);
+                update();
             }
         });
-
+        xButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                delete();
+            }
+        });
     }
 
     private void somethingChanged() {
@@ -89,5 +97,6 @@ public class TitleTextPanel extends EditorPanelElement {
     public void setData(DataKnot pKnot) {
         textField2.setText(pKnot.getDataByKey("TITLE"));
         textArea1.setText(pKnot.getDataByKey("TEXT"));
+        saveButton.setEnabled(false);
     }
 }

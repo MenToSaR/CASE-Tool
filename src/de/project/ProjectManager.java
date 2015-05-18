@@ -65,7 +65,8 @@ public class ProjectManager {
     }
 
     public void updateInterface() {
-        theFrame.pack();
+        theFrame.revalidate();
+        theFrame.repaint();
     }
 
     public void saveData(EditorPanelHolder pHolder, String pID) {
@@ -109,9 +110,8 @@ public class ProjectManager {
 
 
     public void showPage(String pName, MainFrame pFrame) {
-    JPanel tempPanel = theInputUnitManager.getPanelByName(pName);
-        System.out.println(pName);
-    pFrame.showPanel(tempPanel);
+        JPanel tempPanel = theInputUnitManager.getPanelByName(pName);
+        pFrame.showPanel(tempPanel);
     }
 }
 

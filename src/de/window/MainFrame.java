@@ -74,7 +74,6 @@ public class MainFrame extends JFrame{
             }
         });
 
-
         tree.addTreeSelectionListener(new TreeSelectionListener() {
 
             @Override
@@ -86,6 +85,9 @@ public class MainFrame extends JFrame{
 
     public void open() {
         this.setVisible(true);
+        setSize(this.getInsets().left + getInsets().right + getSize().width, getInsets().top + getInsets().bottom + getSize().height);
+        setMinimumSize(new Dimension(getSize().width + 64, getSize().height));
+        setPreferredSize(getSize());
     }
 
     public void showPanel(JPanel pPanel) {
@@ -110,10 +112,5 @@ public class MainFrame extends JFrame{
         }
         theModel.reload(theNode);
         tree.setModel(theModel);
-    }
-
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }
