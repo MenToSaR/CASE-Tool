@@ -17,7 +17,7 @@ public class FunctionPoint extends Calcer {
 
     @Override
     public void calculate(DataKnot pKnot) {
-pKnot.printKnot();
+        pKnot.printKnot();
         ArrayList<DataKnot> productFunctions = pKnot.getFirstChildByTag("productfunction").getChildrenByTag("element");
         fAnzahl=productFunctions.size();
         functionArray=new Function[fAnzahl];
@@ -82,6 +82,15 @@ pKnot.printKnot();
 
         tmpFunction.setType(type);
         tmpFunction.setComplexity(complexity);
+    }
+
+    public int calcSumme(){
+        int summe=0;
+        for (int i=0; i<fAnzahl; i++) {
+            summe=summe+functionArray[i].getWeight();
+        }
+        System.out.println("Summe: "+summe);
+        return summe;
     }
 
 

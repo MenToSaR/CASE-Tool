@@ -15,6 +15,7 @@ public class FunctionInput {
     private JButton weiterButton;
     private JLabel lblName;
     private JLabel lblID;
+    private JButton fertigButton;
 
     private FunctionPoint theFunctionPoint;
 
@@ -46,13 +47,25 @@ public class FunctionInput {
         });
 
 
+        fertigButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                theFunctionPoint.safe();
+                theFunctionPoint.calcSumme();
+            }
+        });
     }
 
+
+
     public int getType(){
+
+        System.out.println("getType:"+comboBox1.getSelectedIndex());
         return comboBox1.getSelectedIndex();
     }
 
     public void setType(int type){
+        System.out.println("setType:"+type);
         comboBox1.setSelectedIndex(type);
     }
 

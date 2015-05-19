@@ -49,12 +49,58 @@ public class Function implements IFunction {
     @Override
     public boolean setType(int type) {
 
-        if(type > 5 || type < 1){
+        if(type > 4 || type < 0){
             return false; // fehlerhafter Typ wurde übergeben
         }else{
             _type=type;
             return true;
         }
+    }
+
+    public int getWeight() {
+        int weight=0;
+        if(_type < 2){
+            switch(_complexity){
+                case 1: weight=3;
+                    break;
+                case 2: weight=4;
+                    break;
+                case 3: weight=6;
+                    break;
+                default: break;
+            }
+        }else if(_type==2){
+            switch(_complexity){
+                case 1: weight=4;
+                    break;
+                case 2: weight=5;
+                    break;
+                case 3: weight=7;
+                    break;
+                default: break;
+            }
+        }else if(_type==3){
+            switch(_complexity){
+                case 1: weight=7;
+                    break;
+                case 2: weight=10;
+                    break;
+                case 3: weight=5;
+                    break;
+                default: break;
+            }
+        }else{
+            switch(_complexity){
+                case 1: weight=5;
+                    break;
+                case 2: weight=7;
+                    break;
+                case 3: weight=10;
+                    break;
+                default: break;
+            }
+        }
+        return weight;
     }
 
     @Override

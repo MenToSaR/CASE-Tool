@@ -9,7 +9,7 @@ public interface IFunction {
     public String getName();
     public boolean setComplexity(int complexity); // einfach = 1, mittel = 2, komplex = 3
     public int getComplexity();
-    public boolean setType(int type);   // Abfrage = 1, Eingabe = 2, Ausgabe = 3, Interner Datenbestand = 4, Externer Datenbestand = 5
+    public boolean setType(int type);   // Abfrage = 0, Eingabe = 1, Ausgabe = 2, Interner Datenbestand = 3, Externer Datenbestand = 4
     public int getType();
 
 }
