@@ -1,7 +1,14 @@
 <?xml version="1.0" ?>
 <Main>Hallo
-	<KeinKind></KeinKind>
-	<Kind Alter="15"></Kind>
+	<KeinKind>Wert</KeinKind>
+	<Function NAME="Peter" ID="LF10" COMPLEXITY="12" TYPE="3"></Function>
+	<Function NAME="Peter" ID="LF10" COMPLEXITY="12" TYPE="3"></Function>
+	<Function NAME="Peter" ID="LF10" COMPLEXITY="12" TYPE="3"></Function>
+	<Function NAME="Peter" ID="LF10" COMPLEXITY="12" TYPE="3"></Function>
+	<Function NAME="Peter" ID="LF10" COMPLEXITY="12" TYPE="3"></Function>
+	<Function NAME="Peter" ID="LF10" COMPLEXITY="12" TYPE="3"></Function>
+	<Function NAME="Peter" ID="LF10" COMPLEXITY="12" TYPE="3"></Function>
+	<Function NAME="Peter" ID="LF10" COMPLEXITY="12" TYPE="3"></Function>
 	<Kind Alter="12"></Kind>
 	<Kind Alter="19"></Kind>
 	<Kind Alter="0"></Kind>

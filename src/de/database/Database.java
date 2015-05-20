@@ -62,6 +62,18 @@ public class Database {
         ((InOuter) JarLoader.getJarLoader().load(theDefaultPorter, "Porter")).write(theConfigFileName, theConfigKnot);
     }
 
+    public DataKnot readConfigFile(String pFileName) {
+        try {
+            return ((InOuter) JarLoader.getJarLoader().load(theDefaultPorter, "Porter")).read(pFileName);
+        } catch (FileNotFoundException e) {
+            return null;
+        }
+    }
+
+    public void writeConfigFile(DataKnot pKnot, String pFileName) {
+        ((InOuter) JarLoader.getJarLoader().load(theDefaultPorter, "Porter")).write(pFileName, pKnot);
+    }
+
     public DataKnot readData(String pFile) {
         try {
             return ((InOuter) JarLoader.getJarLoader().load(theDefaultPorter, "Porter")).read(theWorkingDir + "/" + pFile);
