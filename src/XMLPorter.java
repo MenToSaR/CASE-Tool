@@ -38,9 +38,7 @@ public class XMLPorter extends InOuter {
         pWriter.writeStartElement(pKnot.getTag());
         HashMap<String, String> tempMap = pKnot.getData();
         for (String eachKey : tempMap.keySet()) {
-            if (!eachKey.equals("Tag")) {
-                pWriter.writeAttribute(eachKey, tempMap.get(eachKey));
-            }
+            pWriter.writeAttribute(eachKey, tempMap.get(eachKey));
         }
         pWriter.writeCharacters(pKnot.getValue());
         if (pKnot.getChildren().size() > 0) {
@@ -67,11 +65,6 @@ public class XMLPorter extends InOuter {
         while (pReader.hasNext()) {
             switch (pReader.getEventType()) {
                 case XMLStreamConstants.START_DOCUMENT:
-                    for (int i = 0; i < pReader.getAttributeCount(); i++) {
-                        pKnot.addData(pReader.getAttributeLocalName(i), pReader.getAttributeValue(i));
-                    }
-                    pReader.next();
-                    interpreteKnot(pReader, pKnot);
                     break;
 
                 case XMLStreamConstants.END_DOCUMENT:

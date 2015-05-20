@@ -35,7 +35,7 @@ public class InfluenceFactors {
 
                 DataKnot influenceFactors = new DataKnot("InfluenceFactors");
                 for (int i = 0; i < 14; i++) {
-                    influenceFactors.addData("" + i, "" + nFactors[i]);
+                    influenceFactors.addData("n" + i, "" + nFactors[i]);
                 }
 
                 _core.saveConfig(influenceFactors, "InfluenceFactors.dat");
@@ -65,8 +65,8 @@ public class InfluenceFactors {
         influenceFactors.printKnot();
 
         for (int i = 0; i < 14; i++){
-            nFactors[i] = Integer.parseInt(influenceFactors.getDataByKey("" + i));
-        }
+            nFactors[i] = Integer.parseInt(influenceFactors.getDataByKey("n" + i));  // attributsbezeichnungen in xml dürfen nicht nur aus einer zahl bestehen!
+        }                                                                            // 1 = "element1" ist bööse!, n1 = "element1" ist besser!
 
 
     }
