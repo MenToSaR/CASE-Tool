@@ -80,4 +80,12 @@ public class InfluenceFactors {
         return summe;
     }
 
+    public double getEinflussbewertung(){
+
+        int summe = getSum();
+        double retValue = summe/100.0 + 0.65;
+
+        return retValue;
+    }
+
 }
