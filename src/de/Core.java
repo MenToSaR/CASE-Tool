@@ -32,11 +32,11 @@ public class Core {
     }
 
     public void deleteProject() {
-        if (MessageBoxFactory.createMessageBox("Achtung", "Projekt wirklich löschen?") == MessageBox.RESULT_OK) {
+     //   if (MessageBoxFactory.createMessageBox("Achtung", "Projekt wirklich loeschen?") == MessageBox.RESULT_OK) {
             if (theDatabase.deleteWorkingDir()) {
                 theFrame.showTree("", null);
             }
-        }
+     //   }
     }
 
     public void reopenProject() {
@@ -82,6 +82,7 @@ public class Core {
 
     public void createProject() {
         JFileChooser theChooser = new JFileChooser(theDatabase.getWorkspace());
+        theChooser.setDialogTitle("Erstellen");
         theChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         theChooser.showOpenDialog(new JFrame());
         File tempFile = theChooser.getSelectedFile();
