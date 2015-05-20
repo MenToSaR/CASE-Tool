@@ -17,8 +17,8 @@ public class TitleTextPanel extends EditorPanelElement {
     private JPanel thePanel;
     private JButton xButton;
 
-    public TitleTextPanel(EditorPanelHolder pHolder) {
-        super(pHolder);
+    public TitleTextPanel(EditorPanelHolder pHolder, String pID) {
+        super(pHolder, pID);
         init();
     }
 
@@ -65,10 +65,6 @@ public class TitleTextPanel extends EditorPanelElement {
                 delete();
             }
         });
-    }
-
-    private void somethingChanged() {
-        // TODO hier Quelltext einfügen
     }
 
     @Override

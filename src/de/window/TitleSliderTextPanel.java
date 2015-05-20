@@ -20,8 +20,8 @@ public class TitleSliderTextPanel extends EditorPanelElement {
     private JSlider slider1;
     private JButton xButton;
 
-    public TitleSliderTextPanel(EditorPanelHolder pHolder) {
-        super(pHolder);
+    public TitleSliderTextPanel(EditorPanelHolder pHolder, String pID) {
+        super(pHolder, pID);
         init();
     }
 
@@ -74,10 +74,6 @@ public class TitleSliderTextPanel extends EditorPanelElement {
                 delete();
             }
         });
-    }
-
-    private void somethingChanged() {
-        // TODO hier Quelltext einfügen
     }
 
     @Override
