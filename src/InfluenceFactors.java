@@ -9,9 +9,12 @@ import de.database.DataKnot;
 public class InfluenceFactors {
 
     private int nFactors[] = new int[14];
+    private Core _core;
 
 
     public InfluenceFactors(Core pCore){
+        _core =pCore;
+    if(_core.loadConfig("InfluenceFactors.dat") == null) {
 
     if(pCore.loadConfig("InfluenceFactors.dat") == null) {
 
@@ -35,11 +38,11 @@ public class InfluenceFactors {
             influenceFactors.addData( "" + i, "" + nFactors[i]);
         }
 
-        pCore.saveConfig(influenceFactors, "InfluenceFactors.dat");
+        _core.saveConfig(influenceFactors, "InfluenceFactors.dat");
 
     }else{
 
-        load(pCore);
+        load();
     }
 
     }
@@ -54,16 +57,26 @@ public class InfluenceFactors {
         nFactors[pFactor] = pValue;
     }
 
-    public void load(Core pCore){
+    public void load(){
 
         DataKnot influenceFactors;
-        influenceFactors = pCore.loadConfig("InfluenceFactors.dat");
+        influenceFactors = _core.loadConfig("InfluenceFactors.dat");
 
         for (int i = 0; i < 14; i++){
             nFactors[i] = Integer.parseInt(influenceFactors.getDataByKey("i"));
         }
 
 
+    }
+
+    public int getSum(){
+
+        int summe = 0;
+
+        for (int i = 0; i < 14; i++){
+            summe += nFactors[i];
+        }
+        return summe;
     }
 
 }

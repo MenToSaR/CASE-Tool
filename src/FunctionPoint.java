@@ -11,11 +11,13 @@ import java.util.ArrayList;
 public class FunctionPoint extends Calcer {
 
     private Function functionArray[];
+    private InfluenceFactors influenceFactors;
     private int fAnzahl=0; // Anzahl der Funktionen die von pKnot übergeben werden
     private int currentIndex=0;
     private Core _pCore;
 
     private FunctionInput theFunctionInput;
+    private InfluenceFactorInput theInfluenceFactorInput;
 
     @Override
     public void calculate(Core pCore, DataKnot pKnot) {
@@ -39,8 +41,9 @@ public class FunctionPoint extends Calcer {
             functionArray[i].setName(name);
         }
         theFunctionInput=new FunctionInput(this);
+        theInfluenceFactorInput=new InfluenceFactorInput(this);
         loadFunctionGUI();
-        openFrame();
+        openFunctionInput();
 
     }
 
@@ -82,6 +85,22 @@ public class FunctionPoint extends Calcer {
         // Optimierung verändert nur die 14 Einflussfaktoren, sodass das tatsächliche Ergebnis auch wirklich mit der Berechnung übereinstimmt
         // Speichert die Einflussfaktoren ab
 
+        InfluenceFactors influenceFactors = new InfluenceFactors(pCore);
+
+        int summeKat = calcSumme();        // liefert Summe der einzelnen Kategorien
+        int calcLoCLoC = 0; //= calcLoC();        // liefert berechnete int Summe an LoC
+        int tmpLoC = 0;
+        int realLoC = 0;
+        double bewEinfluss;
+        double facEinfluss = 0;
+        int summeEinfluss = 0;
+
+        tmpLoC = realLoC/53;
+        bewEinfluss = tmpLoC/summeKat;
+        facEinfluss = (influenceFactors.getSum()/100) + 0.65;
+
+
+
     }
 
 
@@ -99,10 +118,17 @@ public class FunctionPoint extends Calcer {
 
     }
 
-    public void openFrame(){
+    public void openFunctionInput(){
         JFrame checkFrame = new JFrame();
 
         checkFrame.setContentPane(theFunctionInput.getPanel());
+        checkFrame.setVisible(true);
+    }
+
+    public void openInfluenceFactorInput(){
+        JFrame checkFrame = new JFrame();
+
+        checkFrame.setContentPane(theInfluenceFactorInput.getPanel());
         checkFrame.setVisible(true);
     }
 
@@ -138,6 +164,14 @@ public class FunctionPoint extends Calcer {
         }
         System.out.println("Summe: " + summe);
         return summe;
+    }
+
+    public InfluenceFactors getInfluenceFactors(){
+        return influenceFactors;
+    }
+
+    public int calcLoC(){
+        return 0;
     }
 
 
