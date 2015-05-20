@@ -19,6 +19,9 @@ public class FunctionPoint extends Calcer {
     private FunctionInput theFunctionInput;
     private InfluenceFactorInput theInfluenceFactorInput;
 
+    // setSize(this.getInsets().left + getInsets().right + getSize().width, getInsets().top + getInsets().bottom + getSize().height);
+    // setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - getSize().getWidth() / 2), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - getSize().getHeight() / 2));
+
     @Override
     public void calculate(Core pCore, DataKnot pKnot) {
         _pCore=pCore;
