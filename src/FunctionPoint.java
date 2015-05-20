@@ -172,7 +172,9 @@ public class FunctionPoint extends Calcer {
     }
 
     public int calcLoC(){
-
+        double einflussBewertung = influenceFactors.getEinflussbewertung();
+        int summe = calcSumme();
+        double loc = (double)summe*einflussBewertung*53;
         return 0;
     }
 
