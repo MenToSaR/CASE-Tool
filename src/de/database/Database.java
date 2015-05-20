@@ -1,7 +1,9 @@
 package de.database;
 
 import de.JarLoader;
+import de.window.MessageBox;
 import de.window.MessageBoxFactory;
+import de.window.TextMessageBox;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -100,20 +102,28 @@ public class Database {
     }
 
     public boolean deleteWorkingDir() {
-        if(deleteFile(new File(theWorkingDir))) {
-            new File(theWorkingDir).delete();
-            MessageBoxFactory.createMessageBox("Success", "Projekt wurde gelöscht");
-            for (DataKnot eachKnot : theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).getChildren()) {
-                if (theWorkingDir.equals(eachKnot.getValue() + "/" + eachKnot.getDataByKey("name"))) {
-                    theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).removeChild(eachKnot);
-                    break;
+        if (theWorkingDir == null || theWorkingDir.equals("")) {
+            MessageBoxFactory.createMessageBox("Fehler", "Kein Projekt geoeffnet");
+            return false;
+        }
+        if (MessageBoxFactory.createMessageBox("Obacht", "Soll der Pfad: " + theWorkingDir + " wirklich geloescht werden?") == MessageBox.RESULT_OK) {
+            if(deleteFile(new File(theWorkingDir))) {
+                new File(theWorkingDir).delete();
+                MessageBoxFactory.createMessageBox("Success", "Projekt wurde gelï¿½scht");
+                for (DataKnot eachKnot : theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).getChildren()) {
+                    if (theWorkingDir.equals(eachKnot.getValue() + "/" + eachKnot.getDataByKey("name"))) {
+                        theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).removeChild(eachKnot);
+                        break;
+                    }
                 }
+                theWorkingDir = "";
+                writeConfig();
+                return true;
+            } else {
+                MessageBoxFactory.createMessageBox("Achtung", "Projekt konnte nicht gelï¿½scht werden");
+                return false;
             }
-            theWorkingDir = "";
-            writeConfig();
-            return true;
         } else {
-            MessageBoxFactory.createMessageBox("Achtung", "Projekt konnte nicht gelöscht werden");
             return false;
         }
     }
