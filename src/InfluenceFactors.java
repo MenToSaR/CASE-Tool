@@ -2,7 +2,7 @@
  * Created by Pascal_Betz on 20.05.15.
  */
 
-import java.util.*
+import java.util.*;
 
 public class InfluenceFactors {
 
