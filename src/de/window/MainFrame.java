@@ -81,6 +81,12 @@ public class MainFrame extends JFrame{
                 theCore.showPage("" + e.getPath().getLastPathComponent());
             }
         });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                theCore.saveCompleteProject();
+            }
+        });
     }
 
     public void open() {
@@ -100,18 +106,26 @@ public class MainFrame extends JFrame{
 
     }
 
+    public void enableSaveButton(boolean pB) {
+        button1.setEnabled(pB);
+    }
 
+    public void enableDeleteButton(boolean pB) {
+        dButton.setEnabled(pB);
+    }
 
     public void showTree(String pProjectName, ArrayList<String> pName) {
         tree.setModel(null);
 
-        MutableTreeNode theNode = new DefaultMutableTreeNode(pProjectName);
-        DefaultTreeModel theModel = new DefaultTreeModel(theNode);
-        for (String eachKnot : pName) {
-            DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(eachKnot);
-            theNode.insert(tempNode, theNode.getChildCount());
+        if (pName != null) {
+            MutableTreeNode theNode = new DefaultMutableTreeNode(pProjectName);
+            DefaultTreeModel theModel = new DefaultTreeModel(theNode);
+            for (String eachKnot : pName) {
+                DefaultMutableTreeNode tempNode = new DefaultMutableTreeNode(eachKnot);
+                theNode.insert(tempNode, theNode.getChildCount());
+            }
+            theModel.reload(theNode);
+            tree.setModel(theModel);
         }
-        theModel.reload(theNode);
-        tree.setModel(theModel);
     }
 }

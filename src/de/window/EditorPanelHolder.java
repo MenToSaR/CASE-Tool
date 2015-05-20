@@ -67,7 +67,7 @@ public class EditorPanelHolder {
 
     public void addElement(DataKnot pKnot) {
         try {
-            EditorPanelElement tempElement = (EditorPanelElement) classElement.getConstructors()[0].newInstance(this, theIDPrefix + pKnot.getDataByKey("ID"));
+            EditorPanelElement tempElement = (EditorPanelElement) classElement.getConstructors()[0].newInstance(this, pKnot.getDataByKey("ID"));
             tempElement.setData(pKnot);
             tempElement.addSomethingChangedListener(new SomethingChangedListener() {
                 @Override

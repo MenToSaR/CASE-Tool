@@ -28,8 +28,7 @@ public class TextPanel implements InputUnitElement {
         speichernButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                theProjectManager.saveData(textArea1.getText(), theIdentifier);
-                speichernButton.setEnabled(false);
+                save();
             }
         });
 
@@ -54,6 +53,7 @@ public class TextPanel implements InputUnitElement {
     }
 
     private void somethingChanged() {
+        theProjectManager.somethingChanged();
         speichernButton.setEnabled(true);
     }
 
@@ -64,6 +64,12 @@ public class TextPanel implements InputUnitElement {
     @Override
     public String getIdentifier() {
         return theIdentifier;
+    }
+
+    @Override
+    public void save() {
+        theProjectManager.saveData(textArea1.getText(), theIdentifier);
+        speichernButton.setEnabled(false);
     }
 
     @Override

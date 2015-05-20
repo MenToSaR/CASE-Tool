@@ -11,6 +11,8 @@ public interface InputUnitElement {
 
     String getIdentifier();
 
+    void save();
+
     void loadData(DataKnot pKnot);
 
     JPanel getPanel();

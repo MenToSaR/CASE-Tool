@@ -1,5 +1,8 @@
 package de.project;
 
+import de.window.SomethingChangedListener;
+import de.window.SomethingChangedObserver;
+
 import javax.swing.*;
 
 /**
@@ -15,6 +18,10 @@ public class InputUnitHolder {
         theElement = pElement;
     }
 
+    public void save() {
+        theElement.save();
+    }
+
     public InputUnitElement getElement() {
         return theElement;
     }
@@ -26,6 +33,4 @@ public class InputUnitHolder {
     public String getName(){
         return theName;
     }
-
-
 }

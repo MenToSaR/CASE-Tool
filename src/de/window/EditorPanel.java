@@ -41,8 +41,7 @@ public class EditorPanel implements InputUnitElement {
         sButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                theManager.saveData(theHolder, theIdentifier);
-                sButton.setEnabled(false);
+                save();
             }
         });
 
@@ -53,6 +52,7 @@ public class EditorPanel implements InputUnitElement {
     }
 
     public void update() {
+        theManager.somethingChanged();
         theManager.updateInterface();
         sButton.setEnabled(true);
     }
@@ -73,6 +73,12 @@ public class EditorPanel implements InputUnitElement {
     @Override
     public String getIdentifier() {
         return theIdentifier;
+    }
+
+    @Override
+    public void save() {
+        theManager.saveData(theHolder, theIdentifier);
+        sButton.setEnabled(false);
     }
 
     @Override

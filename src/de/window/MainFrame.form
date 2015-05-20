@@ -87,7 +87,7 @@
           </component>
           <component id="832b2" class="javax.swing.JButton" binding="rButton" default-binding="true">
             <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="48" height="48"/>
                 <maximum-size width="48" height="48"/>
               </grid>
@@ -111,6 +111,7 @@
               <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <icon value="res/delete_32.png"/>
               <inheritsPopupMenu value="true"/>
               <maximumSize width="48" height="48"/>
@@ -121,10 +122,11 @@
           </component>
           <component id="739c2" class="javax.swing.JButton" binding="button1" default-binding="true">
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <icon value="res/save_32.png"/>
               <maximumSize width="48" height="48"/>
               <minimumSize width="48" height="48"/>

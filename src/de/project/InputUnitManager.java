@@ -19,6 +19,10 @@ public class InputUnitManager {
         listHolder.remove(pHolder);
     }
 
+    public void clear() {
+        listHolder.clear();
+    }
+
     public ArrayList<InputUnitHolder> getElements() {
         return listHolder;
     }

@@ -31,6 +31,11 @@ public class Core {
         theFrame.open();
     }
 
+    public void saveCompleteProject() {
+        theProjectManager.saveCompleteProject();
+        theFrame.enableSaveButton(false);
+    }
+
     public void deleteProject() {
      //   if (MessageBoxFactory.createMessageBox("Achtung", "Projekt wirklich loeschen?") == MessageBox.RESULT_OK) {
             if (theDatabase.deleteWorkingDir()) {
@@ -106,6 +111,7 @@ public class Core {
     public void refreshProject(String pProjectName) {
         theFrame.showTree(pProjectName, theProjectManager.getTreeList());
         theProjectManager.loadProjectData(theDatabase);
+        theFrame.enableDeleteButton(true);
     }
 
     public void saveData(DataKnot pKnot, String pFileName) {                    // In Projekt Ordner (local)
@@ -132,17 +138,6 @@ public class Core {
         }
         tempKnot.addChild(theProjectManager.getDataKnot());
 
-        DataKnot leckMich = tempKnot.getFirstChildByTag("root");
-        DataKnot leckMichagain = leckMich.addChild("productfunction");
-        DataKnot llmaa=leckMichagain.addChild("element");
-        llmaa.addData("ID","LF 10");
-        llmaa.addData("TITLE","Eingabe iwas");
-        DataKnot llmaa1=leckMichagain.addChild("element");
-        llmaa1.addData("ID","LF 20");
-        llmaa1.addData("TITLE","AUsgabe");
-        DataKnot llmaa2=leckMichagain.addChild("element");
-        llmaa2.addData("ID", "LF 30");
-        llmaa2.addData("TITLE","Abfrage");
         theCalcbase.calculate(this, tempKnot);
     }
 

@@ -24,6 +24,8 @@ public class ProjectManager {
 
     private InputUnitManager theInputUnitManager = new InputUnitManager();
 
+    private SomethingChangedObserver theObserver = new SomethingChangedObserver();
+
     public ProjectManager(Core pCore, MainFrame pFrame) {
         theCore = pCore;
         theFrame = pFrame;
@@ -33,6 +35,17 @@ public class ProjectManager {
 
     public ArrayList<String> getTreeList(){
         return theInputUnitManager.getNames();
+    }
+
+    public void addSomethingChangedListener(SomethingChangedListener pListener) {
+        theObserver.addSomethingChangedListener(pListener);
+    }
+    public void removeSomethingChangedListener(SomethingChangedListener pListener) {
+        theObserver.removeSomethingChanedListener(pListener);
+    }
+
+    public void somethingChanged(){
+        theFrame.enableSaveButton(true);
     }
 
     private void initInputUnitManager(){
@@ -45,11 +58,16 @@ public class ProjectManager {
         theInputUnitManager.addHolder(new InputUnitHolder("Qualitätsanforderungen", new EditorPanel(this, new EditorPanelHolder(TitleSliderTextPanel.class, ""), "quality")));
         theInputUnitManager.addHolder(new InputUnitHolder("Ergänzungen", new TextPanel(this, "miscellaneous")));
         theInputUnitManager.addHolder(new InputUnitHolder("Glossar", new EditorPanel(this, new EditorPanelHolder(TitleTextPanel.class, ""), "glossary")));
+
+        theFrame.enableSaveButton(false);
     }
 
     public void loadProjectData(Database pDatabase) {
         theProjectData.clear();
         theProjectData.addChild(pDatabase.readData(Database.PROJECT_CONFIG_FILE));
+
+        theInputUnitManager.clear();
+        initInputUnitManager();
 
         DataKnot tempKnot = pDatabase.readData(theFunctionDataFileName);
         if (tempKnot == null) {
@@ -62,12 +80,19 @@ public class ProjectManager {
             eachHolder.getElement().loadData(theProjectData.getFirstChildByTag("data").getFirstChildByTag(eachHolder.getElement().getIdentifier()));
         }
 
+        theFrame.enableSaveButton(false);
         theProjectData.printKnot();
     }
 
     public void updateInterface() {
         theFrame.revalidate();
         theFrame.repaint();
+    }
+
+    public void saveCompleteProject() {
+        for (InputUnitHolder eachHolder : theInputUnitManager.getElements()) {
+            eachHolder.save();
+        }
     }
 
     public void saveData(EditorPanelHolder pHolder, String pID) {
