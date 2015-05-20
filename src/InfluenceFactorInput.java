@@ -27,8 +27,8 @@ public class InfluenceFactorInput {
     private InfluenceFactors influenceFactors;
 
     public InfluenceFactorInput(FunctionPoint pFunctionPoint) {
-        theFunctionPoint=pFunctionPoint;
-        influenceFactors=theFunctionPoint.getInfluenceFactors();
+        theFunctionPoint = pFunctionPoint;
+        influenceFactors = theFunctionPoint.getInfluenceFactors();
         influenceFactors.load();
 
         t1.setText("" + influenceFactors.getInfluenceFactor(0));

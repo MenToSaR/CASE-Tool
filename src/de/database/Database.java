@@ -20,7 +20,7 @@ public class Database {
     public static String DEFAULT_WORKSPACE_TAG = "defworkspace";
     public static String PROJECT_CONFIG_FILE = "Project.cfg";
 
-    private String theDefaultPorter = "XMLPorter";
+    private String theDefaultPorter = "SerialPorter";
     private String theConfigFileName = "Config.cfg";
 
     private String theWorkingDir;

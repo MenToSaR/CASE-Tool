@@ -62,9 +62,10 @@ public class InfluenceFactors {
 
         DataKnot influenceFactors;
         influenceFactors = _core.loadConfig("InfluenceFactors.dat");
+        influenceFactors.printKnot();
 
         for (int i = 0; i < 14; i++){
-            nFactors[i] = Integer.parseInt(influenceFactors.getDataByKey("i"));
+            nFactors[i] = Integer.parseInt(influenceFactors.getDataByKey("" + i));
         }
 
 

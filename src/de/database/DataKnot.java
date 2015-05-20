@@ -123,9 +123,7 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
             System.out.println();
         }
         printChildren(this.getChildren(), 1);
-        if (getChildren().size() > 0) {
-            System.out.println("</" + getTag() + ">");
-        }
+        System.out.println("</" + getTag() + ">");
     }
 
     private void printChildren(ArrayList<DataKnot> pKnot, int pLevel) {

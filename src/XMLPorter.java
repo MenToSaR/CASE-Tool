@@ -67,6 +67,11 @@ public class XMLPorter extends InOuter {
         while (pReader.hasNext()) {
             switch (pReader.getEventType()) {
                 case XMLStreamConstants.START_DOCUMENT:
+                    for (int i = 0; i < pReader.getAttributeCount(); i++) {
+                        pKnot.addData(pReader.getAttributeLocalName(i), pReader.getAttributeValue(i));
+                    }
+                    pReader.next();
+                    interpreteKnot(pReader, pKnot);
                     break;
 
                 case XMLStreamConstants.END_DOCUMENT:
@@ -78,12 +83,12 @@ public class XMLPorter extends InOuter {
                     break;
 
                 case XMLStreamConstants.START_ELEMENT:
-                    DataKnot tempKnot = pKnot.addChild(pReader.getLocalName());
+                    DataKnot tempKnotElement = pKnot.addChild(pReader.getLocalName());
                     for (int i = 0; i < pReader.getAttributeCount(); i++) {
-                        tempKnot.addData(pReader.getAttributeLocalName(i), pReader.getAttributeValue(i));
+                        tempKnotElement.addData(pReader.getAttributeLocalName(i), pReader.getAttributeValue(i));
                     }
                     pReader.next();
-                    interpreteKnot(pReader, tempKnot);
+                    interpreteKnot(pReader, tempKnotElement);
                     break;
 
                 case XMLStreamConstants.CHARACTERS:
