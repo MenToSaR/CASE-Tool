@@ -37,7 +37,7 @@ public class MainFrame extends JFrame{
 
         tree.setModel(null);
 
-        setIconImage(new ImageIcon("res/graph.png").getImage());
+        setIconImage(new ImageIcon("src/res/graph.png").getImage());
         setTitle("CASE_TOOL");
         setContentPane(this.thePanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
