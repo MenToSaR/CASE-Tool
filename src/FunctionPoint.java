@@ -49,6 +49,11 @@ public class FunctionPoint extends Calcer {
         }
     }
 
+    @Override
+    public void optimize(Core pCore) {
+
+    }
+
     public void incCurrIndex(){
         if(currentIndex<fAnzahl-1){
             currentIndex++;

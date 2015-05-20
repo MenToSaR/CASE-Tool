@@ -9,4 +9,6 @@ import de.database.DataKnot;
 public abstract class Calcer {
 
     public abstract void calculate(Core pCore, DataKnot pKnot);
+
+    public abstract void optimize(Core pCore);
 }

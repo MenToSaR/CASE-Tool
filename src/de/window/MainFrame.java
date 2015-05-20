@@ -41,7 +41,6 @@ public class MainFrame extends JFrame{
         setContentPane(this.thePanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
-        setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - getSize().getWidth() / 2), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - getSize().getHeight() / 2));
 
         startCalc.addActionListener(new ActionListener() {
             @Override
@@ -86,6 +85,7 @@ public class MainFrame extends JFrame{
     public void open() {
         this.setVisible(true);
         setSize(this.getInsets().left + getInsets().right + getSize().width, getInsets().top + getInsets().bottom + getSize().height);
+        setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - getSize().getWidth() / 2), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - getSize().getHeight() / 2));
         setMinimumSize(new Dimension(getSize().width + 64, getSize().height));
         setPreferredSize(getSize());
     }
