@@ -1,3 +1,4 @@
+import de.Core;
 import de.calculator.Calcer;
 import de.database.DataKnot;
 
@@ -96,7 +97,7 @@ public class FunctionPoint extends Calcer {
         for (int i=0; i<fAnzahl; i++) {
             summe=summe+functionArray[i].getWeight();
         }
-        System.out.println("Summe: "+summe);
+        System.out.println("Summe: " + summe);
         return summe;
     }
 
