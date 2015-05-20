@@ -42,18 +42,6 @@ public class FunctionPoint extends Calcer {
         loadFunctionGUI();
         openFrame();
 
-
-        pCore.saveData(new DataKnot("hallo"), "FunktionenFunctionPoint.txt");
-
-
-
-        DataKnot funktionen = new DataKnot("root");
-
-        for (Function eachFunction : functionArray) {
-            DataKnot eachKnot = funktionen.addChild("Function");
-            eachKnot.addData("ID", eachFunction.getID());
-            eachKnot.addData("TYPE", "" + eachFunction.getType());
-        }
     }
 
     public void loadFunctionsFromCore(){
