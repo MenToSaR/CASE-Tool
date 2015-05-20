@@ -32,17 +32,17 @@ public class FunctionInput {
         zurückButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                theFunctionPoint.safe();
+                theFunctionPoint.safeFunctionFromFunctionGUI();
                 theFunctionPoint.decCurrIndex();
-                theFunctionPoint.load();
+                theFunctionPoint.loadFunctionGUI();
             }
         });
         weiterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                theFunctionPoint.safe();
+                theFunctionPoint.safeFunctionFromFunctionGUI();
                 theFunctionPoint.incCurrIndex();
-                theFunctionPoint.load();
+                theFunctionPoint.loadFunctionGUI();
             }
         });
 
@@ -50,7 +50,7 @@ public class FunctionInput {
         fertigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                theFunctionPoint.safe();
+                theFunctionPoint.safeFunctionFromFunctionGUI();
                 theFunctionPoint.calcSumme();
             }
         });

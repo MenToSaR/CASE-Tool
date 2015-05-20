@@ -13,11 +13,13 @@ public class FunctionPoint extends Calcer {
     private Function functionArray[];
     private int fAnzahl=0; // Anzahl der Funktionen die von pKnot übergeben werden
     private int currentIndex=0;
+    private Core _pCore;
 
     private FunctionInput theFunctionInput;
 
     @Override
     public void calculate(Core pCore, DataKnot pKnot) {
+        _pCore=pCore;
         pKnot.printKnot();
         ArrayList<DataKnot> productFunctions = pKnot.getFirstChildByTag("productfunction").getChildrenByTag("element");
         fAnzahl=productFunctions.size();
@@ -37,26 +39,41 @@ public class FunctionPoint extends Calcer {
             functionArray[i].setName(name);
         }
         theFunctionInput=new FunctionInput(this);
-        load();
+        loadFunctionGUI();
         openFrame();
 
+    }
 
-        pCore.saveData(new DataKnot("hallo"), "FunktionenFunctionPoint.txt");
+    public void loadFunctionsFromCore(){
+        DataKnot theKnot = _pCore.loadData("FunktionenFunctionPoint.txt");
 
-        DataKnot theKnot = pCore.loadData("FunktionenFunctionPoint.txt");
         if (theKnot != null) {
+            ArrayList<DataKnot> productFunctions = theKnot.getChildren();
+            fAnzahl=productFunctions.size();
+            functionArray=new Function[fAnzahl];
+            int i=0;
             for (DataKnot eachKnot : theKnot.getChildren()) {
-                Integer.valueOf(eachKnot.getDataByKey("TYPE"));
+                functionArray[i].setID(eachKnot.getDataByKey("ID"));
+                functionArray[i].setName(eachKnot.getDataByKey("NAME"));
+                functionArray[i].setType(Integer.valueOf(eachKnot.getDataByKey("TYPE")));
+                functionArray[i].setComplexity(Integer.valueOf(eachKnot.getDataByKey("COMPLEXITY")));
+                i++;
             }
         }
+    }
 
+    public void safeFunctionsToCore(){
         DataKnot funktionen = new DataKnot("root");
 
         for (Function eachFunction : functionArray) {
             DataKnot eachKnot = funktionen.addChild("Function");
             eachKnot.addData("ID", eachFunction.getID());
+            eachKnot.addData("NAME", eachFunction.getName());
             eachKnot.addData("TYPE", "" + eachFunction.getType());
+            eachKnot.addData("COMPLEXITY", "" + eachFunction.getComplexity());
         }
+
+        _pCore.saveData(funktionen, "FunktionenFunctionPoint.txt");
     }
 
     @Override
@@ -91,7 +108,7 @@ public class FunctionPoint extends Calcer {
         checkFrame.setVisible(true);
     }
 
-    public void load(){
+    public void loadFunctionGUI(){
         Function tmpFunction=functionArray[currentIndex];
         String id=tmpFunction.getID();
         String name=tmpFunction.getName();
@@ -105,13 +122,15 @@ public class FunctionPoint extends Calcer {
 
     }
 
-    public void safe(){
+    public void safeFunctionFromFunctionGUI(){
         Function tmpFunction=functionArray[currentIndex];
         int type=theFunctionInput.getType();
         int complexity = theFunctionInput.getComplexity();
 
         tmpFunction.setType(type);
         tmpFunction.setComplexity(complexity);
+
+        safeFunctionsToCore();
     }
 
     public int calcSumme(){
