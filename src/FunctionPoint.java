@@ -45,7 +45,7 @@ public class FunctionPoint extends Calcer {
     }
 
     public void loadFunctionsFromCore(){
-        DataKnot theKnot = _pCore.loadData("FunktionenFunctionPoint.txt");
+        DataKnot theKnot = _pCore.loadData("FunktionenFunctionPoint.dat");
 
         if (theKnot != null) {
             ArrayList<DataKnot> productFunctions = theKnot.getChildren();
@@ -73,7 +73,7 @@ public class FunctionPoint extends Calcer {
             eachKnot.addData("COMPLEXITY", "" + eachFunction.getComplexity());
         }
 
-        _pCore.saveData(funktionen, "FunktionenFunctionPoint.txt");
+        _pCore.saveData(funktionen, "FunktionenFunctionPoint.dat");
     }
 
     @Override
@@ -84,9 +84,7 @@ public class FunctionPoint extends Calcer {
 
     }
 
-    public void loadData(){
 
-    }
 
     public void incCurrIndex(){
         if(currentIndex<fAnzahl-1){
