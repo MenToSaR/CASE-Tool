@@ -88,10 +88,10 @@ public class FunctionPoint extends Calcer {
         InfluenceFactors influenceFactors = new InfluenceFactors(pCore);
 
         int summeKat = calcSumme();        // liefert Summe der einzelnen Kategorien
-        int calcLoCLoC = 0; //= calcLoC();        // liefert berechnete int Summe an LoC
+        int calcLoC = calcLoC();        // liefert berechnete int Summe an LoC
         int tmpLoC = 0;
         int realLoC = 0;
-        double bewEinfluss;
+        double bewEinfluss = 0;
         double facEinfluss = 0;
         int summeEinfluss = 0;
 
