@@ -1,5 +1,7 @@
+import com.sun.jdi.IntegerValue;
 import de.Core;
 import de.database.DataKnot;
+import sun.jvm.hotspot.jdi.IntegerValueImpl;
 
 /**
  * Created by Pascal_Betz on 20.05.15.
@@ -13,7 +15,7 @@ public class InfluenceFactors {
 
     public InfluenceFactors(Core pCore){
 
-    if(pCore.loadConfig("InfluenceFactors.xml") == null) {
+    if(pCore.loadConfig("InfluenceFactors.dat") == null) {
 
         nFactors[0] = 3;
         nFactors[1] = 4;
@@ -30,13 +32,18 @@ public class InfluenceFactors {
         nFactors[12] = 4;
         nFactors[13] = 3;
 
-    DataKnot InfluenceFactors = new DataKnot("InfluenceFactors");
+    DataKnot influenceFactors = new DataKnot("InfluenceFactors");
+        for (int i = 0; i < 14; i++){
+            influenceFactors.addData( "" + i, "" + nFactors[i]);
+        }
 
+        pCore.saveConfig(influenceFactors, "InfluenceFactors.dat");
 
+    }else{
 
-
-    pCore.saveConfig(InfluenceFactors, "InfluenceFactors.xml");
+        load(pCore);
     }
+
     }
 
     public int getInfluenceFactor(int pFactor){
@@ -51,7 +58,12 @@ public class InfluenceFactors {
 
     public void load(Core pCore){
 
-        pCore.loadConfig("InfluenceFactors.xml");
+        DataKnot influenceFactors;
+        influenceFactors = pCore.loadConfig("InfluenceFactors.dat");
+
+        for (int i = 0; i < 14; i++){
+            nFactors[i] = Integer.parseInt(influenceFactors.getDataByKey("i"));
+        }
 
 
     }
