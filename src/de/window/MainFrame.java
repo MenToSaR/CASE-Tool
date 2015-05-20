@@ -29,6 +29,7 @@ public class MainFrame extends JFrame{
     private JButton rButton;
     private JButton dButton;
     private JPanel thePanels;
+    private JButton button1;
     private JScrollPane thePanelHolder;
 
     public MainFrame(Core pCore) {

@@ -85,6 +85,22 @@ public class FunctionPoint extends Calcer {
         // Optimierung verändert nur die 14 Einflussfaktoren, sodass das tatsächliche Ergebnis auch wirklich mit der Berechnung übereinstimmt
         // Speichert die Einflussfaktoren ab
 
+        InfluenceFactors influenceFactors = new InfluenceFactors(pCore);
+
+        int summeKat = calcSumme();        // liefert Summe der einzelnen Kategorien
+        int calcLoCLoC = 0; //= calcLoC();        // liefert berechnete int Summe an LoC
+        int tmpLoC = 0;
+        int realLoC = 0;
+        double bewEinfluss;
+        double facEinfluss = 0;
+        int summeEinfluss = 0;
+
+        tmpLoC = realLoC/53;
+        bewEinfluss = tmpLoC/summeKat;
+        facEinfluss = (influenceFactors.getSum()/100) + 0.65;
+
+
+
     }
 
 

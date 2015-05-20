@@ -14,11 +14,22 @@ import java.util.ArrayList;
 public class EditorPanelHolder {
 
     private ArrayList<EditorPanelElement> listElements = new ArrayList<>();
+    private int nID = 0;
     private Class classElement;
+    private String theIDPrefix;
     private EditorPanel theEditor;
 
-    public EditorPanelHolder(Class pElement) {
+    public EditorPanelHolder(Class pElement, String pIDPrefix) {
         classElement = pElement;
+        theIDPrefix = pIDPrefix;
+    }
+
+    public void setID(int pID) {
+        nID = pID;
+    }
+
+    public int getID() {
+        return nID;
     }
 
     public void setEditor(EditorPanel pEditor) {
@@ -37,7 +48,14 @@ public class EditorPanelHolder {
 
     public void addElement() {
         try {
-            listElements.add((EditorPanelElement) classElement.getConstructors()[0].newInstance(this));
+            EditorPanelElement tempElement = (EditorPanelElement) classElement.getConstructors()[0].newInstance(this, theIDPrefix + getNextID());
+            tempElement.addSomethingChangedListener(new SomethingChangedListener() {
+                @Override
+                public void somethingChanged() {
+                    update();
+                }
+            });
+            listElements.add(tempElement);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -49,8 +67,14 @@ public class EditorPanelHolder {
 
     public void addElement(DataKnot pKnot) {
         try {
-            EditorPanelElement tempElement = (EditorPanelElement) classElement.getConstructors()[0].newInstance(this);
+            EditorPanelElement tempElement = (EditorPanelElement) classElement.getConstructors()[0].newInstance(this, theIDPrefix + pKnot.getDataByKey("ID"));
             tempElement.setData(pKnot);
+            tempElement.addSomethingChangedListener(new SomethingChangedListener() {
+                @Override
+                public void somethingChanged() {
+                    update();
+                }
+            });
             listElements.add(tempElement);
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -59,6 +83,11 @@ public class EditorPanelHolder {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getNextID() {
+        nID = nID + 10;
+        return nID;
     }
 
     public void print() {

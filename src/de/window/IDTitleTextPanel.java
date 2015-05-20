@@ -22,13 +22,14 @@ public class IDTitleTextPanel extends EditorPanelElement {
     private JPanel thePanel;
     private JButton xButton;
 
-    public IDTitleTextPanel(EditorPanelHolder pHolder) {
-        super(pHolder);
+    public IDTitleTextPanel(EditorPanelHolder pHolder, String pID) {
+        super(pHolder, pID);
         init();
     }
 
     public void init() {
 
+        textField1.setText(getID());
         textField1.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -87,10 +88,6 @@ public class IDTitleTextPanel extends EditorPanelElement {
                 delete();
             }
         });
-    }
-
-    private void somethingChanged() {
-        // TODO hier Quelltext einfügen
     }
 
     @Override

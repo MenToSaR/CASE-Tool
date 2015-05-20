@@ -48,6 +48,7 @@ public class EditorPanel implements InputUnitElement {
 
         thePane.getVerticalScrollBar().setUnitIncrement(25);
 
+        sButton.setEnabled(false);
         theHolder.print();
     }
 
@@ -78,6 +79,9 @@ public class EditorPanel implements InputUnitElement {
     public void loadData(DataKnot pKnot) {
         if (pKnot != null) {
             theHolder.reset();
+            if (pKnot.getDataByKey("ID") != null) {
+                theHolder.setID(Integer.valueOf(pKnot.getDataByKey("ID")));
+            }
             for (DataKnot eachKnot : pKnot.getChildren()){
                 theHolder.addElement(eachKnot);
             }

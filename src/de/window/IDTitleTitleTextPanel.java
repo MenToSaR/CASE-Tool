@@ -19,13 +19,14 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
     private JTextField textField3;
     private JButton xButton;
 
-    public IDTitleTitleTextPanel(EditorPanelHolder pHolder) {
-        super(pHolder);
+    public IDTitleTitleTextPanel(EditorPanelHolder pHolder, String pID) {
+        super(pHolder, pID);
         init();
     }
 
     public void init() {
 
+        textField1.setText(getID());
         textField1.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -60,6 +61,24 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
             }
         });
 
+        textField3.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                somethingChanged();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                somethingChanged();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                somethingChanged();
+            }
+        });
+
+
         textArea1.setLineWrap(true);
         textArea1.setWrapStyleWord(true);
         textArea1.getDocument().addDocumentListener(new DocumentListener() {
@@ -87,10 +106,6 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
 
     }
 
-    private void somethingChanged() {
-        // TODO hier Quelltext einfügen
-    }
-
     @Override
     public JPanel getElement() {
         return thePanel;
@@ -99,7 +114,7 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
     @Override
     public DataKnot getData() {
         DataKnot tempKnot = new DataKnot("elementdata");
-        tempKnot.addData("ID", textField1.getText());
+        tempKnot.addData("ID", getID());
         tempKnot.addData("TITLE", textField2.getText());
         tempKnot.addData("TITLE2", textField3.getText());
         tempKnot.addData("TEXT", textArea1.getText());

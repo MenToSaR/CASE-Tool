@@ -1,7 +1,6 @@
 import de.Core;
 import de.database.DataKnot;
 
-
 /**
  * Created by Pascal_Betz on 20.05.15.
  */
@@ -16,6 +15,8 @@ public class InfluenceFactors {
     public InfluenceFactors(Core pCore){
         _core =pCore;
     if(_core.loadConfig("InfluenceFactors.dat") == null) {
+
+    if(pCore.loadConfig("InfluenceFactors.dat") == null) {
 
         nFactors[0] = 3;
         nFactors[1] = 4;
@@ -66,6 +67,16 @@ public class InfluenceFactors {
         }
 
 
+    }
+
+    public int getSum(){
+
+        int summe = 0;
+
+        for (int i = 0; i < 14; i++){
+            summe += nFactors[i];
+        }
+        return summe;
     }
 
 }
