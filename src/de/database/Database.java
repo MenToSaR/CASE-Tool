@@ -17,6 +17,7 @@ public class Database {
 
     public static String DEFAULT_PORTER_TAG = "defporter";
     public static String PROJECT_LIST_TAG = "projects";
+    public static String PROJECT_LAST_PROJECT = "lastproject";
     public static String DEFAULT_WORKSPACE_TAG = "defworkspace";
     public static String PROJECT_CONFIG_FILE = "Project.cfg";
 
@@ -44,6 +45,21 @@ public class Database {
         theConfigKnot.addChild(PROJECT_LIST_TAG);
         theConfigKnot.addChild(DEFAULT_PORTER_TAG).setValue(theDefaultPorter);
         theConfigKnot.addChild(DEFAULT_WORKSPACE_TAG).setValue(System.getProperty("user.home") + "/Desktop");
+    }
+
+    public void editConfigEntry(String pKey, String pValue) {
+        DataKnot tempKnot = theConfigKnot.getFirstChildByTag(pKey);
+        if (tempKnot == null) {
+            tempKnot = theConfigKnot.addChild(pKey);
+        }
+
+        tempKnot.setValue(pValue);
+
+        writeConfig();
+    }
+
+    public String getConfigEntry(String pKey) {
+        return theConfigKnot.getFirstChildByTag(pKey) != null ? theConfigKnot.getFirstChildByTag(pKey).getValue() : "";
     }
 
     public DataKnot getConfig() {
@@ -119,6 +135,7 @@ public class Database {
             return false;
         }
         if (MessageBoxFactory.createMessageBox("Obacht", "Soll der Pfad: " + theWorkingDir + " wirklich geloescht werden?") == MessageBox.RESULT_OK) {
+            System.out.println("Start deleting" + new File(theWorkingDir).getAbsolutePath());
             if(deleteFile(new File(theWorkingDir))) {
                 new File(theWorkingDir).delete();
                 MessageBoxFactory.createMessageBox("Success", "Projekt wurde gel�scht");
@@ -154,7 +171,9 @@ public class Database {
     private boolean deleteFile(File f) {
         if (f.isDirectory()) {
             for (File c : f.listFiles()) {
-                return deleteFile(c);
+                if (!deleteFile(c)) {
+                    return false;
+                }
             }
             return f.delete();
         } else {
@@ -164,6 +183,10 @@ public class Database {
 
     public String getWorkspace() {
         return theWorkspaceDir;
+    }
+
+    public String getWorkingDir() {
+        return theWorkingDir;
     }
 
     public void setWorkspace(String pDir) {

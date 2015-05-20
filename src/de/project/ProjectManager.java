@@ -73,7 +73,6 @@ public class ProjectManager {
         if (tempKnot == null) {
             tempKnot = new DataKnot("data");
         }
-
         theProjectData.addChild(tempKnot);
 
         for (InputUnitHolder eachHolder : theInputUnitManager.getElements()) {

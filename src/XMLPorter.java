@@ -11,10 +11,12 @@ import java.util.HashMap;
 public class XMLPorter extends InOuter {
 
     public void write(String pFile, DataKnot pData) {
+        FileOutputStream theOS = null;
+        XMLStreamWriter theWriter = null;
         try {
             XMLOutputFactory theFactory = XMLOutputFactory.newInstance();
-            FileOutputStream theOS = new FileOutputStream(pFile);
-            XMLStreamWriter theWriter = theFactory.createXMLStreamWriter(theOS, "UTF-16");
+            theOS = new FileOutputStream(pFile);
+            theWriter = theFactory.createXMLStreamWriter(theOS, "UTF-16");
 
             theWriter.writeStartDocument("UTF-16", "1.0");
             theWriter.writeCharacters("\n");
@@ -31,6 +33,12 @@ public class XMLPorter extends InOuter {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                theWriter.close();
+                theOS.close();
+            } catch (Exception e1) {
+            }
         }
     }
 
@@ -107,10 +115,12 @@ public class XMLPorter extends InOuter {
         }
 
         DataKnot tempKnot = new DataKnot("NULL");
+        FileInputStream theIS = null;
+        XMLStreamReader theReader = null;
         try {
             XMLInputFactory theFactory = XMLInputFactory.newInstance();
-            FileInputStream theIS = new FileInputStream(pFile);
-            XMLStreamReader theReader = theFactory.createXMLStreamReader(theIS, "UTF-16");
+            theIS = new FileInputStream(pFile);
+            theReader = theFactory.createXMLStreamReader(theIS, "UTF-16");
 
             interpreteKnot(theReader, tempKnot);
 
@@ -118,6 +128,12 @@ public class XMLPorter extends InOuter {
             theIS.close();
         } catch (XMLStreamException | IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                theReader.close();
+                theIS.close();
+            } catch (Exception e1) {
+            }
         }
 
         if (tempKnot.getChildren().size() > 1) {

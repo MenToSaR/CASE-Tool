@@ -87,6 +87,12 @@ public class MainFrame extends JFrame{
                 theCore.saveCompleteProject();
             }
         });
+        startImprovement.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                theCore.optimize();
+            }
+        });
     }
 
     public void open() {
@@ -100,18 +106,30 @@ public class MainFrame extends JFrame{
     public void showPanel(JPanel pPanel) {
         thePanels.removeAll();
         thePanels.setLayout(new BorderLayout());
-        thePanels.add(pPanel, BorderLayout.CENTER);
+        if (pPanel != null) {
+            thePanels.add(pPanel, BorderLayout.CENTER);
+        }
         revalidate();
         repaint();
-
     }
 
     public void enableSaveButton(boolean pB) {
         button1.setEnabled(pB);
     }
 
-    public void enableDeleteButton(boolean pB) {
-        dButton.setEnabled(pB);
+    public void projectLoaded() {
+        dButton.setEnabled(true);
+        startCalc.setEnabled(true);
+        startImprovement.setEnabled(true);
+    }
+
+    public void reset() {
+        showPanel(null);
+        showTree("", null);
+        dButton.setEnabled(false);
+        button1.setEnabled(false);
+        startCalc.setEnabled(false);
+        startImprovement.setEnabled(false);
     }
 
     public void showTree(String pProjectName, ArrayList<String> pName) {

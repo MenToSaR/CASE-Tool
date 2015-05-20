@@ -31,6 +31,7 @@
               <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Starte Optimierung"/>
             </properties>
           </component>
@@ -47,6 +48,7 @@
               <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Starte Berechnung"/>
             </properties>
           </component>
@@ -64,7 +66,7 @@
               <maximumSize width="48" height="48"/>
               <minimumSize width="48" height="48"/>
               <text value=""/>
-              <toolTipText value="Öffnen"/>
+              <toolTipText value="Projekt Importieren"/>
             </properties>
           </component>
           <component id="75bed" class="javax.swing.JButton" binding="nButton" default-binding="true">
@@ -82,7 +84,7 @@
               <maximumSize width="48" height="48"/>
               <minimumSize width="48" height="48"/>
               <text value=""/>
-              <toolTipText value="Neu"/>
+              <toolTipText value="Neues Projekt"/>
             </properties>
           </component>
           <component id="832b2" class="javax.swing.JButton" binding="rButton" default-binding="true">
@@ -94,7 +96,7 @@
               <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <icon value="res/briefcase_32.png"/>
+              <icon value="res/clipboard_32.png"/>
               <margin top="2" left="14" bottom="2" right="14"/>
               <maximumSize width="48" height="48"/>
               <minimumSize width="48" height="48"/>
@@ -131,6 +133,7 @@
               <maximumSize width="48" height="48"/>
               <minimumSize width="48" height="48"/>
               <text value=""/>
+              <toolTipText value="Speichern"/>
             </properties>
           </component>
         </children>

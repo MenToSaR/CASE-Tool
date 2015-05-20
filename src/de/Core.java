@@ -29,6 +29,20 @@ public class Core {
         theProjectManager = new ProjectManager(this, theFrame);
 
         theFrame.open();
+
+        loadLastProject();
+    }
+
+    private void loadLastProject() {
+        if (theDatabase.getConfigEntry(Database.PROJECT_LAST_PROJECT) != null) {
+            try {
+                theDatabase.setWorkingDir(theDatabase.getConfigEntry(Database.PROJECT_LAST_PROJECT));
+                refreshProject(new File(theDatabase.getConfigEntry(Database.PROJECT_LAST_PROJECT)).getName());
+            } catch (FileNotFoundException e) {
+                MessageBoxFactory.createMessageBox("Error", "Projekt existiert nicht mehr");
+                theDatabase.deleteProjectEntry(new File(theDatabase.getConfigEntry(Database.PROJECT_LAST_PROJECT)).getName());
+            }
+        }
     }
 
     public void saveCompleteProject() {
@@ -37,11 +51,10 @@ public class Core {
     }
 
     public void deleteProject() {
-     //   if (MessageBoxFactory.createMessageBox("Achtung", "Projekt wirklich loeschen?") == MessageBox.RESULT_OK) {
-            if (theDatabase.deleteWorkingDir()) {
-                theFrame.showTree("", null);
-            }
-     //   }
+        if (theDatabase.deleteWorkingDir()) {
+            theDatabase.editConfigEntry(Database.PROJECT_LAST_PROJECT, "");
+            theFrame.reset();
+        }
     }
 
     public void reopenProject() {
@@ -61,6 +74,7 @@ public class Core {
                 refreshProject(theResult);
             } catch (FileNotFoundException e) {
                 MessageBoxFactory.createMessageBox("Error", "Projekt existiert nicht mehr");
+                theDatabase.editConfigEntry(Database.PROJECT_LAST_PROJECT, "");
                 theDatabase.deleteProjectEntry(theResult);
             }
         }
@@ -109,9 +123,15 @@ public class Core {
     }
 
     public void refreshProject(String pProjectName) {
-        theFrame.showTree(pProjectName, theProjectManager.getTreeList());
         theProjectManager.loadProjectData(theDatabase);
-        theFrame.enableDeleteButton(true);
+        theFrame.reset();
+
+        if (!pProjectName.equals("")) {
+            theFrame.showTree(pProjectName, theProjectManager.getTreeList());
+            theFrame.projectLoaded();
+
+            theDatabase.editConfigEntry(Database.PROJECT_LAST_PROJECT, theDatabase.getWorkingDir());
+        }
     }
 
     public void saveData(DataKnot pKnot, String pFileName) {                    // In Projekt Ordner (local)
@@ -137,8 +157,18 @@ public class Core {
             tempKnot.addChild("Calcer").setValue(eachString);
         }
         tempKnot.addChild(theProjectManager.getDataKnot());
-        //tempKnot.addChild("data").addData();
+
         theCalcbase.calculate(this, tempKnot);
+    }
+
+    public void optimize() {
+        DataKnot tempKnot = new DataKnot("Daten");
+        for (String eachString : JarLoader.getJarLoader().getListOfElements("Calcer", "de.calculator.Calcer")) {
+            tempKnot.addChild("Calcer").setValue(eachString);
+        }
+        tempKnot.addChild(theProjectManager.getDataKnot());
+
+        theCalcbase.optimize(this, tempKnot);
     }
 
     public void showPage(String name){

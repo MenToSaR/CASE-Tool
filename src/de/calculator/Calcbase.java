@@ -13,11 +13,20 @@ import java.util.ArrayList;
 public class Calcbase {
 
     public void calculate(Core pCore, DataKnot pKnot) {
-        ArrayList<String> tempList = new ArrayList<String>();
+        ArrayList<String> tempList = new ArrayList<>();
         for (DataKnot eachKnot : pKnot.getChildrenByTag("Calcer")) {
             tempList.add(eachKnot.getValue());
         }
         String tempResult = MessageBoxFactory.createListMessageBox("Choose...", "Verfügbare Porter:", tempList);
         ((Calcer)JarLoader.getJarLoader().load(tempResult, "Calcer")).calculate(pCore, pKnot.getFirstChildByTag("root"));
+    }
+
+    public void optimize(Core pCore, DataKnot pKnot) {
+        ArrayList<String> tempList = new ArrayList<>();
+        for (DataKnot eachKnot : pKnot.getChildrenByTag("Calcer")) {
+            tempList.add(eachKnot.getValue());
+        }
+        String tempResult = MessageBoxFactory.createListMessageBox("Choose...", "Verfügbare Porter:", tempList);
+        ((Calcer)JarLoader.getJarLoader().load(tempResult, "Calcer")).optimize(pCore);
     }
 }
