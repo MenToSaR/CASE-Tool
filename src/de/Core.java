@@ -108,13 +108,21 @@ public class Core {
         theProjectManager.loadProjectData(theDatabase);
     }
 
-    public void saveData(DataKnot pKnot, String pFileName) {
+    public void saveData(DataKnot pKnot, String pFileName) {                    // In Projekt Ordner (local)
         pKnot.printKnot();
         theDatabase.writeData(pFileName, pKnot);
     }
 
     public DataKnot loadData(String pFileName) {
         return theDatabase.readData(pFileName);
+    }
+
+    public void saveConfig(DataKnot pKnot, String pFileName) {                  // In Programm Ordner (global)
+        theDatabase.writeConfigFile(pKnot, pFileName);
+    }
+
+    public DataKnot loadConfig(String pFileName) {
+        return theDatabase.readConfigFile(pFileName);
     }
 
     public void calculate() {
@@ -133,7 +141,7 @@ public class Core {
         llmaa1.addData("ID","LF 20");
         llmaa1.addData("TITLE","AUsgabe");
         DataKnot llmaa2=leckMichagain.addChild("element");
-        llmaa2.addData("ID","LF 30");
+        llmaa2.addData("ID", "LF 30");
         llmaa2.addData("TITLE","Abfrage");
         theCalcbase.calculate(this, tempKnot);
     }
