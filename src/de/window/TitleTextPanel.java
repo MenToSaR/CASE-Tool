@@ -14,7 +14,6 @@ import java.awt.event.ActionListener;
 public class TitleTextPanel extends EditorPanelElement {
     private JTextField textField2;
     private JTextArea textArea1;
-    private JButton saveButton;
     private JPanel thePanel;
     private JButton xButton;
 
@@ -60,14 +59,6 @@ public class TitleTextPanel extends EditorPanelElement {
                 somethingChanged();
             }
         });
-        saveButton.setEnabled(false);
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                saveButton.setEnabled(false);
-                update();
-            }
-        });
         xButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,7 +68,7 @@ public class TitleTextPanel extends EditorPanelElement {
     }
 
     private void somethingChanged() {
-        saveButton.setEnabled(true);
+        // TODO hier Quelltext einfügen
     }
 
     @Override
@@ -97,6 +88,5 @@ public class TitleTextPanel extends EditorPanelElement {
     public void setData(DataKnot pKnot) {
         textField2.setText(pKnot.getDataByKey("TITLE"));
         textArea1.setText(pKnot.getDataByKey("TEXT"));
-        saveButton.setEnabled(false);
     }
 }

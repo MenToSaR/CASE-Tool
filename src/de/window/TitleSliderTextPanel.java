@@ -16,7 +16,6 @@ import java.awt.event.ActionListener;
 public class TitleSliderTextPanel extends EditorPanelElement {
     private JTextField textField2;
     private JTextArea textArea1;
-    private JButton saveButton;
     private JPanel thePanel;
     private JSlider slider1;
     private JButton xButton;
@@ -69,14 +68,6 @@ public class TitleSliderTextPanel extends EditorPanelElement {
                 somethingChanged();
             }
         });
-        saveButton.setEnabled(false);
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                saveButton.setEnabled(false);
-                update();
-            }
-        });
         xButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,7 +77,7 @@ public class TitleSliderTextPanel extends EditorPanelElement {
     }
 
     private void somethingChanged() {
-        saveButton.setEnabled(true);
+        // TODO hier Quelltext einfügen
     }
 
     @Override
@@ -108,6 +99,5 @@ public class TitleSliderTextPanel extends EditorPanelElement {
         textField2.setText(pKnot.getDataByKey("TITLE"));
         slider1.setValue(Integer.valueOf(pKnot.getDataByKey("VALUE")));
         textArea1.setText(pKnot.getDataByKey("TEXT"));
-        saveButton.setEnabled(false);
     }
 }

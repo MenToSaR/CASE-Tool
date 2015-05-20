@@ -112,6 +112,10 @@ public class Core {
         theDatabase.writeData(pFileName, pKnot);
     }
 
+    public DataKnot loadData(String pFileName) {
+        return theDatabase.readData(pFileName);
+    }
+
     public void calculate() {
         DataKnot tempKnot = new DataKnot("Daten");
         for (String eachString : JarLoader.getJarLoader().getListOfElements("Calcer", "de.calculator.Calcer")) {
@@ -130,8 +134,7 @@ public class Core {
         DataKnot llmaa2=leckMichagain.addChild("element");
         llmaa2.addData("ID","LF 30");
         llmaa2.addData("TITLE","Abfrage");
-        theCalcbase.calculate(tempKnot);
-
+        theCalcbase.calculate(this, tempKnot);
     }
 
     public void showPage(String name){

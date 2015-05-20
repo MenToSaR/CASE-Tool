@@ -1,5 +1,6 @@
 package de.calculator;
 
+import de.Core;
 import de.JarLoader;
 import de.database.DataKnot;
 import de.window.MessageBoxFactory;
@@ -11,12 +12,12 @@ import java.util.ArrayList;
  */
 public class Calcbase {
 
-    public void calculate(DataKnot pKnot) {
+    public void calculate(Core pCore, DataKnot pKnot) {
         ArrayList<String> tempList = new ArrayList<String>();
         for (DataKnot eachKnot : pKnot.getChildrenByTag("Calcer")) {
             tempList.add(eachKnot.getValue());
         }
         String tempResult = MessageBoxFactory.createListMessageBox("Choose...", "Verfügbare Porter:", tempList);
-        ((Calcer)JarLoader.getJarLoader().load(tempResult, "Calcer")).calculate(pKnot.getFirstChildByTag("root"));
+        ((Calcer)JarLoader.getJarLoader().load(tempResult, "Calcer")).calculate(pCore, pKnot.getFirstChildByTag("root"));
     }
 }

@@ -15,7 +15,6 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
     private JTextField textField1;
     private JTextField textField2;
     private JTextArea textArea1;
-    private JButton saveButton;
     private JPanel thePanel;
     private JTextField textField3;
     private JButton xButton;
@@ -79,14 +78,6 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
                 somethingChanged();
             }
         });
-        saveButton.setEnabled(false);
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                saveButton.setEnabled(false);
-                update();
-            }
-        });
         xButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,7 +88,7 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
     }
 
     private void somethingChanged() {
-        saveButton.setEnabled(true);
+        // TODO hier Quelltext einfügen
     }
 
     @Override
@@ -121,6 +112,5 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
         textField2.setText(pKnot.getDataByKey("TITLE"));
         textField3.setText(pKnot.getDataByKey("TITLE2"));
         textArea1.setText(pKnot.getDataByKey("TEXT"));
-        saveButton.setEnabled(false);
     }
 }

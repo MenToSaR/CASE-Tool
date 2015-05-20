@@ -1,5 +1,6 @@
 package de.calculator;
 
+import de.Core;
 import de.database.DataKnot;
 
 /**
@@ -7,5 +8,5 @@ import de.database.DataKnot;
  */
 public abstract class Calcer {
 
-    public abstract void calculate(DataKnot pKnot);
+    public abstract void calculate(Core pCore, DataKnot pKnot);
 }

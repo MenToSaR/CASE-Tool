@@ -1,3 +1,4 @@
+import de.Core;
 import de.calculator.Calcer;
 import de.database.DataKnot;
 
@@ -16,8 +17,8 @@ public class FunctionPoint extends Calcer {
     private FunctionInput theFunctionInput;
 
     @Override
-    public void calculate(DataKnot pKnot) {
-pKnot.printKnot();
+    public void calculate(Core pCore, DataKnot pKnot) {
+        pKnot.printKnot();
         ArrayList<DataKnot> productFunctions = pKnot.getFirstChildByTag("productfunction").getChildrenByTag("element");
         fAnzahl=productFunctions.size();
         functionArray=new Function[fAnzahl];
@@ -39,6 +40,13 @@ pKnot.printKnot();
         load();
         openFrame();
 
+
+        pCore.saveData(new DataKnot("hallo"), "FunktionenFunctionPoint.txt");
+
+        DataKnot theKnot = pCore.loadData("FunktionenFunctionPoint.txt");
+        if (theKnot != null) {
+            // TODO hier scheiße einfügen
+        }
     }
 
     public void incCurrIndex(){
@@ -83,6 +91,4 @@ pKnot.printKnot();
         tmpFunction.setType(type);
         tmpFunction.setComplexity(complexity);
     }
-
-
 }
