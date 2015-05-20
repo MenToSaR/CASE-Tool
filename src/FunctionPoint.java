@@ -1,4 +1,3 @@
-import de.Core;
 import de.calculator.Calcer;
 import de.database.DataKnot;
 
@@ -91,4 +90,15 @@ public class FunctionPoint extends Calcer {
         tmpFunction.setType(type);
         tmpFunction.setComplexity(complexity);
     }
+
+    public int calcSumme(){
+        int summe=0;
+        for (int i=0; i<fAnzahl; i++) {
+            summe=summe+functionArray[i].getWeight();
+        }
+        System.out.println("Summe: "+summe);
+        return summe;
+    }
+
+
 }
