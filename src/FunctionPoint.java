@@ -172,6 +172,7 @@ public class FunctionPoint extends Calcer {
     }
 
     public int calcLoC(){
+
         return 0;
     }
 
