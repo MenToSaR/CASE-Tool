@@ -22,6 +22,7 @@ public class FunctionPoint extends Calcer {
     @Override
     public void calculate(Core pCore, DataKnot pKnot) {
         _pCore=pCore;
+        influenceFactors=new InfluenceFactors(_pCore);
         pKnot.printKnot();
         ArrayList<DataKnot> productFunctions = pKnot.getFirstChildByTag("data").getFirstChildByTag("productfunction").getChildrenByTag("element");
         fAnzahl=productFunctions.size();
