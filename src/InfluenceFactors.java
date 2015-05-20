@@ -54,6 +54,8 @@ public class InfluenceFactors {
     public void setInfluenceFactor(int pFactor, int pValue){
 
         nFactors[pFactor] = pValue;
+
+
     }
 
     public void load(Core pCore){
@@ -66,6 +68,16 @@ public class InfluenceFactors {
         }
 
 
+    }
+
+    public int getSum(){
+
+        int summe = 0;
+
+        for (int i = 0; i < 14; i++){
+            summe += nFactors[i];
+        }
+        return summe;
     }
 
 }
