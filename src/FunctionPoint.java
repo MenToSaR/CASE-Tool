@@ -78,6 +78,13 @@ public class FunctionPoint extends Calcer {
 
     @Override
     public void optimize(Core pCore) {
+        // greife auf loadData() zu, diese speichert die Berechnung in das functionArray
+        // Optimierung verändert nur die 14 Einflussfaktoren, sodass das tatsächliche Ergebnis auch wirklich mit der Berechnung übereinstimmt
+        // Speichert die Einflussfaktoren ab
+
+    }
+
+    public void loadData(){
 
     }
 
