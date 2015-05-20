@@ -11,11 +11,13 @@ import java.util.ArrayList;
 public class FunctionPoint extends Calcer {
 
     private Function functionArray[];
+    private InfluenceFactors influenceFactors;
     private int fAnzahl=0; // Anzahl der Funktionen die von pKnot übergeben werden
     private int currentIndex=0;
     private Core _pCore;
 
     private FunctionInput theFunctionInput;
+    private InfluenceFactorInput theInfluenceFactorInput;
 
     @Override
     public void calculate(Core pCore, DataKnot pKnot) {
@@ -39,8 +41,9 @@ public class FunctionPoint extends Calcer {
             functionArray[i].setName(name);
         }
         theFunctionInput=new FunctionInput(this);
+        theInfluenceFactorInput=new InfluenceFactorInput(this);
         loadFunctionGUI();
-        openFrame();
+        openFunctionInput();
 
     }
 
@@ -99,10 +102,17 @@ public class FunctionPoint extends Calcer {
 
     }
 
-    public void openFrame(){
+    public void openFunctionInput(){
         JFrame checkFrame = new JFrame();
 
         checkFrame.setContentPane(theFunctionInput.getPanel());
+        checkFrame.setVisible(true);
+    }
+
+    public void openInfluenceFactorInput(){
+        JFrame checkFrame = new JFrame();
+
+        checkFrame.setContentPane(theInfluenceFactorInput.getPanel());
         checkFrame.setVisible(true);
     }
 
@@ -138,6 +148,14 @@ public class FunctionPoint extends Calcer {
         }
         System.out.println("Summe: " + summe);
         return summe;
+    }
+
+    public InfluenceFactors getInfluenceFactors(){
+        return influenceFactors;
+    }
+
+    public int calcLoC(){
+        return 0;
     }
 
 
