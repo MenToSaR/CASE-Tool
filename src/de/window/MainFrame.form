@@ -27,7 +27,7 @@
         <children>
           <component id="991b1" class="javax.swing.JButton" binding="startImprovement">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
@@ -36,14 +36,14 @@
           </component>
           <component id="bcb79" class="javax.swing.JTree" binding="tree">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties/>
           </component>
           <component id="bed28" class="javax.swing.JButton" binding="startCalc" default-binding="true">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
@@ -61,6 +61,8 @@
             <properties>
               <icon value="res/folder_32.png"/>
               <margin top="2" left="14" bottom="2" right="14"/>
+              <maximumSize width="48" height="48"/>
+              <minimumSize width="48" height="48"/>
               <text value=""/>
               <toolTipText value="Öffnen"/>
             </properties>
@@ -77,26 +79,13 @@
               <icon value="res/document_32.png"/>
               <inheritsPopupMenu value="false"/>
               <margin top="2" left="14" bottom="2" right="14"/>
+              <maximumSize width="48" height="48"/>
+              <minimumSize width="48" height="48"/>
               <text value=""/>
               <toolTipText value="Neu"/>
             </properties>
           </component>
           <component id="832b2" class="javax.swing.JButton" binding="rButton" default-binding="true">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="48" height="48"/>
-                <maximum-size width="48" height="48"/>
-              </grid>
-              <gridbag weightx="1.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <icon value="res/briefcase_32.png"/>
-              <margin top="2" left="14" bottom="2" right="14"/>
-              <text value=""/>
-              <toolTipText value="Projekt Öffnen"/>
-            </properties>
-          </component>
-          <component id="d943e" class="javax.swing.JButton" binding="dButton" default-binding="true">
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="48" height="48"/>
@@ -105,9 +94,41 @@
               <gridbag weightx="1.0" weighty="0.0"/>
             </constraints>
             <properties>
+              <icon value="res/briefcase_32.png"/>
+              <margin top="2" left="14" bottom="2" right="14"/>
+              <maximumSize width="48" height="48"/>
+              <minimumSize width="48" height="48"/>
+              <text value=""/>
+              <toolTipText value="Projekt Öffnen"/>
+            </properties>
+          </component>
+          <component id="d943e" class="javax.swing.JButton" binding="dButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="48" height="48"/>
+                <maximum-size width="48" height="48"/>
+              </grid>
+              <gridbag weightx="1.0" weighty="0.0"/>
+            </constraints>
+            <properties>
               <icon value="res/delete_32.png"/>
+              <inheritsPopupMenu value="true"/>
+              <maximumSize width="48" height="48"/>
+              <minimumSize width="48" height="48"/>
               <text value=""/>
               <toolTipText value="Projekt Löschen"/>
+            </properties>
+          </component>
+          <component id="739c2" class="javax.swing.JButton" binding="button1" default-binding="true">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <icon value="res/save_32.png"/>
+              <maximumSize width="48" height="48"/>
+              <minimumSize width="48" height="48"/>
+              <text value=""/>
             </properties>
           </component>
         </children>

@@ -39,11 +39,12 @@ public class ProjectManager {
         theInputUnitManager.addHolder(new InputUnitHolder("Zielbestimmungen", new TextPanel(this, "projecttarget")));
         theInputUnitManager.addHolder(new InputUnitHolder("Produkteinsatz", new TextPanel(this, "productusage")));
         theInputUnitManager.addHolder(new InputUnitHolder("Umgebung", new TextPanel(this, "environment")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Produktfunktionen", new EditorPanel(this, new EditorPanelHolder(IDTitleTitleTextPanel.class), "productfunction")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Produktdaten", new EditorPanel(this, new EditorPanelHolder(IDTitleTextPanel.class), "productdata")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Qualitätsanforderungen", new EditorPanel(this, new EditorPanelHolder(TitleSliderTextPanel.class), "quality")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produktfunktionen", new EditorPanel(this, new EditorPanelHolder(IDTitleTitleTextPanel.class, "LF "), "productfunction")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produktdaten", new EditorPanel(this, new EditorPanelHolder(IDTitleTextPanel.class, "LD "), "productdata")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Nichtfunktionale Anforderungen", new EditorPanel(this, new EditorPanelHolder(IDTitleTextPanel.class, "LL "), "nonfunctional")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Qualitätsanforderungen", new EditorPanel(this, new EditorPanelHolder(TitleSliderTextPanel.class, ""), "quality")));
         theInputUnitManager.addHolder(new InputUnitHolder("Ergänzungen", new TextPanel(this, "miscellaneous")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Glossar", new EditorPanel(this, new EditorPanelHolder(TitleTextPanel.class), "glossary")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Glossar", new EditorPanel(this, new EditorPanelHolder(TitleTextPanel.class, ""), "glossary")));
     }
 
     public void loadProjectData(Database pDatabase) {
@@ -74,6 +75,7 @@ public class ProjectManager {
         theProjectData.getFirstChildByTag("data").removeChild(tempKnot);
 
         tempKnot = new DataKnot(pID);
+        tempKnot.addData("ID", "" + pHolder.getID());
         for (EditorPanelElement eachElement : pHolder.getElements()) {
             DataKnot tempChild = tempKnot.addChild("element");
 
