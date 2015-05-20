@@ -1,8 +1,10 @@
 import de.Core;
 import de.calculator.Calcer;
 import de.database.DataKnot;
+import de.window.MessageBoxFactory;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -15,6 +17,8 @@ public class FunctionPoint extends Calcer {
     private int fAnzahl=0; // Anzahl der Funktionen die von pKnot übergeben werden
     private int currentIndex=0;
     private Core _pCore;
+    private JFrame _functionFrame;
+    private JFrame _influenceFrame;
 
     private FunctionInput theFunctionInput;
     private InfluenceFactorInput theInfluenceFactorInput;
@@ -124,16 +128,32 @@ public class FunctionPoint extends Calcer {
 
     public void openFunctionInput(){
         JFrame checkFrame = new JFrame();
+        _functionFrame=checkFrame;
+        _functionFrame.setContentPane(theFunctionInput.getPanel());
+        _functionFrame.pack();
+        _functionFrame.setVisible(true);
+        _functionFrame.setSize(_functionFrame.getInsets().left + _functionFrame.getInsets().right + _functionFrame.getSize().width, _functionFrame.getInsets().top + _functionFrame.getInsets().bottom + _functionFrame.getSize().height);
+        _functionFrame.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - _functionFrame.getSize().getWidth() / 2), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - _functionFrame.getSize().getHeight() / 2));
 
-        checkFrame.setContentPane(theFunctionInput.getPanel());
-        checkFrame.setVisible(true);
+    }
+
+    public JFrame getFunctionFrame(){
+        return _functionFrame;
     }
 
     public void openInfluenceFactorInput(){
         JFrame checkFrame = new JFrame();
-
+        _influenceFrame=checkFrame;
         checkFrame.setContentPane(theInfluenceFactorInput.getPanel());
-        checkFrame.setVisible(true);
+        _influenceFrame.pack();
+        _influenceFrame.setVisible(true);
+        _influenceFrame.setSize(_influenceFrame.getInsets().left + _influenceFrame.getInsets().right + _influenceFrame.getSize().width, _influenceFrame.getInsets().top + _influenceFrame.getInsets().bottom + _influenceFrame.getSize().height);
+        _influenceFrame.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - _influenceFrame.getSize().getWidth() / 2), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - _influenceFrame.getSize().getHeight() / 2));
+
+    }
+
+    public JFrame getInfluenceFrame(){
+        return _influenceFrame;
     }
 
     public void loadFunctionGUI(){
@@ -166,7 +186,7 @@ public class FunctionPoint extends Calcer {
         for (int i=0; i<fAnzahl; i++) {
             summe=summe+functionArray[i].getWeight();
         }
-        System.out.println("Summe: " + summe);
+
         return summe;
     }
 
@@ -178,7 +198,7 @@ public class FunctionPoint extends Calcer {
         double einflussBewertung = influenceFactors.getEinflussbewertung();
         int summe = calcSumme();
         double loc = (double)summe*einflussBewertung*53;
-
+        MessageBoxFactory.createMessageBox("Aufwandsschätzung - Ergebnis:","Lines of Code: "+loc);
         return (int)loc;
     }
 

@@ -51,7 +51,9 @@ public class FunctionInput {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theFunctionPoint.safeFunctionFromFunctionGUI();
-                theFunctionPoint.calcSumme();
+                theFunctionPoint.openInfluenceFactorInput();
+                theFunctionPoint.getFunctionFrame().setVisible(false);
+
             }
         });
     }

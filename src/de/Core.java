@@ -137,7 +137,7 @@ public class Core {
             tempKnot.addChild("Calcer").setValue(eachString);
         }
         tempKnot.addChild(theProjectManager.getDataKnot());
-
+        //tempKnot.addChild("data").addData();
         theCalcbase.calculate(this, tempKnot);
     }
 

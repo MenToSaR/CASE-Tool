@@ -66,6 +66,7 @@ public class InfluenceFactorInput {
                 influenceFactors.setInfluenceFactor(13,Integer.valueOf(t14.getText()));
 
                 theFunctionPoint.calcLoC();
+                theFunctionPoint.getInfluenceFrame().setVisible(false);
             }
         });
     }
