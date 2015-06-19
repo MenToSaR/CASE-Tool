@@ -93,21 +93,64 @@ public class FunctionPoint extends Calcer {
         // Optimierung verändert nur die 14 Einflussfaktoren, sodass das tatsächliche Ergebnis auch wirklich mit der Berechnung übereinstimmt
         // Speichert die Einflussfaktoren ab
 
-        InfluenceFactors influenceFactors = new InfluenceFactors(pCore);
+       // InfluenceFactors influenceFactors = new InfluenceFactors(_pCore);
 
-        int summeKat = calcSumme();        // liefert Summe der einzelnen Kategorien
-        int calcLoC = calcLoC();        // liefert berechnete int Summe an LoC
-        int tmpLoC = 0;
-        int realLoC = 0;
-        double bewEinfluss = 0;
-        double facEinfluss = 0;
-        int summeEinfluss = 0;
+        System.out.println("Test");
 
-        tmpLoC = realLoC/53;
-        bewEinfluss = tmpLoC/summeKat;
-        facEinfluss = (influenceFactors.getSum()/100) + 0.65;
+        int summeKat = calcSumme();        // liefert Summe der einzelnen Kategorien E1
+//      int calcLoC = calcLoC();        // liefert berechnete int Summe an LoC
+        int realLoC = 300;              // TODO: Eingabe von Fenster
+        double realEinflussBew = 0;           // tatsächliche Einflussbewertung E3
+        double realInflFac = 0;             // Wert der Einflussfaktoren E2
+    //    double oldEinflussBew = 0;        // alter Wert der Einfluss Bewertung E3-old
+        double oldInflFac = 0;              // alter Wert der Einflussfaktoren E2-old
+        double EinflussBewDiff = 0;
 
 
+        realEinflussBew = realLoC / (53 * summeKat);
+        realInflFac = (realEinflussBew-0.65)*100;          //real-EInflussfaktoren
+
+
+      //  oldEinflussBew = influenceFactors.getEinflussbewertung(); // alte Einfluss Bewertung
+      //  oldInflFac = (oldEinflussBew - 0.65) * 100;
+
+        oldInflFac = influenceFactors.getSum();
+
+        EinflussBewDiff = oldInflFac - realInflFac;     // positiv, dann Einflussfaktoren zu hoch
+
+        if (EinflussBewDiff > 0){  // Einflussfaktoren verringern
+
+            int temp = 0;
+            int i = 1;
+            while (EinflussBewDiff >= 1){
+
+                temp = influenceFactors.getInfluenceFactor(i);
+                if(temp > 1){
+                    influenceFactors.setInfluenceFactor(i, temp-1);
+                    EinflussBewDiff--;
+                }
+
+                if (i == 14) i=1;
+                else i++;
+
+                if (influenceFactors.getSum() == 14) break; // alle Einflussfaktoren auf 1, minimaler Wert
+            }
+        }
+
+        else if (EinflussBewDiff < 0){  // Einflussfaktoren vergroessern
+
+            int temp = 0;
+            int i = 1;
+            while (EinflussBewDiff <= -1){
+                temp = influenceFactors.getInfluenceFactor(i);
+                influenceFactors.setInfluenceFactor(i, temp+1);
+                EinflussBewDiff++;
+            }
+            if (i == 14) i=1;
+            else i++;
+        }
+
+        System.out.println("Optimierung abgeschlossen!/n");
 
     }
 
