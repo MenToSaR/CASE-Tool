@@ -97,60 +97,68 @@ public class FunctionPoint extends Calcer {
 
         System.out.println("Test");
 
+        optimizeWindow oWindow = new optimizeWindow(this);
+
+        influenceFactors=new InfluenceFactors(pCore);
+
+
         int summeKat = calcSumme();        // liefert Summe der einzelnen Kategorien E1
 //      int calcLoC = calcLoC();        // liefert berechnete int Summe an LoC
-        int realLoC = 300;              // TODO: Eingabe von Fenster
+        double realLoC;              // TODO: Eingabe von Fenster
         double realEinflussBew = 0;           // tatsächliche Einflussbewertung E3
         double realInflFac = 0;             // Wert der Einflussfaktoren E2
-    //    double oldEinflussBew = 0;        // alter Wert der Einfluss Bewertung E3-old
+        //    double oldEinflussBew = 0;        // alter Wert der Einfluss Bewertung E3-old
         double oldInflFac = 0;              // alter Wert der Einflussfaktoren E2-old
         double EinflussBewDiff = 0;
 
+        oWindow.open();
+        realLoC = oWindow.getValue();
 
-        realEinflussBew = realLoC / (53 * summeKat);
-        realInflFac = (realEinflussBew-0.65)*100;          //real-EInflussfaktoren
+        if(realLoC != -1) {
+
+            realEinflussBew = realLoC / (53 * summeKat);
+            realInflFac = (realEinflussBew - 0.65) * 100;          //real-EInflussfaktoren
 
 
-      //  oldEinflussBew = influenceFactors.getEinflussbewertung(); // alte Einfluss Bewertung
-      //  oldInflFac = (oldEinflussBew - 0.65) * 100;
+            //  oldEinflussBew = influenceFactors.getEinflussbewertung(); // alte Einfluss Bewertung
+            //  oldInflFac = (oldEinflussBew - 0.65) * 100;
 
-        oldInflFac = influenceFactors.getSum();
+            oldInflFac = influenceFactors.getSum();
 
-        EinflussBewDiff = oldInflFac - realInflFac;     // positiv, dann Einflussfaktoren zu hoch
+            EinflussBewDiff = oldInflFac - realInflFac;     // positiv, dann Einflussfaktoren zu hoch
 
-        if (EinflussBewDiff > 0){  // Einflussfaktoren verringern
+            if (EinflussBewDiff > 0) {  // Einflussfaktoren verringern
 
-            int temp = 0;
-            int i = 1;
-            while (EinflussBewDiff >= 1){
+                int temp = 0;
+                int i = 1;
+                while (EinflussBewDiff >= 1) {
 
-                temp = influenceFactors.getInfluenceFactor(i);
-                if(temp > 1){
-                    influenceFactors.setInfluenceFactor(i, temp-1);
-                    EinflussBewDiff--;
+                    temp = influenceFactors.getInfluenceFactor(i);
+                    if (temp > 1) {
+                        influenceFactors.setInfluenceFactor(i, temp - 1);
+                        EinflussBewDiff--;
+                    }
+
+                    if (i == 14) i = 1;
+                    else i++;
+
+                    if (influenceFactors.getSum() == 14) break; // alle Einflussfaktoren auf 1, minimaler Wert
                 }
+            } else if (EinflussBewDiff < 0) {  // Einflussfaktoren vergroessern
 
-                if (i == 14) i=1;
+                int temp = 0;
+                int i = 1;
+                while (EinflussBewDiff <= -1) {
+                    temp = influenceFactors.getInfluenceFactor(i);
+                    influenceFactors.setInfluenceFactor(i, temp + 1);
+                    EinflussBewDiff++;
+                }
+                if (i == 14) i = 1;
                 else i++;
-
-                if (influenceFactors.getSum() == 14) break; // alle Einflussfaktoren auf 1, minimaler Wert
             }
+
+            System.out.println("Optimierung abgeschlossen!/n");
         }
-
-        else if (EinflussBewDiff < 0){  // Einflussfaktoren vergroessern
-
-            int temp = 0;
-            int i = 1;
-            while (EinflussBewDiff <= -1){
-                temp = influenceFactors.getInfluenceFactor(i);
-                influenceFactors.setInfluenceFactor(i, temp+1);
-                EinflussBewDiff++;
-            }
-            if (i == 14) i=1;
-            else i++;
-        }
-
-        System.out.println("Optimierung abgeschlossen!/n");
 
     }
 
