@@ -71,6 +71,16 @@ public class InfluenceFactors {
 
     }
 
+    public void save(){
+
+        DataKnot influenceFactors = new DataKnot("InfluenceFactors");
+        for (int i = 0; i < 14; i++){
+            influenceFactors.setData(("n" + i), "" + nFactors[i]);                  // attributsbezeichnungen in xml dürfen nicht nur aus einer zahl bestehen!
+        }
+        _core.saveConfig(influenceFactors,"InfluenceFactors.dat");
+
+    }
+
     public int getSum(){
 
         int summe = 0;

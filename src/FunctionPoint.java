@@ -101,22 +101,22 @@ public class FunctionPoint extends Calcer {
 
         influenceFactors=new InfluenceFactors(pCore);
 
-        String theInput = MessageBoxFactory.createTextMessageBox("Optimierung...", "Bitte geben sie die real eingetretene Projektzeit ein :)");
+        String theInput = MessageBoxFactory.createTextMessageBox("Optimierung", "Bitte geben sie die tatsächlichen Lines of Code ein:");
         if (theInput.equals("")) {
-            System.out.println("ohoh :(");
+            MessageBoxFactory.createMessageBox("Meldung", "Keine Optimierung vorgenommen");
             return;
         }
         double realLoC;
         try {
             realLoC = Double.valueOf(theInput);
         } catch (Exception ex) {
-            System.err.println("ohoho");
+            MessageBoxFactory.createMessageBox("Fehler", "Falsche Eingabe");
             return;
         }
 
 
         int summeKat = calcSumme();        // liefert Summe der einzelnen Kategorien E1
-//      int calcLoC = calcLoC();        // liefert berechnete int Summe an LoC
+       // int calcLoC = calcLoC();        // liefert berechnete int Summe an LoC
                       // TODO: Eingabe von Fenster
         double realEinflussBew = 0;           // tatsächliche Einflussbewertung E3
         double realInflFac = 0;             // Wert der Einflussfaktoren E2
@@ -141,8 +141,10 @@ public class FunctionPoint extends Calcer {
             if (EinflussBewDiff > 0) {  // Einflussfaktoren verringern
 
                 int temp = 0;
-                int i = 1;
+                int i = 0;
                 while (EinflussBewDiff >= 1) {
+
+                    System.out.println("Verringern");
 
                     temp = influenceFactors.getInfluenceFactor(i);
                     if (temp > 1) {
@@ -150,7 +152,7 @@ public class FunctionPoint extends Calcer {
                         EinflussBewDiff--;
                     }
 
-                    if (i == 14) i = 1;
+                    if (i == 13) i = 0;
                     else i++;
 
                     if (influenceFactors.getSum() == 14) break; // alle Einflussfaktoren auf 1, minimaler Wert
@@ -158,16 +160,24 @@ public class FunctionPoint extends Calcer {
             } else if (EinflussBewDiff < 0) {  // Einflussfaktoren vergroessern
 
                 int temp = 0;
-                int i = 1;
+                int i = 0;
                 while (EinflussBewDiff <= -1) {
+
+                    System.out.println("Vergroessern");
                     temp = influenceFactors.getInfluenceFactor(i);
                     influenceFactors.setInfluenceFactor(i, temp + 1);
                     EinflussBewDiff++;
+
+                    if (i == 13) {
+                        i = 0;
+                    } else {
+                        i++;
+                    }
                 }
-                if (i == 14) i = 1;
-                else i++;
             }
 
+
+            influenceFactors.save();
             System.out.println("Optimierung abgeschlossen!/n");
         }
 
