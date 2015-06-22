@@ -58,7 +58,7 @@ public class Core {
     }
 
     public void reopenProject() {
-        ArrayList<String> tempList = new ArrayList<String>();
+        ArrayList<String> tempList = new ArrayList<>();
         for (DataKnot eachKnot : theDatabase.getConfig().getFirstChildByTag("projects").getChildren()) {
             tempList.add(eachKnot.getDataByKey("name"));
         }

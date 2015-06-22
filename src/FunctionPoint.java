@@ -249,7 +249,10 @@ public class FunctionPoint extends Calcer {
         double einflussBewertung = influenceFactors.getEinflussbewertung();
         int summe = calcSumme();
         double loc = (double)summe*einflussBewertung*53;
-        MessageBoxFactory.createMessageBox("Aufwandsschätzung - Ergebnis:","Lines of Code: "+loc);
+        MessageBoxFactory.createMessageBox("Aufwandsschätzung - Ergebnis:", "Lines of Code: " + loc);
+        DataKnot ergebnisKnot = new DataKnot("Ergebnis Lines of Code");
+        ergebnisKnot.setValue("" + loc);
+        _pCore.saveData(ergebnisKnot, "Ergebnis.dat");
         return (int)loc;
     }
 
