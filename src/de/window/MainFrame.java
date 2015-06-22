@@ -39,7 +39,7 @@ public class MainFrame extends JFrame{
 
         setIconImage(new ImageIcon("src/res/graph.png").getImage());
         setTitle("CASE_TOOL");
-        setContentPane(this.thePanel);
+        setContentPane(thePanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
 
