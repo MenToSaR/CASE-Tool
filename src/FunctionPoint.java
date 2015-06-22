@@ -1,3 +1,4 @@
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import de.Core;
 import de.calculator.Calcer;
 import de.database.DataKnot;
@@ -5,6 +6,7 @@ import de.window.MessageBoxFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Arc2D;
 import java.util.ArrayList;
 
 /**
@@ -64,6 +66,7 @@ public class FunctionPoint extends Calcer {
             functionArray=new Function[fAnzahl];
             int i=0;
             for (DataKnot eachKnot : theKnot.getChildren()) {
+                functionArray[i] = new Function();
                 functionArray[i].setID(eachKnot.getDataByKey("ID"));
                 functionArray[i].setName(eachKnot.getDataByKey("NAME"));
                 functionArray[i].setType(Integer.valueOf(eachKnot.getDataByKey("TYPE")));
@@ -89,6 +92,8 @@ public class FunctionPoint extends Calcer {
 
     @Override
     public void optimize(Core pCore) {
+
+        _pCore = pCore;
         // greife auf loadData() zu, diese speichert die Berechnung in das functionArray
         // Optimierung verändert nur die 14 Einflussfaktoren, sodass das tatsächliche Ergebnis auch wirklich mit der Berechnung übereinstimmt
         // Speichert die Einflussfaktoren ab
@@ -99,7 +104,8 @@ public class FunctionPoint extends Calcer {
 
         optimizeWindow oWindow = new optimizeWindow(this);
 
-        influenceFactors=new InfluenceFactors(pCore);
+       influenceFactors = new InfluenceFactors(pCore);
+        loadFunctionsFromCore();
 
         String theInput = MessageBoxFactory.createTextMessageBox("Optimierung", "Bitte geben sie die tatsächlichen Lines of Code ein:");
         if (theInput.equals("")) {
@@ -109,6 +115,10 @@ public class FunctionPoint extends Calcer {
         double realLoC;
         try {
             realLoC = Double.valueOf(theInput);
+            if(realLoC <= 0){
+                MessageBoxFactory.createMessageBox("Fehler", "Zu kleine Eingabe");
+                return;
+            }
         } catch (Exception ex) {
             MessageBoxFactory.createMessageBox("Fehler", "Falsche Eingabe");
             return;
@@ -121,11 +131,16 @@ public class FunctionPoint extends Calcer {
         double realEinflussBew = 0;           // tatsächliche Einflussbewertung E3
         double realInflFac = 0;             // Wert der Einflussfaktoren E2
         //    double oldEinflussBew = 0;        // alter Wert der Einfluss Bewertung E3-old
-        double oldInflFac = 0;              // alter Wert der Einflussfaktoren E2-old
+
+        double oldInflFac = Double.parseDouble(pCore.loadData("Ergebnis.dat").getValue());              // alter Wert der Einflussfaktoren E2-old
         double EinflussBewDiff = 0;
 
 
         if(realLoC != -1) {
+
+            oldInflFac = oldInflFac/(53*summeKat);      //jetzt E3
+
+            oldInflFac = (oldInflFac-0.65) * 100;       // jetzt E2
 
             realEinflussBew = realLoC / (53 * summeKat);
             realInflFac = (realEinflussBew - 0.65) * 100;          //real-EInflussfaktoren
@@ -155,7 +170,7 @@ public class FunctionPoint extends Calcer {
                     if (i == 13) i = 0;
                     else i++;
 
-                    if (influenceFactors.getSum() == 14) break; // alle Einflussfaktoren auf 1, minimaler Wert
+                    if (influenceFactors.getSum() <= 14) break; // alle Einflussfaktoren auf 1, minimaler Wert
                 }
             } else if (EinflussBewDiff < 0) {  // Einflussfaktoren vergroessern
 
@@ -166,6 +181,7 @@ public class FunctionPoint extends Calcer {
                     System.out.println("Vergroessern");
                     temp = influenceFactors.getInfluenceFactor(i);
                     influenceFactors.setInfluenceFactor(i, temp + 1);
+                    System.out.println(EinflussBewDiff);
                     EinflussBewDiff++;
 
                     if (i == 13) {
@@ -260,6 +276,11 @@ public class FunctionPoint extends Calcer {
         return summe;
     }
 
+    public void loadFunctionArray(){
+
+
+    }
+
     public InfluenceFactors getInfluenceFactors(){
         return influenceFactors;
     }
@@ -269,7 +290,7 @@ public class FunctionPoint extends Calcer {
         int summe = calcSumme();
         double loc = (double)summe*einflussBewertung*53;
         MessageBoxFactory.createMessageBox("Aufwandsschätzung - Ergebnis:", "Lines of Code: " + loc);
-        DataKnot ergebnisKnot = new DataKnot("Ergebnis Lines of Code");
+        DataKnot ergebnisKnot = new DataKnot("ErgebnisLinesofCode");
         ergebnisKnot.setValue("" + loc);
         _pCore.saveData(ergebnisKnot, "Ergebnis.dat");
         return (int)loc;
