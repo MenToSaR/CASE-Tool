@@ -101,18 +101,29 @@ public class FunctionPoint extends Calcer {
 
         influenceFactors=new InfluenceFactors(pCore);
 
+        String theInput = MessageBoxFactory.createTextMessageBox("Optimierung...", "Bitte geben sie die real eingetretene Projektzeit ein :)");
+        if (theInput.equals("")) {
+            System.out.println("ohoh :(");
+            return;
+        }
+        double realLoC;
+        try {
+            realLoC = Double.valueOf(theInput);
+        } catch (Exception ex) {
+            System.err.println("ohoho");
+            return;
+        }
+
 
         int summeKat = calcSumme();        // liefert Summe der einzelnen Kategorien E1
 //      int calcLoC = calcLoC();        // liefert berechnete int Summe an LoC
-        double realLoC;              // TODO: Eingabe von Fenster
+                      // TODO: Eingabe von Fenster
         double realEinflussBew = 0;           // tatsächliche Einflussbewertung E3
         double realInflFac = 0;             // Wert der Einflussfaktoren E2
         //    double oldEinflussBew = 0;        // alter Wert der Einfluss Bewertung E3-old
         double oldInflFac = 0;              // alter Wert der Einflussfaktoren E2-old
         double EinflussBewDiff = 0;
 
-        oWindow.open();
-        realLoC = oWindow.getValue();
 
         if(realLoC != -1) {
 
@@ -161,8 +172,6 @@ public class FunctionPoint extends Calcer {
         }
 
     }
-
-
 
     public void incCurrIndex(){
         if(currentIndex<fAnzahl-1){

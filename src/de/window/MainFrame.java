@@ -130,7 +130,15 @@ public class MainFrame extends JFrame{
         button1.setEnabled(false);
         startCalc.setEnabled(false);
         startImprovement.setEnabled(false);
+
+        int x = 4;
+        int y = 9;
+        Runnable r2 = () -> System.out.println("Hello world two!");
+
     }
+
+
+
 
     public void showTree(String pProjectName, ArrayList<String> pName) {
         tree.setModel(null);
