@@ -16,7 +16,7 @@ public class FunctionPoint extends Calcer {
 
     private Function functionArray[];
     private InfluenceFactors influenceFactors;
-    private int fAnzahl=0; // Anzahl der Funktionen die von pKnot übergeben werden
+    private int fAnzahl=0; // Anzahl der Funktionen die von pKnot ï¿½bergeben werden
     private int currentIndex=0;
     private Core _pCore;
     private JFrame _functionFrame;
@@ -95,7 +95,7 @@ public class FunctionPoint extends Calcer {
 
         _pCore = pCore;
         // greife auf loadData() zu, diese speichert die Berechnung in das functionArray
-        // Optimierung verändert nur die 14 Einflussfaktoren, sodass das tatsächliche Ergebnis auch wirklich mit der Berechnung übereinstimmt
+        // Optimierung verï¿½ndert nur die 14 Einflussfaktoren, sodass das tatsï¿½chliche Ergebnis auch wirklich mit der Berechnung ï¿½bereinstimmt
         // Speichert die Einflussfaktoren ab
 
        // InfluenceFactors influenceFactors = new InfluenceFactors(_pCore);
@@ -107,7 +107,7 @@ public class FunctionPoint extends Calcer {
        influenceFactors = new InfluenceFactors(pCore);
         loadFunctionsFromCore();
 
-        String theInput = MessageBoxFactory.createTextMessageBox("Optimierung", "Bitte geben sie die tatsächlichen Lines of Code ein:");
+        String theInput = MessageBoxFactory.createTextMessageBox("Optimierung", "Bitte geben sie die tatsï¿½chlichen Lines of Code ein:");
         if (theInput.equals("")) {
             MessageBoxFactory.createMessageBox("Meldung", "Keine Optimierung vorgenommen");
             return;
@@ -126,11 +126,8 @@ public class FunctionPoint extends Calcer {
 
 
         int summeKat = calcSumme();        // liefert Summe der einzelnen Kategorien E1
-       // int calcLoC = calcLoC();        // liefert berechnete int Summe an LoC
-                      // TODO: Eingabe von Fenster
-        double realEinflussBew = 0;           // tatsächliche Einflussbewertung E3
+        double realEinflussBew = 0;           // tatsaechliche Einflussbewertung E3
         double realInflFac = 0;             // Wert der Einflussfaktoren E2
-        //    double oldEinflussBew = 0;        // alter Wert der Einfluss Bewertung E3-old
 
         double oldInflFac = Double.parseDouble(pCore.loadData("Ergebnis.dat").getValue());              // alter Wert der Einflussfaktoren E2-old
         double EinflussBewDiff = 0;
@@ -144,10 +141,6 @@ public class FunctionPoint extends Calcer {
 
             realEinflussBew = realLoC / (53 * summeKat);
             realInflFac = (realEinflussBew - 0.65) * 100;          //real-EInflussfaktoren
-
-
-            //  oldEinflussBew = influenceFactors.getEinflussbewertung(); // alte Einfluss Bewertung
-            //  oldInflFac = (oldEinflussBew - 0.65) * 100;
 
             oldInflFac = influenceFactors.getSum();
 
@@ -191,7 +184,6 @@ public class FunctionPoint extends Calcer {
                     }
                 }
             }
-
 
             influenceFactors.save();
             System.out.println("Optimierung abgeschlossen!/n");
@@ -289,7 +281,7 @@ public class FunctionPoint extends Calcer {
         double einflussBewertung = influenceFactors.getEinflussbewertung();
         int summe = calcSumme();
         double loc = (double)summe*einflussBewertung*53;
-        MessageBoxFactory.createMessageBox("Aufwandsschätzung - Ergebnis:", "Lines of Code: " + loc);
+        MessageBoxFactory.createMessageBox("Aufwandsschï¿½tzung - Ergebnis:", "Lines of Code: " + loc);
         DataKnot ergebnisKnot = new DataKnot("ErgebnisLinesofCode");
         ergebnisKnot.setValue("" + loc);
         _pCore.saveData(ergebnisKnot, "Ergebnis.dat");
