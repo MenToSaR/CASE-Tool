@@ -55,6 +55,10 @@ public class InfluenceFactors {
 
     public void setInfluenceFactor(int pFactor, int pValue){
 
+
+        if (pValue <= 0){
+            pValue = 1;
+        }
         nFactors[pFactor] = pValue;
     }
 

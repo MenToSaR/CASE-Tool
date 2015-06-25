@@ -1,3 +1,5 @@
+import de.window.MessageBoxFactory;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,20 +52,28 @@ public class InfluenceFactorInput {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                influenceFactors.setInfluenceFactor(0,Integer.valueOf(t1.getText()));
-                influenceFactors.setInfluenceFactor(1,Integer.valueOf(t2.getText()));
-                influenceFactors.setInfluenceFactor(2,Integer.valueOf(t3.getText()));
-                influenceFactors.setInfluenceFactor(3,Integer.valueOf(t4.getText()));
-                influenceFactors.setInfluenceFactor(4,Integer.valueOf(t5.getText()));
-                influenceFactors.setInfluenceFactor(5,Integer.valueOf(t6.getText()));
-                influenceFactors.setInfluenceFactor(6,Integer.valueOf(t7.getText()));
-                influenceFactors.setInfluenceFactor(7,Integer.valueOf(t8.getText()));
-                influenceFactors.setInfluenceFactor(8,Integer.valueOf(t9.getText()));
-                influenceFactors.setInfluenceFactor(9,Integer.valueOf(t10.getText()));
-                influenceFactors.setInfluenceFactor(10,Integer.valueOf(t11.getText()));
-                influenceFactors.setInfluenceFactor(11,Integer.valueOf(t12.getText()));
-                influenceFactors.setInfluenceFactor(12,Integer.valueOf(t13.getText()));
-                influenceFactors.setInfluenceFactor(13,Integer.valueOf(t14.getText()));
+
+                try {
+
+                    influenceFactors.setInfluenceFactor(0, Integer.valueOf(t1.getText()));
+                    influenceFactors.setInfluenceFactor(1, Integer.valueOf(t2.getText()));
+                    influenceFactors.setInfluenceFactor(2, Integer.valueOf(t3.getText()));
+                    influenceFactors.setInfluenceFactor(3, Integer.valueOf(t4.getText()));
+                    influenceFactors.setInfluenceFactor(4, Integer.valueOf(t5.getText()));
+                    influenceFactors.setInfluenceFactor(5, Integer.valueOf(t6.getText()));
+                    influenceFactors.setInfluenceFactor(6, Integer.valueOf(t7.getText()));
+                    influenceFactors.setInfluenceFactor(7, Integer.valueOf(t8.getText()));
+                    influenceFactors.setInfluenceFactor(8, Integer.valueOf(t9.getText()));
+                    influenceFactors.setInfluenceFactor(9, Integer.valueOf(t10.getText()));
+                    influenceFactors.setInfluenceFactor(10, Integer.valueOf(t11.getText()));
+                    influenceFactors.setInfluenceFactor(11, Integer.valueOf(t12.getText()));
+                    influenceFactors.setInfluenceFactor(12, Integer.valueOf(t13.getText()));
+                    influenceFactors.setInfluenceFactor(13, Integer.valueOf(t14.getText()));
+                }
+                catch(Exception ex) {
+                    MessageBoxFactory.createMessageBox("Fehler", "Falsche Eingabe. Bitte Ganzzahlen eingeben.");
+                    return;
+                }
 
                 theFunctionPoint.calcLoC();
                 theFunctionPoint.getInfluenceFrame().setVisible(false);

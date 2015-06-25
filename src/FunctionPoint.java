@@ -107,7 +107,7 @@ public class FunctionPoint extends Calcer {
        influenceFactors = new InfluenceFactors(pCore);
         loadFunctionsFromCore();
 
-        String theInput = MessageBoxFactory.createTextMessageBox("Optimierung", "Bitte geben sie die tats�chlichen Lines of Code ein:");
+        String theInput = MessageBoxFactory.createTextMessageBox("Optimierung", "Bitte geben sie die tatsaechlichen Lines of Code ein:");
         if (theInput.equals("")) {
             MessageBoxFactory.createMessageBox("Meldung", "Keine Optimierung vorgenommen");
             return;
@@ -281,11 +281,12 @@ public class FunctionPoint extends Calcer {
         double einflussBewertung = influenceFactors.getEinflussbewertung();
         int summe = calcSumme();
         double loc = (double)summe*einflussBewertung*53;
-        MessageBoxFactory.createMessageBox("Aufwandssch�tzung - Ergebnis:", "Lines of Code: " + loc);
+        int intLoc = (int)loc;
+        MessageBoxFactory.createMessageBox("Aufwandsschaetzung - Ergebnis:", "Lines of Code: " + intLoc);
         DataKnot ergebnisKnot = new DataKnot("ErgebnisLinesofCode");
         ergebnisKnot.setValue("" + loc);
         _pCore.saveData(ergebnisKnot, "Ergebnis.dat");
-        return (int)loc;
+        return intLoc;
     }
 
 
