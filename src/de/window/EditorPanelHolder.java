@@ -18,10 +18,12 @@ public class EditorPanelHolder {
     private Class classElement;
     private String theIDPrefix;
     private EditorPanel theEditor;
+    private String[] theOptions;
 
-    public EditorPanelHolder(Class pElement, String pIDPrefix) {
+    public EditorPanelHolder(Class pElement, String pIDPrefix, String ... pOptions) {
         classElement = pElement;
         theIDPrefix = pIDPrefix;
+        theOptions = pOptions;
     }
 
     public void setID(int pID) {
@@ -48,7 +50,7 @@ public class EditorPanelHolder {
 
     public void addElement() {
         try {
-            EditorPanelElement tempElement = (EditorPanelElement) classElement.getConstructors()[0].newInstance(this, theIDPrefix + getNextID());
+            EditorPanelElement tempElement = (EditorPanelElement) classElement.getConstructors()[0].newInstance(this, theIDPrefix + getNextID(), theOptions);
             tempElement.addSomethingChangedListener(new SomethingChangedListener() {
                 @Override
                 public void somethingChanged() {
@@ -67,7 +69,7 @@ public class EditorPanelHolder {
 
     public void addElement(DataKnot pKnot) {
         try {
-            EditorPanelElement tempElement = (EditorPanelElement) classElement.getConstructors()[0].newInstance(this, pKnot.getDataByKey("ID"));
+            EditorPanelElement tempElement = (EditorPanelElement) classElement.getConstructors()[0].newInstance(this, pKnot.getDataByKey("ID"), theOptions);
             tempElement.setData(pKnot);
             tempElement.addSomethingChangedListener(new SomethingChangedListener() {
                 @Override

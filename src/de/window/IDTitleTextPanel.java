@@ -22,9 +22,12 @@ public class IDTitleTextPanel extends EditorPanelElement {
     private JPanel thePanel;
     private JButton xButton;
 
-    public IDTitleTextPanel(EditorPanelHolder pHolder, String pID) {
+    public IDTitleTextPanel(EditorPanelHolder pHolder, String pID , String ... pString) {
         super(pHolder, pID);
         init();
+
+        textField2.setText(pString[0]);
+        textArea1.setText(pString[1]);
     }
 
     public void init() {

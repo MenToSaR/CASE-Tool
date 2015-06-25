@@ -7,6 +7,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,9 +21,13 @@ public class TitleSliderTextPanel extends EditorPanelElement {
     private JSlider slider1;
     private JButton xButton;
 
-    public TitleSliderTextPanel(EditorPanelHolder pHolder, String pID) {
+    public TitleSliderTextPanel(EditorPanelHolder pHolder, String pID, String ... pString) {
         super(pHolder, pID);
         init();
+
+        textField2.setText(pString[0]);
+        slider1.setToolTipText(pString[1]);
+        textArea1.setText(pString[2]);
     }
 
     public void init() {

@@ -1,4 +1,3 @@
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import de.Core;
 import de.calculator.Calcer;
 import de.database.DataKnot;
@@ -16,7 +15,7 @@ public class FunctionPoint extends Calcer {
 
     private Function functionArray[];
     private InfluenceFactors influenceFactors;
-    private int fAnzahl=0; // Anzahl der Funktionen die von pKnot �bergeben werden
+    private int fAnzahl=0; // Anzahl der Funktionen die von pKnot ?bergeben werden
     private int currentIndex=0;
     private Core _pCore;
     private JFrame _functionFrame;
@@ -95,7 +94,7 @@ public class FunctionPoint extends Calcer {
 
         _pCore = pCore;
         // greife auf loadData() zu, diese speichert die Berechnung in das functionArray
-        // Optimierung ver�ndert nur die 14 Einflussfaktoren, sodass das tats�chliche Ergebnis auch wirklich mit der Berechnung �bereinstimmt
+        // Optimierung ver?ndert nur die 14 Einflussfaktoren, sodass das tats?chliche Ergebnis auch wirklich mit der Berechnung ?bereinstimmt
         // Speichert die Einflussfaktoren ab
 
        // InfluenceFactors influenceFactors = new InfluenceFactors(_pCore);
@@ -149,6 +148,17 @@ public class FunctionPoint extends Calcer {
             if (EinflussBewDiff > 0) {  // Einflussfaktoren verringern
 
                 int temp = 0;
+
+                for (int i = 0; i < 14 && EinflussBewDiff < 1; i++) {
+                    System.out.println("Verringern");
+
+                    temp = influenceFactors.getInfluenceFactor(i);
+                    if (temp > 1) {
+                        influenceFactors.setInfluenceFactor(i, temp - 1);
+                        EinflussBewDiff--;
+                    }
+                }
+
                 int i = 0;
                 while (EinflussBewDiff >= 1) {
 

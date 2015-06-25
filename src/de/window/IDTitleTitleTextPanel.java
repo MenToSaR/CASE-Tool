@@ -19,9 +19,13 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
     private JTextField textField3;
     private JButton xButton;
 
-    public IDTitleTitleTextPanel(EditorPanelHolder pHolder, String pID) {
+    public IDTitleTitleTextPanel(EditorPanelHolder pHolder, String pID, String ... pString) {
         super(pHolder, pID);
         init();
+
+        textField2.setText(pString[0]);
+        textField3.setText(pString[1]);
+        textArea1.setText(pString[2]);
     }
 
     public void init() {
