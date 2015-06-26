@@ -92,12 +92,11 @@ public class FunctionPoint extends Calcer {
     @Override
     public void optimize(Core pCore) {
 
-        _pCore = pCore;
-        // greife auf loadData() zu, diese speichert die Berechnung in das functionArray
-        // Optimierung ver?ndert nur die 14 Einflussfaktoren, sodass das tats?chliche Ergebnis auch wirklich mit der Berechnung ?bereinstimmt
-        // Speichert die Einflussfaktoren ab
+        /*
+        Greift auf die Einflussfaktoren zu und passt diese gem‰ﬂ den tatsaechlichen LoC an
+         */
 
-       // InfluenceFactors influenceFactors = new InfluenceFactors(_pCore);
+        _pCore = pCore;
 
         System.out.println("Test");
 
@@ -105,6 +104,10 @@ public class FunctionPoint extends Calcer {
 
        influenceFactors = new InfluenceFactors(pCore);
         loadFunctionsFromCore();
+
+        /*
+        Eingabe der tatsaechlichen LoC
+         */
 
         String theInput = MessageBoxFactory.createTextMessageBox("Optimierung", "Bitte geben sie die tatsaechlichen Lines of Code ein:");
         if (theInput.equals("")) {
@@ -124,7 +127,7 @@ public class FunctionPoint extends Calcer {
         }
 
 
-        int summeKat = calcSumme();        // liefert Summe der einzelnen Kategorien E1
+        int summeKat = calcSumme();           // liefert Summe der einzelnen Kategorien E1
         double realEinflussBew = 0;           // tatsaechliche Einflussbewertung E3
         double realInflFac = 0;             // Wert der Einflussfaktoren E2
 
@@ -139,7 +142,7 @@ public class FunctionPoint extends Calcer {
             oldInflFac = (oldInflFac-0.65) * 100;       // jetzt E2
 
             realEinflussBew = realLoC / (53 * summeKat);
-            realInflFac = (realEinflussBew - 0.65) * 100;          //real-EInflussfaktoren
+            realInflFac = (realEinflussBew - 0.65) * 100;          //real-Einflussfaktoren
 
             oldInflFac = influenceFactors.getSum();
 
@@ -149,6 +152,9 @@ public class FunctionPoint extends Calcer {
 
                 int temp = 0;
 
+                /*
+                Vergleich der Summen von urspruenglichen und tatsaechlichen Einflussfakotren
+                 */
                 for (int i = 0; i < 14 && EinflussBewDiff < 1; i++) {
                     System.out.println("Verringern");
 
@@ -160,6 +166,9 @@ public class FunctionPoint extends Calcer {
                 }
 
                 int i = 0;
+                /*
+                Einflussfaktor wird verringert
+                 */
                 while (EinflussBewDiff >= 1) {
 
                     System.out.println("Verringern");
@@ -180,6 +189,10 @@ public class FunctionPoint extends Calcer {
                 int temp = 0;
                 int i = 0;
                 while (EinflussBewDiff <= -1) {
+
+                    /*
+                    keine Pr¸fung, ob Grenze der Einflussfaktoren erreicht ist (da diese theoretisch unendlich hoch sein kˆnnen)
+                     */
 
                     System.out.println("Vergroessern");
                     temp = influenceFactors.getInfluenceFactor(i);
@@ -214,6 +227,9 @@ public class FunctionPoint extends Calcer {
 
     }
 
+    /*
+    Funktionen bewerten
+     */
     public void openFunctionInput(){
         JFrame checkFrame = new JFrame();
         _functionFrame=checkFrame;
@@ -287,6 +303,9 @@ public class FunctionPoint extends Calcer {
         return influenceFactors;
     }
 
+    /*
+    LoC werden anhand der Einflussfaktoren und der Funktionen berechnet
+     */
     public int calcLoC(){
         double einflussBewertung = influenceFactors.getEinflussbewertung();
         int summe = calcSumme();
