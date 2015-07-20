@@ -11,11 +11,17 @@ import java.util.ArrayList;
 /**
  * Created by Marcel on 30.04.2015 in CASE.
  */
+
+/*
+    Diese Klasse ist fuer die Aufwandsberechnung und deren nachfolgende Optimierung zustaendig.
+
+ */
+
 public class FunctionPoint extends Calcer {
 
     private Function functionArray[];
     private InfluenceFactors influenceFactors;
-    private int fAnzahl=0; // Anzahl der Funktionen die von pKnot ?bergeben werden
+    private int fAnzahl=0; // Anzahl der Funktionen die von pKnot uebergeben werden
     private int currentIndex=0;
     private Core _pCore;
     private JFrame _functionFrame;
@@ -24,8 +30,9 @@ public class FunctionPoint extends Calcer {
     private FunctionInput theFunctionInput;
     private InfluenceFactorInput theInfluenceFactorInput;
 
-    // setSize(this.getInsets().left + getInsets().right + getSize().width, getInsets().top + getInsets().bottom + getSize().height);
-    // setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - getSize().getWidth() / 2), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - getSize().getHeight() / 2));
+    /*
+
+     */
 
     @Override
     public void calculate(Core pCore, DataKnot pKnot) {
@@ -89,12 +96,14 @@ public class FunctionPoint extends Calcer {
         _pCore.saveData(funktionen, "FunktionenFunctionPoint.dat");
     }
 
+    /*
+        optimize() greift auf die Einflussfaktoren zu und passt diese gemaess den tatsaechlichen LoC an.
+        Tatsaechliche LoC werden eigegeben, Einflussfaktoren so lange erhoeht oder verringert, bis
+        die tatsaechlichen LoC (fast) genau den berechneten LoC entsprechen.
+     */
+
     @Override
     public void optimize(Core pCore) {
-
-        /*
-        Greift auf die Einflussfaktoren zu und passt diese gem‰ﬂ den tatsaechlichen LoC an
-         */
 
         _pCore = pCore;
 
@@ -191,7 +200,7 @@ public class FunctionPoint extends Calcer {
                 while (EinflussBewDiff <= -1) {
 
                     /*
-                    keine Pr¸fung, ob Grenze der Einflussfaktoren erreicht ist (da diese theoretisch unendlich hoch sein kˆnnen)
+                    keine Pruefung, ob Grenze der Einflussfaktoren erreicht ist (da diese theoretisch unendlich hoch sein koennen)
                      */
 
                     System.out.println("Vergroessern");
@@ -214,12 +223,18 @@ public class FunctionPoint extends Calcer {
 
     }
 
+    /*
+    Wert des aktuellen Index wird erhoeht
+     */
     public void incCurrIndex(){
         if(currentIndex<fAnzahl-1){
             currentIndex++;
         }
     }
 
+    /*
+    Wert des aktuellen Index wird verringert
+     */
     public void decCurrIndex(){
         if(currentIndex>0){
             currentIndex--;
@@ -241,10 +256,16 @@ public class FunctionPoint extends Calcer {
 
     }
 
+    /*
+        Function Frame wird zurueckgegeben
+     */
     public JFrame getFunctionFrame(){
         return _functionFrame;
     }
 
+    /*
+        Fenster zur Eingabe der Einflussfaktoren wird geoeffnet
+     */
     public void openInfluenceFactorInput(){
         JFrame checkFrame = new JFrame();
         _influenceFrame=checkFrame;
@@ -256,10 +277,16 @@ public class FunctionPoint extends Calcer {
 
     }
 
+    /*
+    InfluenceFrame wird zurueckgegeben
+     */
     public JFrame getInfluenceFrame(){
         return _influenceFrame;
     }
 
+    /*
+    GUI wird geoeffnet
+     */
     public void loadFunctionGUI(){
         Function tmpFunction=functionArray[currentIndex];
         String id=tmpFunction.getID();
@@ -274,6 +301,9 @@ public class FunctionPoint extends Calcer {
 
     }
 
+    /*
+    Eingaben der GUI werden gespeichert
+     */
     public void safeFunctionFromFunctionGUI(){
         Function tmpFunction=functionArray[currentIndex];
         int type=theFunctionInput.getType();
@@ -285,6 +315,9 @@ public class FunctionPoint extends Calcer {
         safeFunctionsToCore();
     }
 
+    /*
+        Summe der Gewichtungen FunctionPoints werden berechnet
+     */
     public int calcSumme(){
         int summe=0;
         for (int i=0; i<fAnzahl; i++) {
@@ -296,9 +329,12 @@ public class FunctionPoint extends Calcer {
 
     public void loadFunctionArray(){
 
-
+    // to be implemented later - if necessary
     }
 
+    /*
+        Gibt die Einflussfaktoren zurueck
+     */
     public InfluenceFactors getInfluenceFactors(){
         return influenceFactors;
     }

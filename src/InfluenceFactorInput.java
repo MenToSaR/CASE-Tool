@@ -7,9 +7,14 @@ import java.awt.event.ActionListener;
 /**
  * Created by Pascal-L on 20.05.2015.
  */
+
+/*
+    Eingabefenster fuer die Gewichtung der Einflussfaktoren
+ */
+
 public class InfluenceFactorInput {
-    private JTextField t1;
     private JButton startButton;
+    private JTextField t1;          // Eingabefelder fuer die Gewichtung der Einflussfaktoren
     private JTextField t2;
     private JTextField t3;
     private JTextField t4;
@@ -28,10 +33,15 @@ public class InfluenceFactorInput {
     private FunctionPoint theFunctionPoint;
     private InfluenceFactors influenceFactors;
 
+
     public InfluenceFactorInput(FunctionPoint pFunctionPoint) {
         theFunctionPoint = pFunctionPoint;
         influenceFactors = theFunctionPoint.getInfluenceFactors();
         influenceFactors.load();
+
+        /*
+        Die geladenen Einflussfaktoren werden im Fenster als Vorschlag angezeigt
+         */
 
         t1.setText("" + influenceFactors.getInfluenceFactor(0));
         t2.setText(""+influenceFactors.getInfluenceFactor(1));
@@ -49,6 +59,11 @@ public class InfluenceFactorInput {
         t14.setText(""+influenceFactors.getInfluenceFactor(13));
 
         startButton.addActionListener(new ActionListener() {
+
+            /*
+            Druecken des Startbuttons uebernimmt die eingegebenen Werte als Gewichtung der Einflussfaktoren
+            Lines of Code werden berechnet
+             */
 
             @Override
             public void actionPerformed(ActionEvent e) {

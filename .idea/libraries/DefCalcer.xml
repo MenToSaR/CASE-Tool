@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="DefCalcer">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Calcer/DefCalcer.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

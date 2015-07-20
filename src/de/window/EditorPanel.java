@@ -12,8 +12,8 @@ import java.awt.event.ActionListener;
  * Created by Marcel on 08.05.2015 in CASE.
  */
 public class EditorPanel implements InputUnitElement {
-    private JButton button1;
-    private JButton sButton;
+    private JButton btnAdd;
+    private JButton btnSafe;
     private JPanel thePanel;
     private JScrollPane thePane;
     private JPanel theElementHolderPanel;
@@ -29,7 +29,7 @@ public class EditorPanel implements InputUnitElement {
 
         theHolder.setEditor(this);
 
-        button1.addActionListener(new ActionListener() {
+        btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theHolder.addElement();
@@ -38,7 +38,7 @@ public class EditorPanel implements InputUnitElement {
             }
         });
 
-        sButton.addActionListener(new ActionListener() {
+        btnSafe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 save();
@@ -47,14 +47,14 @@ public class EditorPanel implements InputUnitElement {
 
         thePane.getVerticalScrollBar().setUnitIncrement(25);
 
-        sButton.setEnabled(false);
+        btnSafe.setEnabled(false);
         theHolder.print();
     }
 
     public void update() {
         theManager.somethingChanged();
         theManager.updateInterface();
-        sButton.setEnabled(true);
+        btnSafe.setEnabled(true);
     }
 
     public JPanel getPanel() {
@@ -78,7 +78,7 @@ public class EditorPanel implements InputUnitElement {
     @Override
     public void save() {
         theManager.saveData(theHolder, theIdentifier);
-        sButton.setEnabled(false);
+        btnSafe.setEnabled(false);
     }
 
     @Override
@@ -94,6 +94,6 @@ public class EditorPanel implements InputUnitElement {
         }
 
         theHolder.print();
-        sButton.setEnabled(false);
+        btnSafe.setEnabled(false);
     }
 }

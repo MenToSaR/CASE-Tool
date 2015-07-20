@@ -33,7 +33,7 @@ public class Function implements IFunction {
     @Override
     public boolean setComplexity(int pComplexity) {
         if(pComplexity > 3 || pComplexity < 1){
-            return false; // fehlerhafte Komplexitätsstufe wurde übergeben
+            return false; // fehlerhafte Komplexitaetsstufe wurde uebergeben
         }else{
             nComplexity =pComplexity;
             return true;
@@ -49,7 +49,7 @@ public class Function implements IFunction {
     @Override
     public boolean setType(int pType) {
         if(pType > 4 || pType < 0){
-            return false; // fehlerhafter Typ wurde übergeben
+            return false; // fehlerhafter Typ wurde uebergeben
         }else{
             nType =pType;
             return true;

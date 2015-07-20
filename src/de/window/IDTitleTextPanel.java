@@ -7,33 +7,29 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Created by Marcel on 08.05.2015 in CASE.
  */
 public class IDTitleTextPanel extends EditorPanelElement {
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextArea textArea1;
+    private JTextField txtID;
+    private JTextField txtField;
+    private JTextArea txaArea;
     private JPanel thePanel;
-    private JButton xButton;
+    private JButton btnDelete;
 
     public IDTitleTextPanel(EditorPanelHolder pHolder, String pID , String ... pString) {
         super(pHolder, pID);
         init();
 
-        textField2.setText(pString[0]);
-        textArea1.setText(pString[1]);
+        txtField.setText(pString[0]);
+        txaArea.setText(pString[1]);
     }
 
     public void init() {
 
-        textField1.setText(getID());
-        textField1.getDocument().addDocumentListener(new DocumentListener() {
+        txtID.setText(getID());
+        txtID.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 somethingChanged();
@@ -50,7 +46,7 @@ public class IDTitleTextPanel extends EditorPanelElement {
             }
         });
 
-        textField2.getDocument().addDocumentListener(new DocumentListener() {
+        txtField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 somethingChanged();
@@ -67,9 +63,9 @@ public class IDTitleTextPanel extends EditorPanelElement {
             }
         });
 
-        textArea1.setLineWrap(true);
-        textArea1.setWrapStyleWord(true);
-        textArea1.getDocument().addDocumentListener(new DocumentListener() {
+        txaArea.setLineWrap(true);
+        txaArea.setWrapStyleWord(true);
+        txaArea.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 somethingChanged();
@@ -85,7 +81,7 @@ public class IDTitleTextPanel extends EditorPanelElement {
                 somethingChanged();
             }
         });
-        xButton.addActionListener(new ActionListener() {
+        btnDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 delete();
@@ -101,9 +97,9 @@ public class IDTitleTextPanel extends EditorPanelElement {
     @Override
     public DataKnot getData() {
         DataKnot tempKnot = new DataKnot("elementdata");
-        tempKnot.addData("ID", textField1.getText());
-        tempKnot.addData("TITLE", textField2.getText());
-        tempKnot.addData("TEXT", textArea1.getText());
+        tempKnot.addData("ID", txtID.getText());
+        tempKnot.addData("TITLE", txtField.getText());
+        tempKnot.addData("TEXT", txaArea.getText());
         return tempKnot;
     }
 
@@ -111,8 +107,8 @@ public class IDTitleTextPanel extends EditorPanelElement {
 
     @Override
     public void setData(DataKnot pKnot) {
-        textField1.setText(pKnot.getDataByKey("ID"));
-        textField2.setText(pKnot.getDataByKey("TITLE"));
-        textArea1.setText(pKnot.getDataByKey("TEXT"));
+        txtID.setText(pKnot.getDataByKey("ID"));
+        txtField.setText(pKnot.getDataByKey("TITLE"));
+        txaArea.setText(pKnot.getDataByKey("TEXT"));
     }
 }

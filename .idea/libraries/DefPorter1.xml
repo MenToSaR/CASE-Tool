@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="DefPorter1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Porter/DefPorter.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -12,26 +12,26 @@ import java.awt.event.ActionListener;
  * Created by Marcel on 08.05.2015 in CASE.
  */
 public class IDTitleTitleTextPanel extends EditorPanelElement {
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField txtID;
+    private JTextField txtFieldUpper;
     private JTextArea textArea1;
     private JPanel thePanel;
-    private JTextField textField3;
-    private JButton xButton;
+    private JTextField txtFieldLower;
+    private JButton btnDelete;
 
     public IDTitleTitleTextPanel(EditorPanelHolder pHolder, String pID, String ... pString) {
         super(pHolder, pID);
         init();
 
-        textField2.setText(pString[0]);
-        textField3.setText(pString[1]);
+        txtFieldUpper.setText(pString[0]);
+        txtFieldLower.setText(pString[1]);
         textArea1.setText(pString[2]);
     }
 
     public void init() {
 
-        textField1.setText(getID());
-        textField1.getDocument().addDocumentListener(new DocumentListener() {
+        txtID.setText(getID());
+        txtID.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 somethingChanged();
@@ -48,7 +48,7 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
             }
         });
 
-        textField2.getDocument().addDocumentListener(new DocumentListener() {
+        txtFieldUpper.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 somethingChanged();
@@ -65,7 +65,7 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
             }
         });
 
-        textField3.getDocument().addDocumentListener(new DocumentListener() {
+        txtFieldLower.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 somethingChanged();
@@ -101,7 +101,7 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
                 somethingChanged();
             }
         });
-        xButton.addActionListener(new ActionListener() {
+        btnDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 delete();
@@ -119,17 +119,17 @@ public class IDTitleTitleTextPanel extends EditorPanelElement {
     public DataKnot getData() {
         DataKnot tempKnot = new DataKnot("elementdata");
         tempKnot.addData("ID", getID());
-        tempKnot.addData("TITLE", textField2.getText());
-        tempKnot.addData("TITLE2", textField3.getText());
+        tempKnot.addData("TITLE", txtFieldUpper.getText());
+        tempKnot.addData("TITLE2", txtFieldLower.getText());
         tempKnot.addData("TEXT", textArea1.getText());
         return tempKnot;
     }
 
     @Override
     public void setData(DataKnot pKnot) {
-        textField1.setText(pKnot.getDataByKey("ID"));
-        textField2.setText(pKnot.getDataByKey("TITLE"));
-        textField3.setText(pKnot.getDataByKey("TITLE2"));
+        txtID.setText(pKnot.getDataByKey("ID"));
+        txtFieldUpper.setText(pKnot.getDataByKey("TITLE"));
+        txtFieldLower.setText(pKnot.getDataByKey("TITLE2"));
         textArea1.setText(pKnot.getDataByKey("TEXT"));
     }
 }

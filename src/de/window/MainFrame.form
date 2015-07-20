@@ -25,7 +25,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="991b1" class="javax.swing.JButton" binding="startImprovement">
+          <component id="991b1" class="javax.swing.JButton" binding="btnStartOptimizing">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="0.0"/>
@@ -35,14 +35,14 @@
               <text value="Starte Optimierung"/>
             </properties>
           </component>
-          <component id="bcb79" class="javax.swing.JTree" binding="tree">
+          <component id="bcb79" class="javax.swing.JTree" binding="treeProjectTree">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="1.0"/>
             </constraints>
             <properties/>
           </component>
-          <component id="bed28" class="javax.swing.JButton" binding="startCalc" default-binding="true">
+          <component id="bed28" class="javax.swing.JButton" binding="btnStartCalculation">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="0.0"/>
@@ -52,7 +52,7 @@
               <text value="Starte Berechnung"/>
             </properties>
           </component>
-          <component id="5e2ca" class="javax.swing.JButton" binding="oButton" default-binding="true">
+          <component id="5e2ca" class="javax.swing.JButton" binding="btnOpen">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="48" height="48"/>
@@ -69,7 +69,7 @@
               <toolTipText value="Projekt Importieren"/>
             </properties>
           </component>
-          <component id="75bed" class="javax.swing.JButton" binding="nButton" default-binding="true">
+          <component id="75bed" class="javax.swing.JButton" binding="btnNew">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="48" height="48"/>
@@ -87,7 +87,7 @@
               <toolTipText value="Neues Projekt"/>
             </properties>
           </component>
-          <component id="832b2" class="javax.swing.JButton" binding="rButton" default-binding="true">
+          <component id="832b2" class="javax.swing.JButton" binding="btnReopen">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="48" height="48"/>
@@ -104,7 +104,7 @@
               <toolTipText value="Projekt Öffnen"/>
             </properties>
           </component>
-          <component id="d943e" class="javax.swing.JButton" binding="dButton" default-binding="true">
+          <component id="d943e" class="javax.swing.JButton" binding="btnDelete">
             <constraints>
               <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="48" height="48"/>
@@ -122,7 +122,7 @@
               <toolTipText value="Projekt Löschen"/>
             </properties>
           </component>
-          <component id="739c2" class="javax.swing.JButton" binding="button1" default-binding="true">
+          <component id="739c2" class="javax.swing.JButton" binding="btnSafe">
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>

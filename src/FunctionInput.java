@@ -11,7 +11,7 @@ public class FunctionInput {
     private JRadioButton einfachRadioButton;
     private JRadioButton mittelRadioButton;
     private JRadioButton komplexRadioButton;
-    private JButton zurückButton;
+    private JButton zurueckButton;
     private JButton weiterButton;
     private JLabel lblName;
     private JLabel lblID;
@@ -29,7 +29,7 @@ public class FunctionInput {
         comboBox1.addItem("Interner Datenbestand");
         comboBox1.addItem("Externer Datenbestand");
 
-        zurückButton.addActionListener(new ActionListener() {
+        zurueckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theFunctionPoint.safeFunctionFromFunctionGUI();

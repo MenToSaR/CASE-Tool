@@ -8,6 +8,12 @@ import java.awt.event.ContainerEvent;
 /**
  * Created by Pascal_Betz on 18.06.15.
  */
+
+/*
+    Fenster zur Optimierung der Aufwandsberechnung. Die tatsaechlichen Lines of Code werden vom Benutzer eignegeben
+    und die Einflussfaktoren daraufhin angepasst.
+ */
+
 public class optimizeWindow extends JDialog{
     private JButton jetztOptimierenButton;
     private JButton abbrechenButton;
@@ -26,8 +32,6 @@ public class optimizeWindow extends JDialog{
             public void actionPerformed(ActionEvent e) {
 
               setVisible(false);
-
-
 
             }
         });
@@ -48,7 +52,7 @@ public class optimizeWindow extends JDialog{
         });
     }
 
-    public void open(){
+    public void open(){     // Fenster wird geoeffnet
 
         this.setModal(true);
         setSize(this.getInsets().left + getInsets().right + 400, getInsets().top + getInsets().bottom + 300);

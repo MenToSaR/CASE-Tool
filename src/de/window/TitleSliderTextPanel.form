@@ -12,7 +12,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="fa103" layout-manager="GridLayoutManager" row-count="4" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="fa103" layout-manager="GridLayoutManager" row-count="4" column-count="12" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="3" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
@@ -28,18 +28,18 @@
         <children>
           <scrollpane id="13a85">
             <constraints>
-              <grid row="1" column="0" row-span="3" col-span="7" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="3" col-span="11" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
             <border type="none"/>
             <children>
-              <component id="1ba74" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+              <component id="1ba74" class="javax.swing.JTextArea" binding="txaText">
                 <constraints/>
                 <properties/>
               </component>
             </children>
           </scrollpane>
-          <component id="4a2f2" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="4a2f2" class="javax.swing.JTextField" binding="txtID">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -47,17 +47,17 @@
             </constraints>
             <properties/>
           </component>
-          <component id="ac9e2" class="javax.swing.JSlider" binding="slider1" default-binding="true">
+          <component id="ac9e2" class="javax.swing.JSlider" binding="sldSlider">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <maximum value="100"/>
             </properties>
           </component>
-          <component id="18a7b" class="javax.swing.JButton" binding="xButton" default-binding="true">
+          <component id="18a7b" class="javax.swing.JButton" binding="btnDelete">
             <constraints>
-              <grid row="0" column="7" row-span="4" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="11" row-span="4" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <icon value="res/delete_32.png"/>
@@ -65,6 +65,32 @@
               <text value=""/>
             </properties>
           </component>
+          <component id="27a6" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="hoch"/>
+            </properties>
+          </component>
+          <component id="c17ac" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="niedrig"/>
+            </properties>
+          </component>
+          <hspacer id="f536f">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="36360">
+            <constraints>
+              <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
         </children>
       </grid>
     </children>

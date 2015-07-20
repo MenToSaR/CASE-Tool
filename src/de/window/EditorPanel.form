@@ -20,7 +20,18 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="c3fab" class="javax.swing.JButton" binding="sButton" default-binding="true">
+          <component id="7214b" class="javax.swing.JButton" binding="btnAdd">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="res/plus_32.png"/>
+              <label value=""/>
+              <selected value="false"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="c3fab" class="javax.swing.JButton" binding="btnSafe">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -34,17 +45,6 @@
               <margin top="0" left="0" bottom="0" right="0"/>
               <text value=""/>
               <verticalTextPosition value="0"/>
-            </properties>
-          </component>
-          <component id="7214b" class="javax.swing.JButton" binding="button1" default-binding="true">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <icon value="res/plus_32.png"/>
-              <label value=""/>
-              <selected value="false"/>
-              <text value=""/>
             </properties>
           </component>
         </children>

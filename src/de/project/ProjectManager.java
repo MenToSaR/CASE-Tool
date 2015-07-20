@@ -52,12 +52,12 @@ public class ProjectManager {
         theInputUnitManager.addHolder(new InputUnitHolder("Zielbestimmungen", new TextPanel(this, "projecttarget")));
         theInputUnitManager.addHolder(new InputUnitHolder("Produkteinsatz", new TextPanel(this, "productusage")));
         theInputUnitManager.addHolder(new InputUnitHolder("Umgebung", new TextPanel(this, "environment")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Produktfunktionen", new EditorPanel(this, new EditorPanelHolder(IDTitleTitleTextPanel.class, "LF ", "EINTRAG 1", "EINTRAG 2", "EINTRAG 3"), "productfunction")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Produktdaten", new EditorPanel(this, new EditorPanelHolder(IDTitleTextPanel.class, "LD ", "EINTRAG 1", "EINTRAG 2"), "productdata")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Nichtfunktionale Anforderungen", new EditorPanel(this, new EditorPanelHolder(IDTitleTextPanel.class, "LL ", "EINTRAG 1", "EINTRAG 2"), "nonfunctional")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Qualitätsanforderungen", new EditorPanel(this, new EditorPanelHolder(TitleSliderTextPanel.class, "", "EINTRAG 1", "Priorität", "EINTRAG 2"), "quality")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Ergänzungen", new TextPanel(this, "miscellaneous")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Glossar", new EditorPanel(this, new EditorPanelHolder(TitleTextPanel.class, "", "EINTRAG 1", "EINTRAG 2"), "glossary")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produktfunktionen", new EditorPanel(this, new EditorPanelHolder(IDTitleTitleTextPanel.class, "LF ", "Geschï¿½ftsprozess", "Akteur", "Beschreibung"), "productfunction")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produktdaten", new EditorPanel(this, new EditorPanelHolder(IDTitleTextPanel.class, "LD ", "Titel", "Beschreibung"), "productdata")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Nichtfunktionale Anforderungen", new EditorPanel(this, new EditorPanelHolder(IDTitleTextPanel.class, "LL ", "Titel", "Beschreibung"), "nonfunctional")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Qualitaetsanforderungen", new EditorPanel(this, new EditorPanelHolder(TitleSliderTextPanel.class, "", "Anforderung", "Prioritaet", "Beschreibung"), "quality")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Ergaenzungen", new TextPanel(this, "miscellaneous")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Glossar", new EditorPanel(this, new EditorPanelHolder(TitleTextPanel.class, "", "Begriff", "Erklï¿½rung"), "glossary")));
 
         theFrame.enableSaveButton(false);
     }

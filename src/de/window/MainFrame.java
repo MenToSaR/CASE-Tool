@@ -20,22 +20,22 @@ public class MainFrame extends JFrame{
 
     private Core theCore;
 
-    private JTree tree;
+    private JTree treeProjectTree;
     private JPanel thePanel;
-    private JButton startCalc;
-    private JButton startImprovement;
-    private JButton nButton;
-    private JButton oButton;
-    private JButton rButton;
-    private JButton dButton;
+    private JButton btnStartCalculation;
+    private JButton btnStartOptimizing;
+    private JButton btnNew;
+    private JButton btnOpen;
+    private JButton btnReopen;
+    private JButton btnDelete;
     private JPanel thePanels;
-    private JButton button1;
+    private JButton btnSafe;
     private JScrollPane thePanelHolder;
 
     public MainFrame(Core pCore) {
         theCore = pCore;
 
-        tree.setModel(null);
+        treeProjectTree.setModel(null);
 
         setIconImage(new ImageIcon("src/res/graph.png").getImage());
         setTitle("CASE_TOOL");
@@ -43,51 +43,51 @@ public class MainFrame extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
 
-        startCalc.addActionListener(new ActionListener() {
+        btnStartCalculation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theCore.calculate();
             }
         });
-        nButton.addActionListener(new ActionListener() {
+        btnNew.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theCore.createProject();
             }
         });
-        oButton.addActionListener(new ActionListener() {
+        btnOpen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theCore.openProject();
             }
         });
-        rButton.addActionListener(new ActionListener() {
+        btnReopen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theCore.reopenProject();
             }
         });
-        dButton.addActionListener(new ActionListener() {
+        btnDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theCore.deleteProject();
             }
         });
 
-        tree.addTreeSelectionListener(new TreeSelectionListener() {
+        treeProjectTree.addTreeSelectionListener(new TreeSelectionListener() {
 
             @Override
             public void valueChanged(TreeSelectionEvent e) {
                 theCore.showPage("" + e.getPath().getLastPathComponent());
             }
         });
-        button1.addActionListener(new ActionListener() {
+        btnSafe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theCore.saveCompleteProject();
             }
         });
-        startImprovement.addActionListener(new ActionListener() {
+        btnStartOptimizing.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 theCore.optimize();
@@ -114,22 +114,22 @@ public class MainFrame extends JFrame{
     }
 
     public void enableSaveButton(boolean pB) {
-        button1.setEnabled(pB);
+        btnSafe.setEnabled(pB);
     }
 
     public void projectLoaded() {
-        dButton.setEnabled(true);
-        startCalc.setEnabled(true);
-        startImprovement.setEnabled(true);
+        btnDelete.setEnabled(true);
+        btnStartCalculation.setEnabled(true);
+        btnStartOptimizing.setEnabled(true);
     }
 
     public void reset() {
         showPanel(null);
         showTree("", null);
-        dButton.setEnabled(false);
-        button1.setEnabled(false);
-        startCalc.setEnabled(false);
-        startImprovement.setEnabled(false);
+        btnDelete.setEnabled(false);
+        btnSafe.setEnabled(false);
+        btnStartCalculation.setEnabled(false);
+        btnStartOptimizing.setEnabled(false);
 
         int x = 4;
         int y = 9;
@@ -141,7 +141,7 @@ public class MainFrame extends JFrame{
 
 
     public void showTree(String pProjectName, ArrayList<String> pName) {
-        tree.setModel(null);
+        treeProjectTree.setModel(null);
 
         if (pName != null) {
             MutableTreeNode theNode = new DefaultMutableTreeNode(pProjectName);
@@ -151,7 +151,7 @@ public class MainFrame extends JFrame{
                 theNode.insert(tempNode, theNode.getChildCount());
             }
             theModel.reload(theNode);
-            tree.setModel(theModel);
+            treeProjectTree.setModel(theModel);
         }
     }
 }

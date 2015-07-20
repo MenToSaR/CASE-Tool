@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Implementierung CASE Tool.iml" filepath="$PROJECT_DIR$/Implementierung CASE Tool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CASE-Tool.iml" filepath="$PROJECT_DIR$/CASE-Tool.iml" />
     </modules>
   </component>
 </project>

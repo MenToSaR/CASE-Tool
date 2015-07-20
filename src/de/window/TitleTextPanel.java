@@ -12,22 +12,22 @@ import java.awt.event.ActionListener;
  * Created by Marcel on 08.05.2015 in CASE.
  */
 public class TitleTextPanel extends EditorPanelElement {
-    private JTextField textField2;
-    private JTextArea textArea1;
+    private JTextField txtField;
+    private JTextArea txaText;
     private JPanel thePanel;
-    private JButton xButton;
+    private JButton btnDelete;
 
     public TitleTextPanel(EditorPanelHolder pHolder, String pID, String ... pString) {
         super(pHolder, pID);
         init();
 
-        textField2.setText(pString[0]);
-        textArea1.setText(pString[1]);
+        txtField.setText(pString[0]);
+        txaText.setText(pString[1]);
     }
 
     public void init() {
 
-        textField2.getDocument().addDocumentListener(new DocumentListener() {
+        txtField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 somethingChanged();
@@ -44,9 +44,9 @@ public class TitleTextPanel extends EditorPanelElement {
             }
         });
 
-        textArea1.setLineWrap(true);
-        textArea1.setWrapStyleWord(true);
-        textArea1.getDocument().addDocumentListener(new DocumentListener() {
+        txaText.setLineWrap(true);
+        txaText.setWrapStyleWord(true);
+        txaText.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 somethingChanged();
@@ -62,7 +62,7 @@ public class TitleTextPanel extends EditorPanelElement {
                 somethingChanged();
             }
         });
-        xButton.addActionListener(new ActionListener() {
+        btnDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 delete();
@@ -78,14 +78,14 @@ public class TitleTextPanel extends EditorPanelElement {
     @Override
     public DataKnot getData() {
         DataKnot tempKnot = new DataKnot("elementdata");
-        tempKnot.addData("TITLE", textField2.getText());
-        tempKnot.addData("TEXT", textArea1.getText());
+        tempKnot.addData("TITLE", txtField.getText());
+        tempKnot.addData("TEXT", txaText.getText());
         return tempKnot;
     }
 
     @Override
     public void setData(DataKnot pKnot) {
-        textField2.setText(pKnot.getDataByKey("TITLE"));
-        textArea1.setText(pKnot.getDataByKey("TEXT"));
+        txtField.setText(pKnot.getDataByKey("TITLE"));
+        txaText.setText(pKnot.getDataByKey("TEXT"));
     }
 }
