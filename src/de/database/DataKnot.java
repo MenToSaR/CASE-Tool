@@ -22,6 +22,21 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
         theTag = pTag;
     }
 
+    /**
+     * Haupt Datenstruktur der Daten die im Programm verwendet werden
+     *
+     * Änlicher Aufbau zu XML File
+     * Baumstruktur mit einem Parent und n Childs (0 <= n)
+     *
+     * Ermöglicht direkte Abbildung einer XML Datei und sorgt damit für komfortablen In- und Export
+     * Kann jedoch auch auf andere Arten geladen werden (z.B: Serialisierung, INI-Datai, ...)
+     *
+     * Beinhaltet triviale Methoden zur Konfiguration des Knotens
+     *
+     * @param pParent
+     * @param pTag
+     */
+
     private DataKnot(DataKnot pParent, String pTag) {
         theParent = pParent;
         theTag = pTag;
@@ -113,6 +128,10 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
         return theTag;
     }
 
+    /**
+     * Gibt struktur des Knotens in Standard Printstream aus
+     */
+
     public void printKnot() {
         System.out.print("<" + getTag());
         for (String eachString : this.getData().keySet()) {
@@ -125,6 +144,12 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
         printChildren(this.getChildren(), 1);
         System.out.println("</" + getTag() + ">");
     }
+
+    /**
+     * Rekursive Methode die Ausgabe ermöglicht
+     * @param pKnot
+     * @param pLevel
+     */
 
     private void printChildren(ArrayList<DataKnot> pKnot, int pLevel) {
         for (DataKnot eachKnot : pKnot) {
@@ -150,8 +175,12 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
             }
             System.out.println("</" + eachKnot.getTag() + ">");
         }
-
     }
+
+    /**
+     * Iteratormethoden um über Kinder und deren Einträge zu iterieren
+     * @return
+     */
 
     @Override
     public boolean hasNext() {

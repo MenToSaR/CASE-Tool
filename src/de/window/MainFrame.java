@@ -32,6 +32,19 @@ public class MainFrame extends JFrame{
     private JButton btnSafe;
     private JScrollPane thePanelHolder;
 
+    /**
+     * Hauptoberfläche
+     *
+     * View in MVC
+     *
+     * @param pCore
+     */
+
+    /**
+     * Initialisiert Oberfläche und erzeugt Komponenten (Buttons, Felder, ...)
+     * @param pCore
+     */
+
     public MainFrame(Core pCore) {
         theCore = pCore;
 
@@ -95,6 +108,10 @@ public class MainFrame extends JFrame{
         });
     }
 
+    /**
+     * Öffnet Oberfläche und zeigt diese An
+     */
+
     public void open() {
         this.setVisible(true);
         setSize(this.getInsets().left + getInsets().right + getSize().width, getInsets().top + getInsets().bottom + getSize().height);
@@ -102,6 +119,11 @@ public class MainFrame extends JFrame{
         setMinimumSize(new Dimension(getSize().width + 64, getSize().height));
         setPreferredSize(getSize());
     }
+
+    /**
+     * Zeigt übergebenes Panel im Hauptpanel an
+     * @param pPanel Anzuzeigendes Panel
+     */
 
     public void showPanel(JPanel pPanel) {
         thePanels.removeAll();
@@ -113,15 +135,28 @@ public class MainFrame extends JFrame{
         repaint();
     }
 
+    /**
+     * heißt so wie seine Funktion
+     * @param pB
+     */
+
     public void enableSaveButton(boolean pB) {
         btnSafe.setEnabled(pB);
     }
+
+    /**
+     * Enabled Buttons sobald Projekt geladen wurde
+     */
 
     public void projectLoaded() {
         btnDelete.setEnabled(true);
         btnStartCalculation.setEnabled(true);
         btnStartOptimizing.setEnabled(true);
     }
+
+    /**
+     * Disabled Buttons wenn Projekt entladen
+     */
 
     public void reset() {
         showPanel(null);
@@ -130,15 +165,13 @@ public class MainFrame extends JFrame{
         btnSafe.setEnabled(false);
         btnStartCalculation.setEnabled(false);
         btnStartOptimizing.setEnabled(false);
-
-        int x = 4;
-        int y = 9;
-        Runnable r2 = () -> System.out.println("Hello world two!");
-
     }
 
-
-
+    /**
+     * Zeigt hirarchie der Komponenten an um Auswahl zu ermöglichen
+     * @param pProjectName
+     * @param pName Liste der Komponenten
+     */
 
     public void showTree(String pProjectName, ArrayList<String> pName) {
         treeProjectTree.setModel(null);

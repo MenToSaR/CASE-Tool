@@ -29,6 +29,10 @@ public class Database {
 
     private DataKnot theConfigKnot;
 
+    /**
+     * Verantwortlich für persistente Datenerhaltung
+     */
+
     public Database() {
         theConfigKnot = readConfig();
         if (theConfigKnot == null) {
@@ -40,12 +44,22 @@ public class Database {
         theWorkspaceDir = theConfigKnot.getFirstChildByTag(DEFAULT_WORKSPACE_TAG).getValue();
     }
 
+    /**
+     * Legt neue Konfiguration an
+     */
+
     public void createNewConfig() {
         theConfigKnot = new DataKnot("config");
         theConfigKnot.addChild(PROJECT_LIST_TAG);
         theConfigKnot.addChild(DEFAULT_PORTER_TAG).setValue(theDefaultPorter);
         theConfigKnot.addChild(DEFAULT_WORKSPACE_TAG).setValue(System.getProperty("user.home") + "/Desktop");
     }
+
+    /**
+     * Berabreitet Konfigurations Eintrag
+     * @param pKey Schlüssel des Eintrags
+     * @param pValue Neuer Wert des Eintrags
+     */
 
     public void editConfigEntry(String pKey, String pValue) {
         DataKnot tempKnot = theConfigKnot.getFirstChildByTag(pKey);
@@ -77,6 +91,12 @@ public class Database {
     private void writeConfig() {
         ((InOuter) JarLoader.getJarLoader().load(theDefaultPorter, "Porter")).write(theConfigFileName, theConfigKnot);
     }
+
+    /**
+     * Liest Konfigurationsdatei ein
+     * @param pFileName
+     * @return
+     */
 
     public DataKnot readConfigFile(String pFileName) {
         try {
@@ -110,6 +130,12 @@ public class Database {
         return (InOuter) JarLoader.getJarLoader().load(pS, "Porter");
     }
 
+    /**
+     * Legt Projektverzeichnis an
+     * @param pDir Verzeichnis in das das Projekt angelegt werden soll
+     * @param pName Name des anzulegenden Projektes
+     */
+
     public void createWorkingDir(String pDir, String pName) {
         new File(pDir + "/" + pName).mkdirs();
         theWorkingDir = pDir + "/" + pName;
@@ -121,6 +147,12 @@ public class Database {
         writeConfig();
     }
 
+    /**
+     * Setzt Arbeitspfad
+     * @param pDir
+     * @throws FileNotFoundException
+     */
+
     public void setWorkingDir(String pDir) throws FileNotFoundException {
         theWorkingDir = pDir;
         theWorkingDir = theWorkingDir.replace("\\", "/");
@@ -128,6 +160,11 @@ public class Database {
             throw new FileNotFoundException("Angegebener Pfad nicht vorhanden: " + pDir);
         }
     }
+
+    /**
+     * Löscht Arbeitspfad
+     * @return
+     */
 
     public boolean deleteWorkingDir() {
         if (theWorkingDir == null || theWorkingDir.equals("")) {
@@ -157,6 +194,12 @@ public class Database {
         }
     }
 
+    /**
+     * Löscht Eintrag in Konfiguration
+     * @param pName
+     * @return
+     */
+
     public boolean deleteProjectEntry(String pName) {
         for (DataKnot eachKnot : theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).getChildren()) {
             if (pName.equals(eachKnot.getDataByKey("name"))) {
@@ -167,6 +210,15 @@ public class Database {
         }
         return false;
     }
+
+    /**
+     * Löscht verzeichnis Rekursiv!
+     * Löscht wirklich alles!!
+     * Vorsichtig gebrauchen
+     *
+     * @param f Stammverzeichnis
+     * @return
+     */
 
     private boolean deleteFile(File f) {
         if (f.isDirectory()) {

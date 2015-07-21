@@ -18,9 +18,21 @@ public class JarLoader {
 
     private static JarLoader jarLoader;
 
+    /**
+     * Singleton um Jar-Dateien einzulesen
+     */
+
     private JarLoader() {
 
     }
+
+    /**
+     * Läd angegebene Jar-Datei
+     * @param pModule Modul der zu ladenden Datei (package)
+     * @param pFolder Ordner in der Jar-Dateien gesucht werden sollen
+     * @return
+     * @throws RuntimeException
+     */
 
     public Object load(String pModule, String pFolder) throws RuntimeException{ //Factory Method
         try {
@@ -49,6 +61,13 @@ public class JarLoader {
         }
         throw new RuntimeException("Module " + pModule + " was not found!");
     }
+
+    /**
+     * gibt liste alle Komponenten in Jar-Datei zurück
+     * @param pFolder Ordner in dem gesucht werden soll
+     * @param pType package der anzugebenen Klassen
+     * @return
+     */
 
     public ArrayList<String> getListOfElements(String pFolder, String pType) {
         ArrayList<String> listPorter = new ArrayList<>();

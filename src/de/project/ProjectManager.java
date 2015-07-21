@@ -90,7 +90,7 @@ public class ProjectManager {
         initInputUnitManager();
 
         DataKnot tempKnot = pDatabase.readData(theFunctionDataFileName);
-        if (tempKnot == null) {
+        if (tempKnot == null) {                       // Erzeugt neuen Knoten falls keine Daten gefunden
             tempKnot = new DataKnot("data");
         }
         theProjectData.addChild(tempKnot);
