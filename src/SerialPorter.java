@@ -11,6 +11,12 @@ import java.io.ObjectOutputStream;
  */
 public class SerialPorter extends InOuter {
 
+    /**
+     * Klasse zur Serialisierung von DataKnot's
+     * @param pFile
+     * @param pData
+     */
+
     @Override
     public void write(String pFile, DataKnot pData) {
         try {

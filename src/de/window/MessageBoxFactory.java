@@ -7,6 +7,14 @@ import java.util.ArrayList;
  */
 public class MessageBoxFactory {
 
+    /**
+     * Factor Klasse für Message Boxen (in und output)
+     * @param pTitle
+     * @param pText
+     * @param pList
+     * @return
+     */
+
     public static String createListMessageBox(String pTitle, String pText, ArrayList<String> pList) {
         ListMessageBox theListMessageBox = new ListMessageBox(pTitle, pText, pList);
         return theListMessageBox.getSelection();

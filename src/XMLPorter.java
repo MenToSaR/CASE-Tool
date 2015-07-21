@@ -10,6 +10,12 @@ import java.util.HashMap;
  */
 public class XMLPorter extends InOuter {
 
+    /**
+     * Klasse und DataKnot in XML Datei zu exportieren oder importieren
+     * @param pFile
+     * @param pData
+     */
+
     public void write(String pFile, DataKnot pData) {
         FileOutputStream theOS = null;
         XMLStreamWriter theWriter = null;
