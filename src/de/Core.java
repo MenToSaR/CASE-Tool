@@ -41,9 +41,9 @@ public class Core {
     /**
      *  Hauptklasse
      *
-     *  Gleichzeitig Controller f¸r das Projekt
+     *  Gleichzeitig Controller fuer das Projekt
      *
-     *  Verantwortlich f¸r Kommunikation zwischen Model und View
+     *  Verantwortlich fuer Kommunikation zwischen Model und View
      */
 
     public Core() {
@@ -57,7 +57,7 @@ public class Core {
     }
 
     /**
-     * L‰d das letzte Projekt
+     * Laedt das letzte Projekt
      *
      * @throws FileNotFoundException -> Fehlerfenster falls kein Projekt gefunden Wurde
      */
@@ -84,7 +84,7 @@ public class Core {
     }
 
     /**
-     *  Lˆscht das Projekt und setzt Oberfl‰che zur¸ck
+     *  Loescht das Projekt und setzt Oberflaeche zurueck
      */
 
     public void deleteProject() {
@@ -95,8 +95,8 @@ public class Core {
     }
 
     /**
-     * ÷ffnet bereits angelegtes Projekt
-     * Wird von Oberfl‰che angestoﬂen
+     * Oeffnet bereits angelegtes Projekt
+     * Wird von Oberflaeche angesto√üen
      */
 
     public void reopenProject() {
@@ -123,8 +123,8 @@ public class Core {
     }
 
     /**
-     * ÷ffnet bereits angelegtes jedoch nicht bereits verwaltetes Projekt
-     * wird von Oberfl‰che angestoﬂen
+     * Oeffnet bereits angelegtes jedoch nicht bereits verwaltetes Projekt
+     * wird von Oberflaeche angesto√üen
      */
 
     public void openProject() {
@@ -174,7 +174,7 @@ public class Core {
     }
 
     /**
-     * Aktualisiert die Oberfl‰che
+     * Aktualisiert die Oberflaeche
      * @param pProjectName Name des Projektes
      */
 
@@ -203,7 +203,7 @@ public class Core {
     }
 
     /**
-     * L‰d Projektspezifische Daten
+     * Laedt Projektspezifische Daten
      */
 
     public DataKnot loadData(String pFileName) {
@@ -222,7 +222,7 @@ public class Core {
     }
 
     /**
-     * L‰d Programmspezifische Daten
+     * Laedt Programmspezifische Daten
      * @param pFileName
      * @return
      */
@@ -233,7 +233,7 @@ public class Core {
 
     /**
      * Startet Berechnung des Aufwandes
-     * wird von Oberfl‰che angestoﬂen
+     * wird von Oberflaeche angesto√üen
      */
 
     public void calculate() {
@@ -248,7 +248,7 @@ public class Core {
 
     /**
      * Startet Optimierung des Aufwandes
-     * wird von Oberfl‰che angestoﬂen
+     * wird von Oberflaeche angesto√üen
      */
 
     public void optimize() {
@@ -262,7 +262,7 @@ public class Core {
     }
 
     /**
-     * Vordert die ¸bergebene Seite auf der Oberfl‰che an
+     * Vordert die uebergebene Seite auf der Oberflaeche an
      * @param name Name der Seite
      */
 

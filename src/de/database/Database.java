@@ -175,7 +175,7 @@ public class Database {
             System.out.println("Start deleting" + new File(theWorkingDir).getAbsolutePath());
             if(deleteFile(new File(theWorkingDir))) {
                 new File(theWorkingDir).delete();
-                MessageBoxFactory.createMessageBox("Success", "Projekt wurde gel�scht");
+                MessageBoxFactory.createMessageBox("Success", "Projekt wurde geloescht");
                 for (DataKnot eachKnot : theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).getChildren()) {
                     if (theWorkingDir.equals(eachKnot.getValue() + "/" + eachKnot.getDataByKey("name"))) {
                         theConfigKnot.getFirstChildByTag(PROJECT_LIST_TAG).removeChild(eachKnot);
@@ -186,7 +186,7 @@ public class Database {
                 writeConfig();
                 return true;
             } else {
-                MessageBoxFactory.createMessageBox("Achtung", "Projekt konnte nicht gel�scht werden");
+                MessageBoxFactory.createMessageBox("Achtung", "Projekt konnte nicht geloescht werden");
                 return false;
             }
         } else {

@@ -19,16 +19,16 @@ import java.util.ArrayList;
 
 public class FunctionPoint extends Calcer {
 
-    private Function functionArray[];
-    private InfluenceFactors influenceFactors;
-    private int fAnzahl=0; // Anzahl der Funktionen die von pKnot uebergeben werden
-    private int currentIndex=0;
-    private Core _pCore;
-    private JFrame _functionFrame;
-    private JFrame _influenceFrame;
+    private Function functionArray[];           // Array von Produktfunktionen
+    private InfluenceFactors influenceFactors;  // Einflussfaktoren, die fuer die Berechnung verwendet werden
+    private int fAnzahl=0;                      // Anzahl der Funktionen die von pKnot uebergeben werden
+    private int currentIndex=0;                 // aktueller Index der Funktion, die in der FunctionInput-Form bewertet werden kann
+    private Core _pCore;                        // Verweis auf den Core
+    private JFrame _functionFrame;              // Frame fuer Bewertung der Produktfunktionen
+    private JFrame _influenceFrame;             // Frame fuer Anzeige und Veraenderung der Einflussfaktoren
 
-    private FunctionInput theFunctionInput;
-    private InfluenceFactorInput theInfluenceFactorInput;
+    private FunctionInput theFunctionInput;     // Klasse zur Steuerung von _functionFrame
+    private InfluenceFactorInput theInfluenceFactorInput;   // Klasse zur Steuerung von _influenceFrame
 
     /*
 
@@ -36,34 +36,47 @@ public class FunctionPoint extends Calcer {
 
     @Override
     public void calculate(Core pCore, DataKnot pKnot) {
-        _pCore=pCore;
-        influenceFactors=new InfluenceFactors(_pCore);
+        _pCore = pCore;                                         // Verweis auf den Core
+        influenceFactors = new InfluenceFactors(_pCore);        // Einflussfaktoren werden geladen
         pKnot.printKnot();
-        ArrayList<DataKnot> productFunctions = pKnot.getFirstChildByTag("data").getFirstChildByTag("productfunction").getChildrenByTag("element");
-        fAnzahl=productFunctions.size();
-        functionArray=new Function[fAnzahl];
-        String id="";
-        String name="";
+
+        try {  // Versuche Produktfunktionen zur Berechnung zu laden.
+
+            ArrayList<DataKnot> productFunctions = pKnot.getFirstChildByTag("data").getFirstChildByTag("productfunction").getChildrenByTag("element");
+
+            // Kopiere Produktfunktionen in lokalen Speicher (functionArray)
+
+            fAnzahl = productFunctions.size();
+            functionArray = new Function[fAnzahl];
+            String id = "";
+            String name = "";
 
 
-        for (int i=0; i<fAnzahl; i++) {
+            for (int i=0; i<fAnzahl; i++) {
 
-            id=productFunctions.get(i).getDataByKey("ID");
-            name=productFunctions.get(i).getDataByKey("TITLE");
+                id = productFunctions.get(i).getDataByKey("ID");
+                name = productFunctions.get(i).getDataByKey("TITLE");
 
-            functionArray[i]=new Function();
+                functionArray[i] = new Function();
 
-            functionArray[i].setID(id);
-            functionArray[i].setName(name);
+                functionArray[i].setID(id);
+                functionArray[i].setName(name);
+            }
+
+
+            theFunctionInput = new FunctionInput(this);
+            theInfluenceFactorInput = new InfluenceFactorInput(this);
+            loadFunctionGUI();          // Lade aktuelle Funktion (functionArray an der Stelle currentIndex)
+            openFunctionInput();        // öffne Fenster zur Bewertung der Produktfunktionen
+
+        }catch(Exception e){
+            // Falls keine Produktfunktionen geladen werden können, mache nichts.
+            MessageBoxFactory.createMessageBox("Fehler", "Es konnten keine Produktfunktionen geladen werden. Bitte erstellen Sie Produktfunktionen, oder speichern Sie diese falls bereits welche erstellt wurden!");
         }
-        theFunctionInput=new FunctionInput(this);
-        theInfluenceFactorInput=new InfluenceFactorInput(this);
-        loadFunctionGUI();
-        openFunctionInput();
 
     }
 
-    public void loadFunctionsFromCore(){
+    public void loadFunctionsFromCore(){        // FunctionArray wird aus "FunktionenFunctionPoint.dat" im Core geladen
         DataKnot theKnot = _pCore.loadData("FunktionenFunctionPoint.dat");
 
         if (theKnot != null) {
@@ -82,7 +95,7 @@ public class FunctionPoint extends Calcer {
         }
     }
 
-    public void safeFunctionsToCore(){
+    public void safeFunctionsToCore(){  // FunctionArray wird in "FunktionenFunctionPoint.dat" im Core gespeichert
         DataKnot funktionen = new DataKnot("root");
 
         for (Function eachFunction : functionArray) {
@@ -107,12 +120,12 @@ public class FunctionPoint extends Calcer {
 
         _pCore = pCore;
 
-        System.out.println("Test");
+
 
         optimizeWindow oWindow = new optimizeWindow(this);
 
        influenceFactors = new InfluenceFactors(pCore);
-        loadFunctionsFromCore();
+        loadFunctionsFromCore(); // lade FunctionArray vom Core
 
         /*
         Eingabe der tatsaechlichen LoC
@@ -136,11 +149,18 @@ public class FunctionPoint extends Calcer {
         }
 
 
-        int summeKat = calcSumme();           // liefert Summe der einzelnen Kategorien E1
-        double realEinflussBew = 0;           // tatsaechliche Einflussbewertung E3
-        double realInflFac = 0;             // Wert der Einflussfaktoren E2
+        int summeKat = calcSumme();             // liefert Summe der einzelnen Kategorien E1
+        double realEinflussBew = 0;             // tatsaechliche Einflussbewertung E3
+        double realInflFac = 0;                 // Wert der Einflussfaktoren E2
 
-        double oldInflFac = Double.parseDouble(pCore.loadData("Ergebnis.dat").getValue());              // alter Wert der Einflussfaktoren E2-old
+        double oldInflFac;
+        try {
+            oldInflFac = Double.parseDouble(pCore.loadData("Ergebnis.dat").getValue());              // alter Wert der Einflussfaktoren E2-old
+
+        }catch(Exception e){
+            MessageBoxFactory.createMessageBox("Fehler", "Es kann keine Optimierung durchgefuehrt werden, da noch keine Berechnung durchgefuehrt wurde.");
+            return;
+        }
         double EinflussBewDiff = 0;
 
 
@@ -219,12 +239,14 @@ public class FunctionPoint extends Calcer {
 
             influenceFactors.save();
             System.out.println("Optimierung abgeschlossen!/n");
+            MessageBoxFactory.createMessageBox("Meldung", "Optimierung abgeschlossen.");
+
         }
 
     }
 
     /*
-    Wert des aktuellen Index wird erhoeht
+    Wert des aktuellen Index im FunctionArray wird erhoeht
      */
     public void incCurrIndex(){
         if(currentIndex<fAnzahl-1){
@@ -233,7 +255,7 @@ public class FunctionPoint extends Calcer {
     }
 
     /*
-    Wert des aktuellen Index wird verringert
+    Wert des aktuellen Index im FunctionArray wird verringert
      */
     public void decCurrIndex(){
         if(currentIndex>0){
@@ -243,7 +265,7 @@ public class FunctionPoint extends Calcer {
     }
 
     /*
-    Funktionen bewerten
+    Öffnet Fenster um Funktionen zu bewerten
      */
     public void openFunctionInput(){
         JFrame checkFrame = new JFrame();
@@ -285,7 +307,7 @@ public class FunctionPoint extends Calcer {
     }
 
     /*
-    GUI wird geoeffnet
+    GUI (_functionFrame) wird mit den richtigen Produktsfunktionsdaten gefüllt
      */
     public void loadFunctionGUI(){
         Function tmpFunction=functionArray[currentIndex];
@@ -302,7 +324,7 @@ public class FunctionPoint extends Calcer {
     }
 
     /*
-    Eingaben der GUI werden gespeichert
+    Eingaben der GUI (_functionFrame) werden lokal gespeichert
      */
     public void safeFunctionFromFunctionGUI(){
         Function tmpFunction=functionArray[currentIndex];

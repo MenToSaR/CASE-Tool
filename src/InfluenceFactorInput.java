@@ -13,7 +13,8 @@ import java.awt.event.ActionListener;
  */
 
 public class InfluenceFactorInput {
-    private JButton startButton;
+    private JButton startButton;    // Button um Berechnung zu Starten (und gleichzeitig die veraenderten Einflussfaktoren zu speichern)
+
     private JTextField t1;          // Eingabefelder fuer die Gewichtung der Einflussfaktoren
     private JTextField t2;
     private JTextField t3;
@@ -30,14 +31,14 @@ public class InfluenceFactorInput {
     private JTextField t14;
 
     private JPanel panel1;
-    private FunctionPoint theFunctionPoint;
-    private InfluenceFactors influenceFactors;
+    private FunctionPoint theFunctionPoint;     // Verweis auf Erzeuger
+    private InfluenceFactors influenceFactors;  // Einflussfaktoren lokale Kopie
 
 
     public InfluenceFactorInput(FunctionPoint pFunctionPoint) {
         theFunctionPoint = pFunctionPoint;
-        influenceFactors = theFunctionPoint.getInfluenceFactors();
-        influenceFactors.load();
+        influenceFactors = theFunctionPoint.getInfluenceFactors(); // lade Einflussfaktoren vom Erzeuger (FunctionPoint)
+        influenceFactors.load();        // Lade Einflussfaktoren aus Datei
 
         /*
         Die geladenen Einflussfaktoren werden im Fenster als Vorschlag angezeigt
@@ -90,9 +91,9 @@ public class InfluenceFactorInput {
                     return;
                 }
 
-                theFunctionPoint.calcLoC();
-                theFunctionPoint.getInfluenceFrame().setVisible(false);
-                influenceFactors.save();
+                theFunctionPoint.calcLoC();  // Starte Berechnung
+                theFunctionPoint.getInfluenceFrame().setVisible(false); // aktuelles Fenster ausblenden
+                influenceFactors.save();    // speichere Einflussfaktoren
             }
         });
     }

@@ -26,7 +26,7 @@ public class InfluenceFactors {
         _core = pCore;
         if (_core.loadConfig("InfluenceFactors.dat") == null) {
 
-
+                // falls noch keine Einflussfaktoren gespeichert wurden, werden die Standardwerte gespeichert
 
                 nFactors[0] = 3;
                 nFactors[1] = 4;

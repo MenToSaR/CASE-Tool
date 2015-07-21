@@ -1,7 +1,7 @@
 /**
  * Created by Pascal-L on 04.05.2015.
  */
-public interface IFunction {
+public interface IFunction { // Interface fuer die Klasse Function
 
     void setID(String pID);
     String getID();

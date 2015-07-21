@@ -1,10 +1,12 @@
 /**
  * Created by Pascal-L on 04.05.2015.
+ *
+ *  Diese Klasse beschreibt den Aufbau einer einzelnen Produktfunktion mit Typ, Komplexität, ID, Name, und Gewichtung
  */
 public class Function implements IFunction {
 
-    public static int TYPE_ABFRAGE = 1;
-    public static int COMPLEXITY_MITTEL = 2;
+    public static int TYPE_ABFRAGE = 1;         // DEFAULT Value fuer Type
+    public static int COMPLEXITY_MITTEL = 2;    // DEFAULT Value fuer Komplexitaet
 
     private int nComplexity = COMPLEXITY_MITTEL;
     private String theFunctionID;
@@ -35,7 +37,7 @@ public class Function implements IFunction {
         if(pComplexity > 3 || pComplexity < 1){
             return false; // fehlerhafte Komplexitaetsstufe wurde uebergeben
         }else{
-            nComplexity =pComplexity;
+            nComplexity = pComplexity;
             return true;
         }
 
@@ -51,50 +53,50 @@ public class Function implements IFunction {
         if(pType > 4 || pType < 0){
             return false; // fehlerhafter Typ wurde uebergeben
         }else{
-            nType =pType;
+            nType = pType;
             return true;
         }
     }
 
-    public int getWeight() {
-        int weight=0;
+    public int getWeight() {  // Gibt Gewicht der Funktion zurueck. Werte sind entsprechend der Tabelle zur FunctionPoint Berechnung.
+        int weight = 0;
         if (nType < 2) {
             switch(nComplexity){
-                case 1: weight=3;
+                case 1: weight = 3;
                     break;
-                case 2: weight=4;
+                case 2: weight = 4;
                     break;
-                case 3: weight=6;
-                    break;
-                default: break;
-            }
-        } else if(nType ==2) {
-            switch(nComplexity){
-                case 1: weight=4;
-                    break;
-                case 2: weight=5;
-                    break;
-                case 3: weight=7;
+                case 3: weight = 6;
                     break;
                 default: break;
             }
-        } else if(nType ==3) {
+        } else if(nType == 2) {
             switch(nComplexity){
-                case 1: weight=7;
+                case 1: weight = 4;
                     break;
-                case 2: weight=10;
+                case 2: weight = 5;
                     break;
-                case 3: weight=5;
+                case 3: weight = 7;
+                    break;
+                default: break;
+            }
+        } else if(nType == 3) {
+            switch(nComplexity){
+                case 1: weight = 7;
+                    break;
+                case 2: weight = 10;
+                    break;
+                case 3: weight = 5;
                     break;
                 default: break;
             }
         } else {
             switch(nComplexity){
-                case 1: weight=5;
+                case 1: weight = 5;
                     break;
-                case 2: weight=7;
+                case 2: weight = 7;
                     break;
-                case 3: weight=10;
+                case 3: weight = 10;
                     break;
                 default: break;
             }

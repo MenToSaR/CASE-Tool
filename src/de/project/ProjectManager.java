@@ -27,7 +27,7 @@ public class ProjectManager {
     private SomethingChangedObserver theObserver = new SomethingChangedObserver();
 
     /**
-     * Klasse die für die Projektverwaltung verantwortlich ist
+     * Klasse die fï¿½r die Projektverwaltung verantwortlich ist
      *
      * Model in Architektur
      *
@@ -58,9 +58,9 @@ public class ProjectManager {
     }
 
     /**
-     * Erzeugt alle Komponenten der Oberfläche
+     * Erzeugt alle Komponenten der Oberflï¿½che
      *
-     * Könnte in Datei ausgelagert werden um flexibilität zu erhöhen
+     * Kï¿½nnte in Datei ausgelagert werden um flexibilitï¿½t zu erhï¿½hen
      * und bei laufzeit geladen werden
      */
 
@@ -68,18 +68,18 @@ public class ProjectManager {
         theInputUnitManager.addHolder(new InputUnitHolder("Zielbestimmungen", new TextPanel(this, "projecttarget")));
         theInputUnitManager.addHolder(new InputUnitHolder("Produkteinsatz", new TextPanel(this, "productusage")));
         theInputUnitManager.addHolder(new InputUnitHolder("Umgebung", new TextPanel(this, "environment")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Produktfunktionen", new EditorPanel(this, new EditorPanelHolder(IDTitleTitleTextPanel.class, "LF ", "Geschï¿½ftsprozess", "Akteur", "Beschreibung"), "productfunction")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Produktfunktionen", new EditorPanel(this, new EditorPanelHolder(IDTitleTitleTextPanel.class, "LF ", "Geschaeftsprozess", "Akteur", "Beschreibung"), "productfunction")));
         theInputUnitManager.addHolder(new InputUnitHolder("Produktdaten", new EditorPanel(this, new EditorPanelHolder(IDTitleTextPanel.class, "LD ", "Titel", "Beschreibung"), "productdata")));
         theInputUnitManager.addHolder(new InputUnitHolder("Nichtfunktionale Anforderungen", new EditorPanel(this, new EditorPanelHolder(IDTitleTextPanel.class, "LL ", "Titel", "Beschreibung"), "nonfunctional")));
         theInputUnitManager.addHolder(new InputUnitHolder("Qualitaetsanforderungen", new EditorPanel(this, new EditorPanelHolder(TitleSliderTextPanel.class, "", "Anforderung", "Prioritaet", "Beschreibung"), "quality")));
         theInputUnitManager.addHolder(new InputUnitHolder("Ergaenzungen", new TextPanel(this, "miscellaneous")));
-        theInputUnitManager.addHolder(new InputUnitHolder("Glossar", new EditorPanel(this, new EditorPanelHolder(TitleTextPanel.class, "", "Begriff", "Erklï¿½rung"), "glossary")));
+        theInputUnitManager.addHolder(new InputUnitHolder("Glossar", new EditorPanel(this, new EditorPanelHolder(TitleTextPanel.class, "", "Begriff", "Erklaerung"), "glossary")));
 
         theFrame.enableSaveButton(false);
     }
 
     /**
-     * Läd Projektdaten aus der Database
+     * Lï¿½d Projektdaten aus der Database
      */
 
     public void loadProjectData(Database pDatabase) {
@@ -104,7 +104,7 @@ public class ProjectManager {
     }
 
     /**
-     * Aktualisiert die Oberfläche
+     * Aktualisiert die Oberflï¿½che
      */
 
     public void updateInterface() {
@@ -113,7 +113,7 @@ public class ProjectManager {
     }
 
     /**
-     * Speichert sämtliche Komponenten
+     * Speichert sï¿½mtliche Komponenten
      */
 
     public void saveCompleteProject() {
@@ -125,7 +125,7 @@ public class ProjectManager {
     /**
      * Speicher einzelne Komponente
      * @param pHolder Komponente
-     * @param pID Höchste ID der Einträge (z.B: LF110)
+     * @param pID Hï¿½chste ID der Eintrï¿½ge (z.B: LF110)
      */
 
     public void saveData(EditorPanelHolder pHolder, String pID) {
@@ -167,7 +167,7 @@ public class ProjectManager {
     }
 
     /**
-     * Läd einzelne Daten aus den Datenbankknoten
+     * Lï¿½d einzelne Daten aus den Datenbankknoten
      * @deprecated Wird nichtmehr verwendet
      * @param pID
      * @return
@@ -178,7 +178,7 @@ public class ProjectManager {
     }
 
     /**
-     * Übergibt Datenbankknoten
+     * ï¿½bergibt Datenbankknoten
      * @return
      */
 
@@ -187,7 +187,7 @@ public class ProjectManager {
     }
 
     /**
-     * Zeigt gewünschte Seite auf der Oberfläche an
+     * Zeigt gewï¿½nschte Seite auf der Oberflï¿½che an
      * @param pName
      * @param pFrame
      */
