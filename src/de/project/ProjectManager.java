@@ -26,6 +26,15 @@ public class ProjectManager {
 
     private SomethingChangedObserver theObserver = new SomethingChangedObserver();
 
+    /**
+     * Klasse die für die Projektverwaltung verantwortlich ist
+     *
+     * Model in Architektur
+     *
+     * @param pCore
+     * @param pFrame
+     */
+
     public ProjectManager(Core pCore, MainFrame pFrame) {
         theCore = pCore;
         theFrame = pFrame;
@@ -48,6 +57,13 @@ public class ProjectManager {
         theFrame.enableSaveButton(true);
     }
 
+    /**
+     * Erzeugt alle Komponenten der Oberfläche
+     *
+     * Könnte in Datei ausgelagert werden um flexibilität zu erhöhen
+     * und bei laufzeit geladen werden
+     */
+
     private void initInputUnitManager(){
         theInputUnitManager.addHolder(new InputUnitHolder("Zielbestimmungen", new TextPanel(this, "projecttarget")));
         theInputUnitManager.addHolder(new InputUnitHolder("Produkteinsatz", new TextPanel(this, "productusage")));
@@ -61,6 +77,10 @@ public class ProjectManager {
 
         theFrame.enableSaveButton(false);
     }
+
+    /**
+     * Läd Projektdaten aus der Database
+     */
 
     public void loadProjectData(Database pDatabase) {
         theProjectData.clear();
@@ -83,16 +103,30 @@ public class ProjectManager {
         theProjectData.printKnot();
     }
 
+    /**
+     * Aktualisiert die Oberfläche
+     */
+
     public void updateInterface() {
         theFrame.revalidate();
         theFrame.repaint();
     }
+
+    /**
+     * Speichert sämtliche Komponenten
+     */
 
     public void saveCompleteProject() {
         for (InputUnitHolder eachHolder : theInputUnitManager.getElements()) {
             eachHolder.save();
         }
     }
+
+    /**
+     * Speicher einzelne Komponente
+     * @param pHolder Komponente
+     * @param pID Höchste ID der Einträge (z.B: LF110)
+     */
 
     public void saveData(EditorPanelHolder pHolder, String pID) {
         DataKnot tempKnot = theProjectData.getFirstChildByTag("data").getFirstChildByTag(pID);
@@ -114,6 +148,12 @@ public class ProjectManager {
         theCore.saveData(theProjectData.getFirstChildByTag("data"), theFunctionDataFileName);
     }
 
+    /**
+     * Speichert Text einer Komponente
+     * @param pString Text der Komponente
+     * @param pID ID der Komponente
+     */
+
     public void saveData(String pString, String pID) {
         DataKnot tempKnot = theProjectData.getFirstChildByTag("data").getFirstChildByTag(pID);
         theProjectData.getFirstChildByTag("data").removeChild(tempKnot);
@@ -126,14 +166,31 @@ public class ProjectManager {
         theCore.saveData(theProjectData.getFirstChildByTag("data"), theFunctionDataFileName);
     }
 
+    /**
+     * Läd einzelne Daten aus den Datenbankknoten
+     * @deprecated Wird nichtmehr verwendet
+     * @param pID
+     * @return
+     */
+
     public DataKnot loadData(String pID) {
         return theProjectData.getFirstChildByTag(pID);
     }
+
+    /**
+     * Übergibt Datenbankknoten
+     * @return
+     */
 
     public DataKnot getDataKnot(){
         return theProjectData;
     }
 
+    /**
+     * Zeigt gewünschte Seite auf der Oberfläche an
+     * @param pName
+     * @param pFrame
+     */
 
     public void showPage(String pName, MainFrame pFrame) {
         JPanel tempPanel = theInputUnitManager.getPanelByName(pName);

@@ -23,6 +23,21 @@ public class Core {
 
     MainFrame theFrame;
 
+    /**
+     *  Architekturmodell: Model-View-Controller
+     *  Model -> ProjectManager
+     *  View -> MainFrame
+     *  Controller -> Core
+     */
+
+    /**
+     *  Hauptklasse
+     *
+     *  Gleichzeitig Controller für das Projekt
+     *
+     *  Verantwortlich für Kommunikation zwischen Model und View
+     */
+
     public Core() {
         theFrame = new MainFrame(this);
 
@@ -32,6 +47,12 @@ public class Core {
 
         loadLastProject();
     }
+
+    /**
+     * Läd das letzte Projekt
+     *
+     * @throws FileNotFoundException -> Fehlerfenster falls kein Projekt gefunden Wurde
+     */
 
     private void loadLastProject() {
         if (theDatabase.getConfigEntry(Database.PROJECT_LAST_PROJECT) != null) {
@@ -45,10 +66,18 @@ public class Core {
         }
     }
 
+    /**
+     * Speicher das Gesamte Projekt und alle Komponenten (Funktionale anforderungen, nichtfunktion.....)
+     */
+
     public void saveCompleteProject() {
         theProjectManager.saveCompleteProject();
         theFrame.enableSaveButton(false);
     }
+
+    /**
+     *  Löscht das Projekt und setzt Oberfläche zurück
+     */
 
     public void deleteProject() {
         if (theDatabase.deleteWorkingDir()) {
@@ -56,6 +85,11 @@ public class Core {
             theFrame.reset();
         }
     }
+
+    /**
+     * Öffnet bereits angelegtes Projekt
+     * Wird von Oberfläche angestoßen
+     */
 
     public void reopenProject() {
         ArrayList<String> tempList = new ArrayList<>();
@@ -80,6 +114,11 @@ public class Core {
         }
     }
 
+    /**
+     * Öffnet bereits angelegtes jedoch nicht bereits verwaltetes Projekt
+     * wird von Oberfläche angestoßen
+     */
+
     public void openProject() {
         JFileChooser theChooser = new JFileChooser(theDatabase.getWorkspace());
         theChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -98,6 +137,10 @@ public class Core {
             }
         }
     }
+
+    /**
+     * Legt neues Projekt an
+     */
 
     public void createProject() {
         JFileChooser theChooser = new JFileChooser(theDatabase.getWorkspace());
@@ -122,6 +165,11 @@ public class Core {
         }
     }
 
+    /**
+     * Aktualisiert die Oberfläche
+     * @param pProjectName Name des Projektes
+     */
+
     public void refreshProject(String pProjectName) {
         theProjectManager.loadProjectData(theDatabase);
         theFrame.reset();
@@ -134,22 +182,51 @@ public class Core {
         }
     }
 
+    /**
+     * Speichert locale Daten (in Projekt Verzeichnis)
+     *
+     * @param pKnot Zu Speichernder Knoten
+     * @param pFileName Speichername
+     */
+
     public void saveData(DataKnot pKnot, String pFileName) {                    // In Projekt Ordner (local)
         pKnot.printKnot();
         theDatabase.writeData(pFileName, pKnot);
     }
 
+    /**
+     * Läd Projektspezifische Daten
+     */
+
     public DataKnot loadData(String pFileName) {
         return theDatabase.readData(pFileName);
     }
+
+    /**
+     * Speichert globale Daten (in Programm Verzeichnis)
+     *
+     * @param pKnot Zu Speichernder Knoten
+     * @param pFileName Speichername
+     */
 
     public void saveConfig(DataKnot pKnot, String pFileName) {                  // In Programm Ordner (global)
         theDatabase.writeConfigFile(pKnot, pFileName);
     }
 
+    /**
+     * Läd Programmspezifische Daten
+     * @param pFileName
+     * @return
+     */
+
     public DataKnot loadConfig(String pFileName) {
         return theDatabase.readConfigFile(pFileName);
     }
+
+    /**
+     * Startet Berechnung des Aufwandes
+     * wird von Oberfläche angestoßen
+     */
 
     public void calculate() {
         DataKnot tempKnot = new DataKnot("Daten");
@@ -161,6 +238,11 @@ public class Core {
         theCalcbase.calculate(this, tempKnot);
     }
 
+    /**
+     * Startet Optimierung des Aufwandes
+     * wird von Oberfläche angestoßen
+     */
+
     public void optimize() {
         DataKnot tempKnot = new DataKnot("Daten");
         for (String eachString : JarLoader.getJarLoader().getListOfElements("Calcer", "de.calculator.Calcer")) {
@@ -171,9 +253,22 @@ public class Core {
         theCalcbase.optimize(this, tempKnot);
     }
 
+    /**
+     * Vordert die übergebene Seite auf der Oberfläche an
+     * @param name Name der Seite
+     */
+
     public void showPage(String name){
         theProjectManager.showPage(name, theFrame);
     }
+
+    /**
+     * Main Methode
+     *
+     * Stellt das Look and Feel ein
+     *
+     * @param args Kommandozeilenparameter
+     */
 
     public static void main(String[] args) {
         try {
