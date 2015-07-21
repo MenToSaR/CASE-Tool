@@ -25,10 +25,10 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
     /**
      * Haupt Datenstruktur der Daten die im Programm verwendet werden
      *
-     * Änlicher Aufbau zu XML File
+     * Aehnlicher Aufbau zu XML File
      * Baumstruktur mit einem Parent und n Childs (0 <= n)
      *
-     * Ermöglicht direkte Abbildung einer XML Datei und sorgt damit für komfortablen In- und Export
+     * Ermoeglicht direkte Abbildung einer XML Datei und sorgt damit fuer komfortablen In- und Export
      * Kann jedoch auch auf andere Arten geladen werden (z.B: Serialisierung, INI-Datai, ...)
      *
      * Beinhaltet triviale Methoden zur Konfiguration des Knotens
@@ -146,7 +146,7 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
     }
 
     /**
-     * Rekursive Methode die Ausgabe ermöglicht
+     * Rekursive Methode die Ausgabe ermoeglicht
      * @param pKnot
      * @param pLevel
      */
@@ -178,7 +178,7 @@ public class DataKnot implements Serializable, Iterator<DataKnot>, Iterable<Data
     }
 
     /**
-     * Iteratormethoden um über Kinder und deren Einträge zu iterieren
+     * Iteratormethoden um ueber Kinder und deren Eintraege zu iterieren
      * @return
      */
 

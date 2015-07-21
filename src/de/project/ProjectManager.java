@@ -27,7 +27,7 @@ public class ProjectManager {
     private SomethingChangedObserver theObserver = new SomethingChangedObserver();
 
     /**
-     * Klasse die für die Projektverwaltung verantwortlich ist
+     * Klasse die fï¿½r die Projektverwaltung verantwortlich ist
      *
      * Model in Architektur
      *
@@ -58,9 +58,9 @@ public class ProjectManager {
     }
 
     /**
-     * Erzeugt alle Komponenten der Oberfläche
+     * Erzeugt alle Komponenten der Oberflaeche
      *
-     * Könnte in Datei ausgelagert werden um flexibilität zu erhöhen
+     * Koennte in Datei ausgelagert werden um Flexibilitaet zu erhoehen
      * und bei laufzeit geladen werden
      */
 
@@ -79,7 +79,7 @@ public class ProjectManager {
     }
 
     /**
-     * Läd Projektdaten aus der Database
+     * Laedt Projektdaten aus der Database
      */
 
     public void loadProjectData(Database pDatabase) {
@@ -104,7 +104,7 @@ public class ProjectManager {
     }
 
     /**
-     * Aktualisiert die Oberfläche
+     * Aktualisiert die Oberflaeche
      */
 
     public void updateInterface() {
@@ -113,7 +113,7 @@ public class ProjectManager {
     }
 
     /**
-     * Speichert sämtliche Komponenten
+     * Speichert saemtliche Komponenten
      */
 
     public void saveCompleteProject() {
@@ -125,7 +125,7 @@ public class ProjectManager {
     /**
      * Speicher einzelne Komponente
      * @param pHolder Komponente
-     * @param pID Höchste ID der Einträge (z.B: LF110)
+     * @param pID Hoechste ID der Eintraege (z.B: LF110)
      */
 
     public void saveData(EditorPanelHolder pHolder, String pID) {
@@ -167,7 +167,7 @@ public class ProjectManager {
     }
 
     /**
-     * Läd einzelne Daten aus den Datenbankknoten
+     * Laedt einzelne Daten aus den Datenbankknoten
      * @deprecated Wird nichtmehr verwendet
      * @param pID
      * @return
@@ -178,7 +178,7 @@ public class ProjectManager {
     }
 
     /**
-     * Übergibt Datenbankknoten
+     * uebergibt Datenbankknoten
      * @return
      */
 
@@ -187,7 +187,7 @@ public class ProjectManager {
     }
 
     /**
-     * Zeigt gewünschte Seite auf der Oberfläche an
+     * Zeigt gewuenschte Seite auf der Oberflaeche an
      * @param pName
      * @param pFrame
      */

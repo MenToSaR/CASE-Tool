@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class MessageBoxFactory {
 
     /**
-     * Factor Klasse für Message Boxen (in und output)
+     * Factor Klasse fuer Message Boxen (in und output)
      * @param pTitle
      * @param pText
      * @param pList
