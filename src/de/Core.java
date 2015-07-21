@@ -31,6 +31,14 @@ public class Core {
      */
 
     /**
+     * Factory Mehtod: MessageBoxFactory
+     * Singleton: JarLoader
+     * Iterator: DataKnot
+     * Observer: SomethingChangedObserver
+     * uvm.
+     */
+
+    /**
      *  Hauptklasse
      *
      *  Gleichzeitig Controller für das Projekt
