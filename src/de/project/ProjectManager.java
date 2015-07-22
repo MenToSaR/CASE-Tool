@@ -58,9 +58,9 @@ public class ProjectManager {
     }
 
     /**
-     * Erzeugt alle Komponenten der Oberfl�che
+     * Erzeugt alle Komponenten der Oberflaeche
      *
-     * K�nnte in Datei ausgelagert werden um flexibilit�t zu erh�hen
+     * Koennte in Datei ausgelagert werden um Flexibilitaet zu erhoehen
      * und bei laufzeit geladen werden
      */
 
@@ -79,7 +79,7 @@ public class ProjectManager {
     }
 
     /**
-     * L�d Projektdaten aus der Database
+     * Laedt Projektdaten aus der Database
      */
 
     public void loadProjectData(Database pDatabase) {
@@ -104,7 +104,7 @@ public class ProjectManager {
     }
 
     /**
-     * Aktualisiert die Oberfl�che
+     * Aktualisiert die Oberflaeche
      */
 
     public void updateInterface() {
@@ -113,7 +113,7 @@ public class ProjectManager {
     }
 
     /**
-     * Speichert s�mtliche Komponenten
+     * Speichert saemtliche Komponenten
      */
 
     public void saveCompleteProject() {
@@ -125,7 +125,7 @@ public class ProjectManager {
     /**
      * Speicher einzelne Komponente
      * @param pHolder Komponente
-     * @param pID H�chste ID der Eintr�ge (z.B: LF110)
+     * @param pID Hoechste ID der Eintraege (z.B: LF110)
      */
 
     public void saveData(EditorPanelHolder pHolder, String pID) {
@@ -167,7 +167,7 @@ public class ProjectManager {
     }
 
     /**
-     * L�d einzelne Daten aus den Datenbankknoten
+     * Laedt einzelne Daten aus den Datenbankknoten
      * @deprecated Wird nichtmehr verwendet
      * @param pID
      * @return
@@ -178,7 +178,7 @@ public class ProjectManager {
     }
 
     /**
-     * �bergibt Datenbankknoten
+     * uebergibt Datenbankknoten
      * @return
      */
 
@@ -187,7 +187,7 @@ public class ProjectManager {
     }
 
     /**
-     * Zeigt gew�nschte Seite auf der Oberfl�che an
+     * Zeigt gewuenschte Seite auf der Oberflaeche an
      * @param pName
      * @param pFrame
      */

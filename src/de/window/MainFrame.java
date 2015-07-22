@@ -33,7 +33,7 @@ public class MainFrame extends JFrame{
     private JScrollPane thePanelHolder;
 
     /**
-     * Hauptoberfläche
+     * Hauptoberflaeche
      *
      * View in MVC
      *
@@ -41,7 +41,7 @@ public class MainFrame extends JFrame{
      */
 
     /**
-     * Initialisiert Oberfläche und erzeugt Komponenten (Buttons, Felder, ...)
+     * Initialisiert Oberflaeche und erzeugt Komponenten (Buttons, Felder, ...)
      * @param pCore
      */
 
@@ -109,7 +109,7 @@ public class MainFrame extends JFrame{
     }
 
     /**
-     * Öffnet Oberfläche und zeigt diese An
+     * Oeffnet Oberflaeche und zeigt diese An
      */
 
     public void open() {
@@ -121,7 +121,7 @@ public class MainFrame extends JFrame{
     }
 
     /**
-     * Zeigt übergebenes Panel im Hauptpanel an
+     * Zeigt ï¿½bergebenes Panel im Hauptpanel an
      * @param pPanel Anzuzeigendes Panel
      */
 
@@ -136,7 +136,7 @@ public class MainFrame extends JFrame{
     }
 
     /**
-     * heißt so wie seine Funktion
+     * heisst so wie seine Funktion
      * @param pB
      */
 
@@ -168,7 +168,7 @@ public class MainFrame extends JFrame{
     }
 
     /**
-     * Zeigt hirarchie der Komponenten an um Auswahl zu ermöglichen
+     * Zeigt hirarchie der Komponenten an um Auswahl zu ermoeglichen
      * @param pProjectName
      * @param pName Liste der Komponenten
      */

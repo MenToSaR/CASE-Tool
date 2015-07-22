@@ -27,7 +27,7 @@ public class JarLoader {
     }
 
     /**
-     * Läd angegebene Jar-Datei
+     * Laedt angegebene Jar-Datei
      * @param pModule Modul der zu ladenden Datei (package)
      * @param pFolder Ordner in der Jar-Dateien gesucht werden sollen
      * @return
@@ -63,7 +63,7 @@ public class JarLoader {
     }
 
     /**
-     * gibt liste alle Komponenten in Jar-Datei zurück
+     * gibt liste alle Komponenten in Jar-Datei zurueck
      * @param pFolder Ordner in dem gesucht werden soll
      * @param pType package der anzugebenen Klassen
      * @return

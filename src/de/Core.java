@@ -95,8 +95,8 @@ public class Core {
     }
 
     /**
-     * Oeffnet bereits angelegtes Projekt
-     * Wird von Oberflaeche angestoßen
+     * oeffnet bereits angelegtes Projekt
+     * Wird von Oberflaeche angestossen
      */
 
     public void reopenProject() {
@@ -123,8 +123,8 @@ public class Core {
     }
 
     /**
-     * Oeffnet bereits angelegtes jedoch nicht bereits verwaltetes Projekt
-     * wird von Oberflaeche angestoßen
+     * oeffnet bereits angelegtes jedoch nicht bereits verwaltetes Projekt
+     * wird von Oberflaeche angestossen
      */
 
     public void openProject() {
@@ -233,7 +233,7 @@ public class Core {
 
     /**
      * Startet Berechnung des Aufwandes
-     * wird von Oberflaeche angestoßen
+     * wird von Oberflaeche angestossen
      */
 
     public void calculate() {
@@ -248,7 +248,7 @@ public class Core {
 
     /**
      * Startet Optimierung des Aufwandes
-     * wird von Oberflaeche angestoßen
+     * wird von Oberflaeche angestossen
      */
 
     public void optimize() {
